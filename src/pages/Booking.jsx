@@ -8,6 +8,7 @@ import {
   Download,
   Lock,
   Mail,
+  Plus,
   Shield,
   Sparkle,
   Users,
@@ -19,6 +20,7 @@ import {
   bookingSummaryText,
   downloadBlob,
   downloadCalendar,
+  downloadVCard,
   formatLongDate,
 } from '../lib/files';
 import { usePageMeta } from '../lib/hooks';
@@ -903,7 +905,7 @@ export default function Booking() {
                   <span className="booking-help__monogram" aria-hidden="true">
                     MD
                   </span>
-                  <div>
+                  <div style={{ minWidth: 0 }}>
                     <strong style={{ display: 'block', color: 'var(--on-light)', fontSize: '0.9rem' }}>
                       {brand.coordinator}
                     </strong>
@@ -911,6 +913,34 @@ export default function Booking() {
                       {brand.hours}
                     </span>
                   </div>
+                </div>
+
+                <div className="save-contact">
+                  <span className="save-contact__icon" aria-hidden="true">
+                    <Plus style={{ width: 16, height: 16 }} />
+                  </span>
+                  <span className="save-contact__text">
+                    <strong>Aetheria Events</strong>
+                    <span>{brand.email} · studio contact</span>
+                  </span>
+                  <button
+                    type="button"
+                    className="btn btn--ink-ghost btn--xs"
+                    onClick={() =>
+                      downloadVCard({
+                        firstName: 'Mark Helary',
+                        lastName: 'Diaz',
+                        org: brand.name,
+                        title: brand.coordinatorRole,
+                        email: brand.email,
+                        address: brand.address,
+                        note: 'Aetheria Events — digital invitations, RSVP pages and private guest dashboards.',
+                      })
+                    }
+                  >
+                    <Download style={{ width: 13, height: 13 }} aria-hidden="true" />
+                    Save contact
+                  </button>
                 </div>
               </div>
 

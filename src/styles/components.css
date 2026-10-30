@@ -210,6 +210,14 @@
   letter-spacing: 0.15em;
 }
 
+/* compact button for dense UI (save-contact bars, list actions) */
+.btn--xs {
+  padding: 0.5rem 0.7rem;
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  gap: 0.35rem;
+}
+
 .btn--lg {
   padding: 1.12rem 1.8rem;
   font-size: 0.76rem;

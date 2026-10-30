@@ -21,6 +21,7 @@ npm run preview  # serve the production build on http://localhost:4173
 | `/privacy` | Privacy notice (PIC/PIP roles, retention, rights, guest notice, DPO) |
 | `/terms` | Service terms summarised from the SLA (delivery, revisions, refunds, liability) |
 | `/site-plan` | Sitemap, page intent, design system, compliance plan, checklist, open questions |
+| `/aetheria-events-site-plan.pdf` | Downloadable PDF of the site plan for sending to the client |
 | any other | 404 page |
 
 The header shows Home, Packages, Invitation, Site plan and a “Book your date” button; legal pages
@@ -39,6 +40,7 @@ live in the footer and are linked inline from every form.
   *Decline non-essential*, records the choice in `localStorage` (`aetheria.consent.v1`), exposes it
   as `document.documentElement.dataset.consent`, traps focus, closes on `Esc`, and can be reopened
   from every footer under “Privacy settings”.
+- **Site plan** — printable, and downloadable as a PDF from `/aetheria-events-site-plan.pdf`.
 
 Both forms currently store submissions in the visitor’s browser only. Nothing is transmitted —
 see “Going live” below.
