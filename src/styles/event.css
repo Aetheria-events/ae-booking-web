@@ -529,6 +529,7 @@
   display: grid;
   gap: 0.3rem;
   align-content: start;
+  grid-template-rows: auto auto auto 1fr auto;
   padding: clamp(1.2rem, 2.4vw, 1.6rem);
   border: 1px solid var(--e-line);
   border-radius: 18px;
@@ -645,21 +646,23 @@
   box-shadow: 0 0 0 4px rgba(217, 190, 132, 0.12);
 }
 
-.event-timeline__time {
+.event-page .event-timeline__time {
+  margin: 0;
   font-size: 0.6rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--e-gold-soft);
 }
 
-.event-timeline__title {
+.event-page .event-timeline__title {
+  margin: 0.15rem 0 0;
   font-family: var(--font-display);
   font-size: 1.3rem;
   line-height: 1.2;
   color: var(--e-text);
 }
 
-.event-timeline__body {
+.event-page .event-timeline__body {
   margin: 0.1rem 0 0;
   font-size: 0.82rem;
   line-height: 1.55;

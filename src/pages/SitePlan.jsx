@@ -191,16 +191,20 @@ export default function SitePlan() {
             </div>
           </div>
 
-          <p style={{ marginTop: '1.4rem' }}>
-            <button
-              type="button"
-              className="btn btn--ghost btn--sm no-print"
-              onClick={() => window.print()}
-            >
+          <div className="no-print" style={{ marginTop: '1.4rem', display: 'flex', flexWrap: 'wrap', gap: '0.6rem' }}>
+            <button type="button" className="btn btn--ghost btn--sm" onClick={() => window.print()}>
               <Printer style={{ width: 14, height: 14 }} aria-hidden="true" />
-              Save this plan as PDF
+              Print this plan
             </button>
-          </p>
+            <a
+              className="btn btn--ghost btn--sm"
+              href="/aetheria-events-site-plan.pdf"
+              download="Aetheria-Events-Site-Plan.pdf"
+            >
+              <FileText style={{ width: 14, height: 14 }} aria-hidden="true" />
+              Download PDF
+            </a>
+          </div>
         </div>
       </section>
 
