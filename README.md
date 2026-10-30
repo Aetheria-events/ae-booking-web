@@ -118,3 +118,19 @@ subject rights, NPC complaint route.
 ## Fonts
 
 Cormorant Garamond and Jost are bundled from `@fontsource-variable` (SIL Open Font License).
+
+### One-file build (no server needed)
+
+`npm run build:single` produces a single self-contained HTML document — CSS, fonts,
+artwork and the site-plan PDF are all inlined, and routing switches to `#/…` hashes so it
+runs from a plain file. Use it when you need to hand the site to someone who will not run
+`npm install`.
+
+```bash
+npm run build:single
+node scripts/inline-single.mjs   # folds assets + PDF into Aetheria-Events-website.html
+```
+
+`source/index.html` is the Vite template, not a page: opening it with a static file server
+(including VS Code Live Server) shows a blank screen, because the browser receives raw JSX.
+Use `npm run dev`, or the one-file build above.
