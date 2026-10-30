@@ -12,6 +12,7 @@ import './styles/components.css';
 import './styles/pages.css';
 import './styles/event.css';
 import './styles/print.css';
+import './styles/brand.css';
 
 import App from './App.jsx';
 import { ConsentProvider } from './lib/consent.jsx';

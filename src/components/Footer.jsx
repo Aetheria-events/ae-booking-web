@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { brand } from '../data/site';
 import { useConsent } from '../lib/consent';
-import Logo from './Logo';
+import Logo, { LogoMark } from './Logo';
 
 export default function Footer() {
   const { openDialog } = useConsent();
@@ -12,22 +12,13 @@ export default function Footer() {
       <div className="wrap">
         <div className="footer-grid">
           <div className="footer-col footer-col--brand">
-            <Logo />
+            <Logo markVariant="mono" />
             <p>
               Digital invitations, RSVP pages and private guest dashboards for celebrations worth
               remembering. Designed in Bonifacio Global City.
             </p>
             <p className="footer-stamp">
-              <svg viewBox="0 0 64 64" aria-hidden="true">
-                <circle cx="32" cy="32" r="29" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.5" />
-                <path
-                  d="M32 22 45 49M32 22 19 49M24 40h16"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.3"
-                  strokeLinecap="round"
-                />
-              </svg>
+              <LogoMark variant="mono" />
               Est. Manila
             </p>
           </div>

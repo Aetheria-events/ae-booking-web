@@ -58,19 +58,27 @@ src/
   components/              Header, Footer, Logo, Icons, Artwork, PrivacyDialog,
                            Accordion, Countdown, Marquee, PlanCard, Reveal, SectionHead
   pages/                   Home, Packages, Booking, EventDemo, Privacy, Terms, SitePlan, NotFound
-  styles/                  base (tokens), layout, components, pages, event, print
+  styles/                  base (tokens), layout, components, pages, event, print, brand
 ```
 
 ### Design tokens
 
+The palette comes straight from the Aetheria Events logo: deep blue, sky blue and white.
+
 | Token | Value | Use |
 | --- | --- | --- |
-| Ink | `#0B0810` | Primary background |
-| Plum | `#3B2043` | Depth, gradients |
-| Rose | `#C98D9E` | Warmth, glow |
-| Gold | `#C3A05F` | Accents, CTAs |
-| Ivory | `#F8F2E8` | Light sections |
-| Dusk | `#9D91A3` | Muted text |
+| Deep blue | `#004AAD` | Logo bar, links, primary accents |
+| Sky blue | `#38B6FF` | Logo bar, highlights, focus |
+| Night ink | `#08284B` | Headings and body text |
+| Quiet ink | `#35597F` | Secondary text |
+| Page | `#FFFFFF` | Base background |
+| Mist | `#F2F8FF` | Page wash behind the glass |
+| Glass | `rgba(255,255,255,.62)` | Cards, panels, dialogs (`--glass-fill`) |
+
+The design language is **white + glass**: frosted cards with a 1px white edge over a soft
+blue wash, plus deep-blue bands (featured plan, booking summary, CTA, footer) for contrast.
+`src/styles/brand.css` is the layer that applies this on top of the base components — change a
+colour there and it moves everywhere.
 
 Type: **Cormorant Garamond** (display) and **Jost** (UI, forms, labels), self-hosted via
 `@fontsource-variable` so there are no external font requests.

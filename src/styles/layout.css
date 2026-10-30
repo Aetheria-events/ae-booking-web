@@ -9,7 +9,7 @@
   position: sticky;
   top: 0;
   z-index: 90;
-  background: rgba(9, 6, 13, 0.82);
+  background: rgba(8, 40, 75, 0.82);
   backdrop-filter: blur(18px) saturate(130%);
   -webkit-backdrop-filter: blur(18px) saturate(130%);
   border-bottom: 1px solid transparent;
@@ -20,7 +20,7 @@
 }
 
 .site-header.is-scrolled {
-  background: rgba(8, 6, 12, 0.9);
+  background: rgba(255, 255, 255, 0.9);
   border-bottom-color: var(--line-soft);
   box-shadow: 0 24px 50px -40px #000;
 }
@@ -66,7 +66,7 @@
 
 .nav__link:hover,
 .nav__link:focus-visible {
-  color: var(--ivory-50);
+  color: var(--navy-900);
 }
 
 .nav__link:hover::after,
@@ -75,7 +75,7 @@
 }
 
 .nav__link.is-active {
-  color: var(--ivory-50);
+  color: var(--navy-900);
 }
 
 .header-actions {
@@ -99,7 +99,7 @@
   border: 1px solid var(--line);
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.04);
-  color: var(--ivory-50);
+  color: var(--navy-900);
   transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
 }
 
@@ -153,8 +153,8 @@
   gap: 2rem;
   padding: calc(84px + env(safe-area-inset-top)) var(--gutter) 2.5rem;
   background:
-    radial-gradient(60% 40% at 80% 0%, rgba(90, 53, 96, 0.55), transparent 70%),
-    rgba(8, 6, 12, 0.97);
+    radial-gradient(60% 40% at 80% 0%, rgba(0, 74, 173, 0.55), transparent 70%),
+    rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(22px);
   overflow-y: auto;
   opacity: 0;
@@ -187,7 +187,7 @@
   font-family: var(--font-display);
   font-size: clamp(1.7rem, 7vw, 2.3rem);
   line-height: 1.15;
-  color: var(--ivory-100);
+  color: var(--navy-900);
   transition: color 0.3s var(--ease);
 }
 
@@ -298,7 +298,7 @@ html.nav-open body {
   font-family: var(--font-display);
   font-size: 1.55rem;
   line-height: 1.1;
-  color: var(--ivory-50);
+  color: var(--navy-900);
 }
 
 .hero__meta-label {
@@ -325,7 +325,7 @@ html.nav-open body {
   aspect-ratio: 1;
   border-radius: 50%;
   background:
-    radial-gradient(circle, rgba(201, 141, 158, 0.32), rgba(90, 53, 96, 0.22) 46%, transparent 72%);
+    radial-gradient(circle, rgba(56, 182, 255, 0.32), rgba(0, 74, 173, 0.22) 46%, transparent 72%);
   filter: blur(26px);
   z-index: -1;
   animation: float-soft 12s ease-in-out infinite;
@@ -365,7 +365,7 @@ html.nav-open body {
   padding: 0.55rem 0.95rem;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(16, 12, 23, 0.72);
+  background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(14px);
   font-size: 0.62rem;
   font-weight: 450;
@@ -406,7 +406,7 @@ html.nav-open body {
   border-radius: var(--radius-xl);
   border: 1px solid rgba(255, 255, 255, 0.16);
   background:
-    linear-gradient(168deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.035) 44%, rgba(35, 18, 40, 0.55));
+    linear-gradient(168deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.035) 44%, rgba(255, 255, 255, 0.55));
   box-shadow:
     0 50px 90px -50px rgba(0, 0, 0, 0.95),
     inset 0 1px 0 rgba(255, 255, 255, 0.22);
@@ -442,8 +442,8 @@ html.nav-open body {
   gap: 0.4rem;
   padding: 0.42rem 0.8rem;
   border-radius: 999px;
-  background: linear-gradient(135deg, #e9d3a6, #c3a05f);
-  color: #1b1420;
+  background: linear-gradient(135deg, #0f6fd1, #004aad);
+  color: #08284b;
   font-size: 0.6rem;
   font-weight: 600;
   letter-spacing: 0.14em;
@@ -461,7 +461,7 @@ html.nav-open body {
   font-family: var(--font-display);
   font-size: clamp(1.7rem, 4.4vw, 2.15rem);
   line-height: 1.1;
-  color: var(--ivory-50);
+  color: var(--navy-900);
 }
 
 .invite__names .amp {
@@ -487,14 +487,14 @@ html.nav-open body {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold-300);
-  border-bottom: 1px solid rgba(233, 211, 166, 0.35);
+  border-bottom: 1px solid rgba(0, 74, 173, 0.35);
   padding-bottom: 0.2rem;
   transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
 }
 
 .invite__link:hover {
-  color: var(--ivory-50);
-  border-color: var(--ivory-50);
+  color: var(--navy-900);
+  border-color: var(--navy-900);
 }
 
 /* save bar */
@@ -524,8 +524,8 @@ html.nav-open body {
   height: 42px;
   flex: none;
   border-radius: 50%;
-  background: linear-gradient(140deg, #d8b978, #a5813f);
-  color: #14101a;
+  background: linear-gradient(140deg, #38b6ff, #004aad);
+  color: #08284b;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
@@ -620,7 +620,7 @@ html.nav-open body {
   padding-block: clamp(0.95rem, 1.8vw, 1.4rem);
   border-top: 1px solid var(--line-soft);
   border-bottom: 1px solid var(--line-soft);
-  background: rgba(16, 12, 23, 0.5);
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .marquee::before,
@@ -636,12 +636,12 @@ html.nav-open body {
 
 .marquee::before {
   left: 0;
-  background: linear-gradient(90deg, var(--ink-900) 15%, rgba(11, 8, 16, 0));
+  background: linear-gradient(90deg, var(--ink-900) 15%, rgba(8, 40, 75, 0));
 }
 
 .marquee::after {
   right: 0;
-  background: linear-gradient(270deg, var(--ink-900) 15%, rgba(11, 8, 16, 0));
+  background: linear-gradient(270deg, var(--ink-900) 15%, rgba(8, 40, 75, 0));
 }
 
 .marquee__track {
@@ -691,7 +691,7 @@ html.nav-open body {
   margin-top: clamp(1rem, 3vw, 2rem);
   padding-top: clamp(3rem, 6vw, 5rem);
   border-top: 1px solid var(--line-soft);
-  background: linear-gradient(180deg, rgba(11, 8, 16, 0.2), rgba(7, 5, 11, 0.92));
+  background: linear-gradient(180deg, rgba(8, 40, 75, 0.2), rgba(7, 5, 11, 0.92));
 }
 
 .footer-grid {
@@ -788,7 +788,7 @@ html.nav-open body {
   font: inherit;
   color: inherit;
   text-decoration: underline;
-  text-decoration-color: rgba(242, 234, 223, 0.35);
+  text-decoration-color: rgba(0, 74, 173, 0.35);
   text-underline-offset: 3px;
   transition: color 0.3s var(--ease), text-decoration-color 0.3s var(--ease);
 }
@@ -799,7 +799,7 @@ html.nav-open body {
 }
 
 .theme-light .link-button {
-  text-decoration-color: rgba(27, 20, 32, 0.35);
+  text-decoration-color: rgba(8, 40, 75, 0.35);
 }
 
 .theme-light .link-button:hover {

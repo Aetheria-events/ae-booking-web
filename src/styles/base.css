@@ -4,43 +4,66 @@
    ============================================================ */
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
-  --ink-950: #07050b;
-  --ink-900: #0b0810;
-  --ink-850: #100c17;
-  --ink-800: #15101d;
-  --ink-700: #1c1526;
+  /* Brand — from the Aetheria Events logo */
+  --blue-700: #003a8c;
+  --blue-600: #004aad;
+  --blue-500: #1462c4;
+  --sky-500: #38b6ff;
+  --sky-400: #6fcafe;
+  --sky-300: #a6dfff;
+  --sky-200: #cdeeff;
+  --sky-100: #e6f5ff;
 
-  --plum-900: #231228;
-  --plum-800: #2e1934;
-  --plum-700: #3b2043;
-  --plum-500: #5a3560;
+  /* Light surfaces (kept on the old names so every component recolours) */
+  --ink-950: #f2f8ff;
+  --ink-900: #ffffff;
+  --ink-850: #f7fbff;
+  --ink-800: #eef6ff;
+  --ink-700: #e3effc;
 
-  --rose-500: #c98d9e;
-  --rose-300: #e6c4cd;
+  --plum-900: #dcebfb;
+  --plum-800: #cfe3f9;
+  --plum-700: #b8d6f3;
+  --plum-500: #8dbde9;
 
-  --gold-600: #a5813f;
-  --gold-500: #c3a05f;
-  --gold-400: #d8b978;
-  --gold-300: #e9d3a6;
+  --rose-500: #a3d6f7;
+  --rose-300: #d3ecfd;
 
-  --ivory-50: #fcf8f2;
-  --ivory-100: #f8f2e8;
-  --ivory-200: #efe6d8;
-  --ivory-300: #dfd2bf;
+  --gold-600: #004aad;
+  --gold-500: #1462c4;
+  --gold-400: #38b6ff;
+  --gold-300: #0f6fd1;
 
-  --text: #f2eadf;
-  --text-dim: #c8bccb;
-  --text-mute: #9d91a3;
-  --line: rgba(242, 234, 223, 0.15);
-  --line-soft: rgba(242, 234, 223, 0.08);
+  --ivory-50: #ffffff;
+  --ivory-100: #f4f9ff;
+  --ivory-200: #e8f2fe;
+  --ivory-300: #d6e7fb;
 
-  --on-light: #1b1420;
-  --on-light-dim: #5c5163;
-  --on-light-mute: #7b7080;
-  --line-dark: rgba(27, 20, 32, 0.14);
-  --line-dark-soft: rgba(27, 20, 32, 0.08);
+  /* Ink */
+  --navy-900: #08284b;
+  --navy-700: #35597f;
+
+  --text: #08284b;
+  --text-dim: #35597f;
+  --text-mute: #6a87a6;
+  --line: rgba(0, 74, 173, 0.14);
+  --line-soft: rgba(0, 74, 173, 0.08);
+
+  --on-light: #08284b;
+  --on-light-dim: #35597f;
+  --on-light-mute: #6a87a6;
+  --line-dark: rgba(0, 74, 173, 0.14);
+  --line-dark-soft: rgba(0, 74, 173, 0.07);
+
+  /* Glass */
+  --glass-fill: rgba(255, 255, 255, 0.62);
+  --glass-fill-strong: rgba(255, 255, 255, 0.82);
+  --glass-fill-soft: rgba(255, 255, 255, 0.42);
+  --glass-border: rgba(255, 255, 255, 0.75);
+  --glass-edge: rgba(0, 74, 173, 0.1);
+  --glass-blur: blur(20px) saturate(140%);
 
   --font-display: 'Cormorant Garamond Variable', 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
   --font-sans: 'Jost Variable', 'Jost', 'Helvetica Neue', Arial, sans-serif;
@@ -65,8 +88,9 @@
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --dur: 0.55s;
 
-  --shadow-deep: 0 40px 90px -50px rgba(0, 0, 0, 0.95);
-  --shadow-card: 0 30px 60px -40px rgba(0, 0, 0, 0.85);
+  --shadow-deep: 0 40px 80px -52px rgba(0, 42, 96, 0.45);
+  --shadow-card: 0 26px 60px -44px rgba(0, 42, 96, 0.38);
+  --shadow-glass: 0 18px 50px -34px rgba(0, 42, 96, 0.28);
 }
 
 *,
@@ -85,7 +109,7 @@ html {
 
 body {
   margin: 0;
-  background-color: var(--ink-900);
+  background-color: var(--ink-950);
   color: var(--text);
   font-family: var(--font-sans);
   font-size: var(--step-0);
@@ -97,7 +121,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Fixed aurora atmosphere */
+/* Fixed atmosphere — soft brand washes that make the glass read */
 body::before {
   content: '';
   position: fixed;
@@ -105,25 +129,28 @@ body::before {
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(45vmax 40vmax at 10% -6%, rgba(90, 53, 96, 0.62), transparent 62%),
-    radial-gradient(38vmax 32vmax at 94% 4%, rgba(195, 160, 95, 0.2), transparent 64%),
-    radial-gradient(52vmax 46vmax at 72% 100%, rgba(59, 32, 67, 0.66), transparent 66%),
-    radial-gradient(30vmax 26vmax at 20% 78%, rgba(201, 141, 158, 0.12), transparent 70%);
-  filter: blur(8px);
-  animation: aura-drift 30s var(--ease) infinite alternate;
+    radial-gradient(42vmax 38vmax at 8% -8%, rgba(56, 182, 255, 0.28), transparent 62%),
+    radial-gradient(36vmax 30vmax at 96% 2%, rgba(0, 74, 173, 0.16), transparent 64%),
+    radial-gradient(48vmax 42vmax at 78% 96%, rgba(56, 182, 255, 0.22), transparent 66%),
+    radial-gradient(34vmax 30vmax at 18% 84%, rgba(0, 74, 173, 0.1), transparent 70%);
+  filter: blur(10px);
+  animation: aura-drift 34s var(--ease) infinite alternate;
 }
 
-/* Film grain */
+/* Subtle grid, keeps large white areas from looking empty */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
-  z-index: 9998;
+  z-index: 0;
   pointer-events: none;
-  opacity: 0.05;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
+  opacity: 0.32;
+  background-image:
+    linear-gradient(rgba(0, 74, 173, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 74, 173, 0.05) 1px, transparent 1px);
+  background-size: 88px 88px;
+  mask-image: radial-gradient(120% 90% at 50% 0%, #000 20%, transparent 78%);
+  -webkit-mask-image: radial-gradient(120% 90% at 50% 0%, #000 20%, transparent 78%);
 }
 
 #root {
@@ -144,7 +171,7 @@ h6 {
   line-height: 1.08;
   letter-spacing: -0.012em;
   text-wrap: balance;
-  color: var(--ivory-50);
+  color: var(--navy-900);
 }
 
 h1 {
@@ -244,7 +271,7 @@ figure {
   transform: translateY(-160%);
   padding: 0.8rem 1.2rem;
   border-radius: 999px;
-  background: var(--ivory-50);
+  background: var(--navy-900);
   color: var(--ink-900);
   font-size: 0.78rem;
   letter-spacing: 0.16em;
@@ -393,7 +420,7 @@ figure {
 .theme-light {
   position: relative;
   color-scheme: light;
-  background-color: var(--ivory-100);
+  background-color: var(--navy-900);
   color: var(--on-light);
 }
 
@@ -405,7 +432,7 @@ figure {
   height: clamp(18px, 2vw, 30px);
   z-index: 3;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(9, 6, 13, 0.18), rgba(9, 6, 13, 0));
+  background: linear-gradient(180deg, rgba(8, 40, 75, 0.18), rgba(8, 40, 75, 0));
 }
 
 .theme-light h1,
@@ -440,8 +467,8 @@ figure {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(60% 50% at 88% 0%, rgba(201, 141, 158, 0.16), transparent 70%),
-    radial-gradient(50% 40% at 0% 100%, rgba(195, 160, 95, 0.14), transparent 70%);
+    radial-gradient(60% 50% at 88% 0%, rgba(56, 182, 255, 0.16), transparent 70%),
+    radial-gradient(50% 40% at 0% 100%, rgba(0, 74, 173, 0.14), transparent 70%);
 }
 
 /* reveal on scroll */
