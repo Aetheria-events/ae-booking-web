@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { HashRouter } from 'react-router-dom';
 
+import '@fontsource-variable/inter/index.css';
 import '@fontsource-variable/cormorant-garamond/index.css';
 import '@fontsource-variable/cormorant-garamond/wght-italic.css';
 import '@fontsource-variable/jost/index.css';
@@ -14,6 +15,7 @@ import './styles/event.css';
 import './styles/print.css';
 import './styles/brand.css';
 import './styles/round-two.css';
+import './styles/aqua.css';
 
 import App from './App.jsx';
 import { ConsentProvider } from './lib/consent.jsx';

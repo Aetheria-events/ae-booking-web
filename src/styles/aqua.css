@@ -1,0 +1,1096 @@
+/* ============================================================
+   Aetheria Events — aqua theme
+   Light, airy, photographic. Oversized type, frosted glass,
+   pill buttons, Inter on every page and every surface.
+   Loaded last: it re-points the design tokens so every existing
+   component inherits the new palette without being rewritten.
+   ============================================================ */
+
+:root {
+  color-scheme: light;
+
+  /* --- aqua scale --- */
+  --aq-50: #f4fbfd;
+  --aq-100: #eaf6fa;
+  --aq-150: #e0f1f7;
+  --aq-200: #d2eaf3;
+  --aq-300: #b9dfec;
+  --aq-400: #86c8e2;
+  --aq-500: #4aa8dd;
+  --aq-600: #1f8bd0;
+  --aq-700: #1077bb;
+  --aq-800: #0d5f96;
+
+  /* --- ink --- */
+  --aq-ink: #0b3145;
+  --aq-ink-soft: #3f6478;
+  --aq-mute: #7593a3;
+
+  /* --- type: Inter everywhere --- */
+  --font-display: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-sans: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* --- legacy tokens re-pointed onto the aqua palette --- */
+  --blue-700: #0d5f96;
+  --blue-600: #1077bb;
+  --blue-500: #1f8bd0;
+  --sky-500: #4aa8dd;
+  --sky-400: #86c8e2;
+  --sky-300: #b9dfec;
+  --sky-200: #d2eaf3;
+  --sky-100: #eaf6fa;
+
+  --ink-950: #eaf6fa;
+  --ink-900: #ffffff;
+  --ink-850: #f6fcfe;
+  --ink-800: #eef9fc;
+  --ink-700: #e2f2f8;
+  --plum-900: #d9eef6;
+  --plum-800: #cbe8f2;
+  --plum-700: #b5dceb;
+  --plum-500: #8cc6dd;
+  --rose-500: #a9d9e9;
+  --rose-300: #d7eefa;
+
+  --gold-600: #1f8bd0;
+  --gold-500: #2a9ada;
+  --gold-400: #4aa8dd;
+  --gold-300: #1077bb;
+
+  --ivory-50: #ffffff;
+  --ivory-100: #f6fcfe;
+  --ivory-200: #ecf7fb;
+  --ivory-300: #dceff6;
+
+  --navy-900: #0b3145;
+  --navy-700: #3f6478;
+  --text: #0b3145;
+  --text-dim: #3f6478;
+  --text-mute: #7593a3;
+  --line: rgba(11, 49, 69, 0.1);
+  --line-soft: rgba(11, 49, 69, 0.06);
+
+  --on-light: #0b3145;
+  --on-light-dim: #3f6478;
+  --on-light-mute: #7593a3;
+  --line-dark: rgba(11, 49, 69, 0.1);
+  --line-dark-soft: rgba(11, 49, 69, 0.06);
+
+  /* --- glass --- */
+  --glass-fill: rgba(255, 255, 255, 0.56);
+  --glass-fill-strong: rgba(255, 255, 255, 0.8);
+  --glass-fill-soft: rgba(255, 255, 255, 0.38);
+  --glass-border: rgba(255, 255, 255, 0.72);
+  --glass-edge: rgba(11, 49, 69, 0.07);
+  --glass-blur: blur(24px) saturate(150%);
+
+  --radius-sm: 14px;
+  --radius: 22px;
+  --radius-lg: 30px;
+  --radius-xl: 36px;
+  --maxw: 1240px;
+
+  --shadow-deep: 0 40px 90px -60px rgba(13, 60, 84, 0.45);
+  --shadow-card: 0 30px 70px -52px rgba(13, 60, 84, 0.4);
+  --shadow-glass: 0 26px 60px -42px rgba(13, 60, 84, 0.35);
+}
+
+/* ------------------------------------------------------------
+   1. Page + typography
+   ------------------------------------------------------------ */
+
+html {
+  scroll-padding-top: 88px;
+}
+
+body {
+  background-color: var(--aq-100);
+  background-image:
+    radial-gradient(1200px 760px at 8% -12%, #ffffff 0%, rgba(255, 255, 255, 0) 58%),
+    radial-gradient(1100px 700px at 96% 4%, #d8eef7 0%, rgba(216, 238, 247, 0) 60%),
+    linear-gradient(180deg, #eef9fc 0%, #e4f3f9 46%, #eaf7fb 100%);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  letter-spacing: -0.006em;
+}
+
+h1,
+h2,
+h3,
+h4,
+.display,
+.logo__name {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  letter-spacing: -0.035em;
+  color: var(--aq-ink);
+}
+
+h1 {
+  font-weight: 300;
+  line-height: 1.02;
+}
+
+h2 {
+  font-weight: 300;
+  line-height: 1.06;
+}
+
+h3 {
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* the old serif italic accent becomes a soft weight-and-colour shift */
+.italic,
+em {
+  font-style: normal;
+}
+
+.manifesto em,
+.aq-card__names em,
+h1 .italic,
+h2 .italic {
+  font-style: normal;
+}
+
+.manifesto {
+  padding-block: clamp(3rem, 6vw, 5rem);
+}
+
+h1 .italic,
+h2 .italic,
+.aq-hero__soft {
+  color: var(--aq-500);
+  font-weight: 300;
+}
+
+p,
+li,
+label,
+input,
+select,
+textarea,
+button,
+a,
+dd,
+dt,
+figcaption,
+blockquote {
+  font-family: var(--font-sans);
+}
+
+.lede,
+.hero2__lede {
+  font-weight: 300;
+  color: var(--text-dim);
+}
+
+.eyebrow,
+.aq-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--aq-600);
+}
+
+/* kill the decorative washes / grids from the old themes */
+.theme-light::before,
+.hero__grid::before,
+body > .grain,
+.grid-wash {
+  display: none !important;
+}
+
+/* ------------------------------------------------------------
+   2. Header
+   ------------------------------------------------------------ */
+
+.site-header {
+  background: rgba(244, 251, 253, 0.72);
+  border-bottom: 1px solid rgba(11, 49, 69, 0.06);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  backdrop-filter: blur(22px) saturate(160%);
+  box-shadow: none;
+}
+
+.site-header.is-scrolled {
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 10px 40px -32px rgba(13, 60, 84, 0.5);
+}
+
+.nav__link {
+  font-size: 0.86rem;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  color: var(--aq-ink-soft);
+  text-transform: none;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  transition: color 0.25s var(--ease), background 0.25s var(--ease);
+}
+
+.nav__link::after {
+  display: none;
+}
+
+.nav__link:hover {
+  color: var(--aq-ink);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.nav__link.is-active {
+  color: var(--aq-ink);
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 6px 18px -14px rgba(13, 60, 84, 0.7);
+}
+
+/* the header CTA becomes the reference's white pill */
+.btn--header,
+.site-header .btn--gold {
+  background: #ffffff;
+  color: var(--aq-ink);
+  border: 1px solid rgba(11, 49, 69, 0.08);
+  border-radius: 999px;
+  box-shadow: 0 10px 26px -18px rgba(13, 60, 84, 0.55);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  text-transform: none;
+}
+
+.btn--header:hover,
+.site-header .btn--gold:hover {
+  background: #ffffff;
+  color: var(--aq-700);
+  box-shadow: 0 14px 30px -16px rgba(13, 60, 84, 0.55);
+}
+
+.menu-btn {
+  border-color: rgba(11, 49, 69, 0.12);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.menu-btn__bars span {
+  background: var(--aq-ink);
+}
+
+/* mobile drawer */
+.mobile-nav,
+.nav-panel {
+  background: rgba(244, 251, 253, 0.96);
+  -webkit-backdrop-filter: blur(26px);
+  backdrop-filter: blur(26px);
+}
+
+.mobile-nav__link {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: var(--aq-ink);
+}
+
+.mobile-nav__link.is-active {
+  color: var(--aq-600);
+}
+
+/* ------------------------------------------------------------
+   3. Logo — Inter, uppercase AETHERIA over lowercase events
+   ------------------------------------------------------------ */
+
+.logo__name {
+  font-family: var(--font-sans);
+  font-size: 1.16rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--aq-ink);
+}
+
+.logo__sub {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: lowercase;
+  color: var(--aq-500);
+}
+
+.site-footer .logo__name {
+  color: #ffffff;
+}
+
+.site-footer .logo__sub {
+  color: var(--aq-300);
+}
+
+/* ------------------------------------------------------------
+   4. Hero
+   ------------------------------------------------------------ */
+
+.aq-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: clamp(13rem, 21vw, 17.5rem) 0 clamp(1.8rem, 3.4vw, 3rem);
+  background:
+    radial-gradient(120% 90% at 50% 0%, #dff2f9 0%, #d3eaf3 42%, #c6e4f0 100%);
+}
+
+.aq-hero__wash {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(720px 520px at 50% 34%, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0) 62%),
+    radial-gradient(900px 600px at 12% 88%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 70%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 40%, #eaf7fb 100%);
+}
+
+/* oversized wordmark behind the subject */
+.aq-hero__wordmark {
+  position: absolute;
+  z-index: 1;
+  top: clamp(1.1rem, 2.4vw, 2.2rem);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: clamp(0.4rem, 1.6vw, 1.6rem);
+  padding: 0 1.5rem;
+  font-family: var(--font-sans);
+  font-size: clamp(2.6rem, 9.1vw, 10.5rem);
+  font-weight: 200;
+  line-height: 0.86;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.82);
+  text-shadow: 0 20px 60px rgba(20, 90, 125, 0.12);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+.aq-hero__wordmark span:last-child {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* the subject photograph, blended into the wash */
+.aq-hero__subject {
+  position: absolute;
+  z-index: 2;
+  right: clamp(-8%, -2vw, 0%);
+  top: clamp(3.5rem, 8vw, 6rem);
+  bottom: auto;
+  width: min(56vw, 740px);
+  pointer-events: none;
+  -webkit-mask-image:
+    linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.6) 16%, #000 38%),
+    linear-gradient(180deg, transparent 0%, #000 14%, #000 84%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.6) 16%, #000 38%),
+    linear-gradient(180deg, transparent 0%, #000 14%, #000 84%, transparent 100%);
+  mask-composite: intersect;
+}
+
+.aq-hero__subject img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: saturate(1.05) contrast(1.02);
+  mix-blend-mode: multiply;
+  opacity: 0.95;
+}
+
+.aq-hero__inner {
+  position: relative;
+  z-index: 3;
+  width: min(100% - (var(--gutter) * 2), var(--maxw));
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+  gap: clamp(1.6rem, 4vw, 3.4rem);
+  align-items: end;
+}
+
+.aq-hero__copy {
+  max-width: 30rem;
+}
+
+.aq-hero__title {
+  font-size: clamp(2.2rem, 4.2vw, 3.6rem);
+  font-weight: 300;
+  line-height: 1.03;
+  letter-spacing: -0.042em;
+  margin: 0.6rem 0 1rem;
+  color: var(--aq-ink);
+}
+
+.aq-hero__soft {
+  color: var(--aq-400);
+}
+
+.aq-hero__lede {
+  max-width: 33ch;
+  margin: 0 0 1.6rem;
+  font-size: clamp(0.92rem, 1vw, 1rem);
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--aq-ink-soft);
+}
+
+.aq-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+/* --- buttons --- */
+
+.aq-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.68rem 0.72rem 0.68rem 1.4rem;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 0.86rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), background 0.25s var(--ease);
+}
+
+.aq-btn:hover {
+  transform: translateY(-1px);
+}
+
+.aq-btn--primary {
+  background: linear-gradient(135deg, #37a9de, #1077bb);
+  color: #ffffff;
+  box-shadow: 0 18px 34px -20px rgba(16, 119, 187, 0.85);
+}
+
+.aq-btn--primary:hover {
+  box-shadow: 0 22px 40px -18px rgba(16, 119, 187, 0.9);
+}
+
+.aq-btn__arrow {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+  margin-left: 0.3rem;
+}
+
+.aq-btn__arrow svg {
+  width: 14px;
+  height: 14px;
+}
+
+.aq-btn--ghost {
+  padding: 0.78rem 1.5rem;
+  background: #ffffff;
+  color: var(--aq-ink);
+  box-shadow: 0 14px 30px -22px rgba(13, 60, 84, 0.6);
+}
+
+.aq-btn--ghost:hover {
+  color: var(--aq-700);
+}
+
+/* --- floating cards --- */
+
+.aq-hero__stack {
+  display: grid;
+  gap: 0.75rem;
+  align-self: end;
+}
+
+.aq-hero__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.aq-card {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1rem 1.05rem 1.1rem;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.42);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  backdrop-filter: blur(20px) saturate(150%);
+  box-shadow:
+    0 22px 44px -34px rgba(13, 60, 84, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  color: var(--aq-ink);
+  text-decoration: none;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  transition: transform 0.3s var(--ease), background 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.aq-card:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.58);
+  box-shadow:
+    0 28px 52px -32px rgba(13, 60, 84, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+.aq-card--solid {
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.aq-card--tall {
+  padding: 1.1rem 1.15rem 1.25rem;
+}
+
+.aq-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.aq-card__tag {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--aq-600);
+}
+
+.aq-card__icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+  background: linear-gradient(140deg, rgba(74, 168, 221, 0.22), rgba(16, 119, 187, 0.12));
+  border: 1px solid rgba(16, 119, 187, 0.14);
+  color: var(--aq-700);
+}
+
+.aq-card__icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.aq-card__go {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(11, 49, 69, 0.06);
+  color: var(--aq-ink-soft);
+  flex: none;
+  transition: transform 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.aq-card__go svg {
+  width: 13px;
+  height: 13px;
+}
+
+.aq-card:hover .aq-card__go {
+  transform: translate(2px, -2px);
+  color: var(--aq-700);
+}
+
+.aq-card__body {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.aq-card__names {
+  font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  color: var(--aq-ink);
+}
+
+.aq-card__names em {
+  color: var(--aq-400);
+}
+
+.aq-card__stat {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-size: clamp(1.9rem, 3vw, 2.5rem);
+  font-weight: 200;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--aq-ink);
+}
+
+.aq-card__stat em {
+  font-size: 0.72rem;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: 0;
+  color: var(--aq-ink-soft);
+}
+
+.aq-card__meta {
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: var(--aq-mute);
+}
+
+/* ------------------------------------------------------------
+   5. Sections — glass on glass, no bare bands
+   ------------------------------------------------------------ */
+
+.section > .wrap,
+.page-hero > .wrap {
+  background: rgba(255, 255, 255, 0.52);
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: var(--radius-xl);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow:
+    0 30px 70px -54px rgba(13, 60, 84, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  padding: clamp(1.6rem, 3.4vw, 3.2rem);
+}
+
+.section-head h2,
+.pricing__head h2,
+.split__sticky h2 {
+  font-weight: 300;
+  letter-spacing: -0.038em;
+}
+
+.text-link {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--aq-700);
+  border-bottom: 1px solid rgba(16, 119, 187, 0.28);
+}
+
+.text-link:hover {
+  border-color: var(--aq-600);
+}
+
+/* generic cards inherit the glass treatment */
+.diff,
+.assurance,
+.stat,
+.step,
+.about-card,
+.about-contact__card,
+.booking-help,
+.plan,
+.style-card,
+.faq,
+.accordion__item {
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: 0 22px 50px -44px rgba(13, 60, 84, 0.45);
+}
+
+.diff__num,
+.step__num {
+  color: var(--aq-400);
+  font-weight: 300;
+}
+
+.stat__value {
+  font-weight: 200;
+  letter-spacing: -0.05em;
+  color: var(--aq-ink);
+}
+
+.diff__title,
+.assurance__title,
+.step__title {
+  font-weight: 400;
+  letter-spacing: -0.022em;
+  color: var(--aq-ink);
+}
+
+.diff__body,
+.assurance__body,
+.step__body {
+  color: var(--text-dim);
+}
+
+/* ------------------------------------------------------------
+   6. Generic buttons across the site
+   ------------------------------------------------------------ */
+
+.btn {
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  font-weight: 500;
+  letter-spacing: -0.004em;
+  text-transform: none;
+  padding: 0.85rem 1.6rem;
+}
+
+.btn--gold {
+  background: linear-gradient(135deg, #37a9de, #1077bb);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 18px 34px -22px rgba(16, 119, 187, 0.85);
+}
+
+.btn--gold:hover {
+  background: linear-gradient(135deg, #43b4e6, #0f6fae);
+  color: #ffffff;
+}
+
+.btn--ghost {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(11, 49, 69, 0.09);
+  color: var(--aq-ink);
+}
+
+.btn--ghost:hover {
+  background: #ffffff;
+  color: var(--aq-700);
+  border-color: rgba(16, 119, 187, 0.35);
+}
+
+.btn--dark {
+  background: var(--aq-ink);
+  color: #ffffff;
+  border: none;
+}
+
+.btn--dark:hover {
+  background: #0e3f59;
+}
+
+/* on deep aqua panels the buttons stay legible */
+.cta-band .btn--gold,
+.panel--ink .btn--gold,
+.plan--featured .btn--gold {
+  background: #ffffff;
+  color: var(--aq-800);
+}
+
+.cta-band .btn--ghost,
+.panel--ink .btn--ghost,
+.plan--featured .btn--ghost {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.45);
+  color: #ffffff;
+}
+
+.cta-band .btn--ghost:hover,
+.panel--ink .btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.24);
+  color: #ffffff;
+}
+
+/* ------------------------------------------------------------
+   7. Deep surfaces — aqua, not navy
+   ------------------------------------------------------------ */
+
+.site-footer,
+.cta-band,
+.plan--featured,
+.panel--ink,
+.summary,
+.about-contact,
+.manifesto {
+  background:
+    radial-gradient(90% 80% at 18% 0%, rgba(74, 168, 221, 0.45) 0%, rgba(74, 168, 221, 0) 62%),
+    linear-gradient(135deg, #0f5f8d 0%, #0b4767 52%, #08374f 100%);
+  color: #ffffff;
+}
+
+.manifesto {
+  border-radius: var(--radius-xl);
+  margin-inline: auto;
+  max-width: min(100% - 2 * var(--gutter), var(--maxw));
+}
+
+.manifesto p {
+  color: #ffffff;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.manifesto cite {
+  color: rgba(255, 255, 255, 0.7);
+  font-style: normal;
+}
+
+.plan--featured .plan__name,
+.plan--featured .plan__price,
+.cta-band h2 {
+  color: #ffffff;
+}
+
+/* ------------------------------------------------------------
+   8. Photographic cards
+   ------------------------------------------------------------ */
+
+.style-card {
+  background: #0e4a68;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.style-card__media::after {
+  background: linear-gradient(
+    180deg,
+    rgba(6, 38, 55, 0.12) 0%,
+    rgba(6, 38, 55, 0.05) 34%,
+    rgba(6, 38, 55, 0.62) 74%,
+    rgba(6, 38, 55, 0.92) 100%
+  );
+}
+
+.style-card__title {
+  font-weight: 300;
+  letter-spacing: -0.03em;
+}
+
+.style-card__meta {
+  color: var(--aq-300);
+}
+
+.style-card__cta {
+  text-transform: none;
+  letter-spacing: 0.01em;
+  font-weight: 500;
+}
+
+/* ------------------------------------------------------------
+   9. Forms, chips, dialogs
+   ------------------------------------------------------------ */
+
+input,
+select,
+textarea,
+.field input,
+.field select,
+.field textarea {
+  font-family: var(--font-sans);
+  border-radius: 14px;
+  border: 1px solid rgba(11, 49, 69, 0.12);
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--aq-ink);
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid rgba(31, 139, 208, 0.45);
+  outline-offset: 2px;
+}
+
+.chip,
+.pill,
+.tag,
+.badge {
+  border-radius: 999px;
+  font-family: var(--font-sans);
+}
+
+.modal__card,
+.consent,
+.dialog {
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  backdrop-filter: blur(28px) saturate(160%);
+  box-shadow: 0 40px 90px -50px rgba(13, 60, 84, 0.6);
+}
+
+/* ------------------------------------------------------------
+   10. Footer
+   ------------------------------------------------------------ */
+
+.site-footer {
+  margin-top: clamp(1rem, 2vw, 1.6rem);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+.footer-title {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--aq-300);
+}
+
+.footer-list a,
+.footer-contact a,
+.footer-legal a,
+.footer-legal button {
+  font-family: var(--font-sans);
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.footer-list a:hover,
+.footer-contact a:hover {
+  color: #ffffff;
+}
+
+/* ------------------------------------------------------------
+   11. Responsive
+   ------------------------------------------------------------ */
+
+@media (max-width: 1080px) {
+  .aq-hero__subject {
+    width: min(74vw, 700px);
+    right: -14%;
+    bottom: clamp(4rem, 12vh, 9rem);
+    opacity: 0.85;
+  }
+
+  .aq-hero__inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.4rem;
+  }
+
+  .aq-hero__copy {
+    max-width: 34rem;
+  }
+
+  .aq-hero__stack {
+    max-width: 34rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .aq-hero {
+    min-height: 0;
+    padding: 4.9rem 0 1.4rem;
+  }
+
+  .aq-hero__wordmark {
+    top: 5.6rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 0 1.15rem;
+    font-size: clamp(2.6rem, 15vw, 4.2rem);
+    line-height: 0.92;
+    white-space: normal;
+  }
+
+  .aq-hero__wordmark span:last-child {
+    color: rgba(255, 255, 255, 0.62);
+  }
+
+  .aq-hero__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+    width: min(100% - (var(--gutter) * 2), var(--maxw));
+  }
+
+  /* the photograph leads, sitting under the wordmark */
+  .aq-hero__subject {
+    position: absolute;
+    top: 4.2rem;
+    right: -4%;
+    left: auto;
+    width: 86%;
+    z-index: 1;
+    opacity: 0.92;
+    -webkit-mask-image:
+      linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.55) 12%, #000 32%, #000 100%),
+      linear-gradient(180deg, transparent 0%, #000 12%, #000 62%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.55) 12%, #000 32%, #000 100%),
+      linear-gradient(180deg, transparent 0%, #000 12%, #000 62%, transparent 100%);
+    mask-composite: intersect;
+  }
+
+  .aq-hero__wordmark {
+    z-index: 2;
+    text-shadow: 0 12px 40px rgba(20, 90, 125, 0.16);
+  }
+
+  .aq-hero__copy {
+    position: relative;
+    z-index: 3;
+    padding-top: 13.5rem;
+    max-width: none;
+    align-self: stretch;
+  }
+
+  .aq-hero__stack {
+    position: relative;
+    z-index: 3;
+    max-width: none;
+    align-self: stretch;
+    width: 100%;
+  }
+
+  .aq-hero__title {
+    font-size: clamp(2rem, 9vw, 2.6rem);
+  }
+
+  .aq-card {
+    padding: 0.9rem 0.95rem 1rem;
+    border-radius: 20px;
+  }
+
+  .aq-hero__row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .aq-btn {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .aq-btn--ghost {
+    justify-content: center;
+  }
+
+  .section > .wrap,
+  .page-hero > .wrap {
+    border-radius: var(--radius-lg);
+    padding: 1.1rem;
+  }
+
+  .site-footer {
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aq-card,
+  .aq-btn,
+  .aq-card__go {
+    transition: none;
+  }
+}

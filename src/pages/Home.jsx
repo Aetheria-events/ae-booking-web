@@ -5,7 +5,6 @@ import heroPhoto from '../assets/hero-photo.webp';
 import sampleWedding from '../assets/sample-wedding.webp';
 import sampleBirthday from '../assets/sample-birthday.webp';
 import samplePortrait from '../assets/sample-portrait.webp';
-import FairyScene from '../components/FairyScene';
 import Logo, { LogoMark } from '../components/Logo';
 import Marquee from '../components/Marquee';
 import PlanCard from '../components/PlanCard';
@@ -91,91 +90,94 @@ export default function Home() {
   return (
     <>
       {/* ---------------- hero ---------------- */}
-      <section className="hero2">
-        <FairyScene className="hero2__scene" />
-        <div className="hero2__veil" aria-hidden="true" />
+      <section className="aq-hero">
+        <div className="aq-hero__wash" aria-hidden="true" />
+        <p className="aq-hero__wordmark" aria-hidden="true">
+          <span>Aetheria</span>
+          <span>Events</span>
+        </p>
 
-        <div className="wrap hero2__grid">
-          <div className="hero2__card hero2__card--copy">
-            <p className="eyebrow hero2__eyebrow">Aetheria Events · Philippines</p>
-            <h1 className="hero2__title">
-              Make your first impression
-              <span className="hero2__accent">unforgettable.</span>
+        <div className="aq-hero__subject" aria-hidden="true">
+          <img src={heroPhoto} alt="" width="1500" height="837" fetchPriority="high" decoding="async" />
+        </div>
+
+        <div className="wrap aq-hero__inner">
+          <div className="aq-hero__copy">
+            <p className="aq-eyebrow">Aetheria Events · Philippines</p>
+            <h1 className="aq-hero__title">
+              Make your
+              <br />
+              first impression
+              <br />
+              <span className="aq-hero__soft">unforgettable.</span>
             </h1>
-            <p className="hero2__lede">
+            <p className="aq-hero__lede">
               Replace static paper invites with interactive event pages, live RSVP management, and
               instant digital confirmations.
             </p>
 
-            <div className="hero2__actions">
-              <Link to="/booking" className="btn btn--gold btn--lg">
+            <div className="aq-hero__actions">
+              <Link to="/booking" className="aq-btn aq-btn--primary">
                 Reserve your date
-                <ArrowRight />
+                <span className="aq-btn__arrow" aria-hidden="true">
+                  <ArrowRight />
+                </span>
               </Link>
-              <Link to="/packages" className="btn btn--glass btn--lg">
+              <Link to="/packages" className="aq-btn aq-btn--ghost">
                 View packages
               </Link>
             </div>
-
-            <dl className="hero2__meta">
-              <div className="hero2__meta-item">
-                <dt>Packages from</dt>
-                <dd>₱1,499</dd>
-              </div>
-              <div className="hero2__meta-item">
-                <dt>Delivered in</dt>
-                <dd>2–4 days</dd>
-              </div>
-              <div className="hero2__meta-item">
-                <dt>Live after the event</dt>
-                <dd>6 days</dd>
-              </div>
-            </dl>
           </div>
 
-          <div className="hero2__card hero2__card--media">
-            <figure className="hero2__shot">
-              <img
-                src={heroPhoto}
-                alt="A guest reading a digital invitation on her phone in a sunlit lobby"
-                width="1500"
-                height="837"
-                fetchPriority="high"
-                decoding="async"
-              />
-              <span className="hero2__chip hero2__chip--live">
-                <span className="dot-live" aria-hidden="true" />
-                RSVP live
+          <div className="aq-hero__stack">
+            <Link to="/invitation" className="aq-card aq-card--tall">
+              <span className="aq-card__top">
+                <span className="aq-card__tag">Sample invitation</span>
+                <span className="aq-card__go" aria-hidden="true">
+                  <ArrowRight />
+                </span>
               </span>
-              <span className="hero2__chip hero2__chip--replies">
-                <Sparkle style={{ width: 12, height: 12 }} aria-hidden="true" />
-                142 replies
+              <span className="aq-card__body">
+                <span className="aq-card__names">
+                  Isabel <em>&amp;</em> Mateo
+                </span>
+                <span className="aq-card__meta">14 · 02 · 2027 — Makati City</span>
               </span>
-            </figure>
+            </Link>
 
-            <div className="hero2__plate">
-              <div>
-                <p className="hero2__plate-names">
-                  Isabel <span className="amp">&amp;</span> Mateo
-                </p>
-                <p className="hero2__plate-date">14 · 02 · 2027 — Makati City</p>
-              </div>
-              <Link to="/invitation" className="invite__link">
-                Open the invitation
-                <ArrowRight style={{ width: 12, height: 12 }} aria-hidden="true" />
+            <div className="aq-hero__row">
+              <Link to="/invitation" className="aq-card">
+                <span className="aq-card__top">
+                  <span className="aq-card__icon" aria-hidden="true">
+                    <Sparkle />
+                  </span>
+                  <span className="aq-card__go" aria-hidden="true">
+                    <ArrowRight />
+                  </span>
+                </span>
+                <span className="aq-card__body">
+                  <span className="aq-card__stat">
+                    142<em>replies</em>
+                  </span>
+                  <span className="aq-card__meta">RSVP live on the sample page</span>
+                </span>
               </Link>
-            </div>
 
-            <div className="hero2__save">
-              <span className="save-bar__icon" aria-hidden="true">
-                <Calendar style={{ width: 17, height: 17 }} />
-              </span>
-              <span className="save-bar__text">
-                <strong>Save the date</strong>
-                <span>14 February 2027 · {event.venue}</span>
-              </span>
-              <button type="button" className="btn btn--dark btn--xs" onClick={saveSampleDate}>
-                Add to calendar
+              <button type="button" className="aq-card aq-card--solid" onClick={saveSampleDate}>
+                <span className="aq-card__top">
+                  <span className="aq-card__icon" aria-hidden="true">
+                    <Calendar />
+                  </span>
+                  <span className="aq-card__go" aria-hidden="true">
+                    <ArrowRight />
+                  </span>
+                </span>
+                <span className="aq-card__body">
+                  <span className="aq-card__stat">
+                    6<em>days live</em>
+                  </span>
+                  <span className="aq-card__meta">Save the date to your calendar</span>
+                </span>
               </button>
             </div>
           </div>
