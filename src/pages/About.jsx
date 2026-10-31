@@ -4,6 +4,7 @@ import LogoMark from '../components/Logo';
 import Reveal from '../components/Reveal';
 import SectionHead from '../components/SectionHead';
 import { brand } from '../data/site';
+import { useToast } from '../lib/toast';
 import { usePageMeta } from '../lib/hooks';
 import team1 from '../assets/team-1-digital-fulfillment.webp';
 import team2 from '../assets/team-2-marketing.webp';
@@ -91,6 +92,7 @@ const principles = [
 ];
 
 export default function About() {
+  const { notify } = useToast();
   usePageMeta(
     'About our team · Aetheria Events',
     'Aetheria Events is a digital fulfillment team in Bonifacio Global City building bespoke digital invitations, RSVP pages and private guest dashboards for celebrations across the Philippines.',
@@ -268,18 +270,21 @@ export default function About() {
               </div>
 
               <div className="about-contact__actions">
-                <a href={`mailto:${brand.email}`} className="btn btn--gold">
+                <a
+                  href={`mailto:${brand.email}`}
+                  className="btn btn--gold"
+                  onClick={() =>
+                    notify('Email drafted', {
+                      detail: 'Your mail app opens addressed to the digital fulfillment team.',
+                    })
+                  }
+                >
                   {brand.email}
                   <ArrowRight />
                 </a>
-                <a
-                  href={brand.bookingSheet}
-                  className="btn btn--ghost"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <Link to="/booking" className="btn btn--ghost">
                   Reserve a date
-                </a>
+                </Link>
               </div>
             </div>
           </div>

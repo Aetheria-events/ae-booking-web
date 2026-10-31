@@ -126,17 +126,12 @@ export default function Home() {
             </p>
 
             <div className="aq-hero__actions">
-              <a
-                href={brand.bookingSheet}
-                className="aq-btn aq-btn--primary"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <Link to="/booking" className="aq-btn aq-btn--primary">
                 Reserve your date
                 <span className="aq-btn__arrow" aria-hidden="true">
                   <ArrowRight />
                 </span>
-              </a>
+              </Link>
               <Link to="/packages" className="aq-btn aq-btn--ghost">
                 View packages
               </Link>
@@ -458,15 +453,10 @@ export default function Home() {
                 </p>
               </div>
               <div className="cta-band__actions">
-                <a
-                  href={brand.bookingSheet}
-                  className="btn btn--gold"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <Link to="/booking" className="btn btn--gold">
                   Start your booking
                   <ArrowRight />
-                </a>
+                </Link>
                 <a href={`mailto:${brand.email}`} className="btn btn--ghost">
                   Email the team
                 </a>

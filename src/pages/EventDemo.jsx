@@ -272,6 +272,9 @@ export default function EventDemo() {
                 <span className="event-detail__label">Dress code</span>
                 <span className="event-detail__value">Black tie</span>
                 <span className="event-detail__sub">{event.dressCode}</span>
+                <span className="event-detail__sub">
+                  Long dresses and dark suits photograph beautifully under the glass.
+                </span>
               </div>
             </div>
           </div>
@@ -295,6 +298,24 @@ export default function EventDemo() {
                     <p className="event-timeline__body">{item.body}</p>
                   </div>
                 ))}
+              </div>
+
+              <div className="event-know">
+                <p className="event-know__label">Good to know</p>
+                <ul className="event-know__list">
+                  <li>
+                    <strong>An unplugged ceremony.</strong> Our photographers cover the aisle, so
+                    phones and cameras stay in bags until cocktails.
+                  </li>
+                  <li>
+                    <strong>Little guests.</strong> Children are welcome. A quiet room and a sitter
+                    are available from 6:00 PM.
+                  </li>
+                  <li>
+                    <strong>Gifts.</strong> Your presence is the present. If you insist, a note for
+                    the honeymoon fund is more than enough.
+                  </li>
+                </ul>
               </div>
             </div>
 

@@ -49,7 +49,8 @@ const rushOptions = [
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
 
-// the live booking sheet is the system of record; the form prepares one row for it
+// every request is written into the live booking sheet through the Apps Script
+// endpoint in brand.bookingEndpoint; the same columns are the sheet's header row
 const SHEET_COLUMNS = [
   'Reference',
   'Submitted',
@@ -88,6 +89,61 @@ function sheetRow(booking) {
     booking.phone,
     (booking.notes || '').replace(/[\t\r\n]+/g, ' '),
   ].join('\t');
+}
+
+function bookingPayload(booking) {
+  return {
+    reference: booking.reference,
+    submitted: new Date(booking.createdAt).toISOString().slice(0, 16).replace('T', ' '),
+    package: booking.packageName,
+    packagePrice: booking.packagePrice,
+    rush: booking.rushName,
+    rushPrice: booking.rushPrice,
+    total: booking.total,
+    eventType: booking.eventType,
+    eventName: booking.eventName,
+    eventDate: booking.eventDate,
+    venue: booking.venue,
+    guests: booking.guests,
+    name: booking.name,
+    email: booking.email,
+    phone: booking.phone,
+    notes: (booking.notes || '').replace(/[\t\r\n]+/g, ' '),
+  };
+}
+
+/**
+ * Writes one request into the Google Sheet.
+ * Resolves to 'sheet' when the row was accepted by the endpoint, 'copy' when the
+ * row was put on the clipboard for a manual paste, 'download' when neither the
+ * network nor the clipboard was available.
+ */
+async function deliverBooking(booking) {
+  if (brand.bookingEndpoint) {
+    try {
+      await fetch(brand.bookingEndpoint, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(bookingPayload(booking)),
+        keepalive: true,
+      });
+      return 'sheet';
+    } catch {
+      /* offline or blocked, fall back to the clipboard below */
+    }
+  }
+
+  if (navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(sheetRow(booking));
+      return 'copy';
+    } catch {
+      /* clipboard blocked */
+    }
+  }
+
+  return 'download';
 }
 
 function isoDate(date) {
@@ -133,6 +189,7 @@ export default function Booking() {
   const [status, setStatus] = useState('idle');
   const { notify } = useToast();
   const [rowCopied, setRowCopied] = useState(false);
+  const [delivery, setDelivery] = useState('sheet');
   const [reference, setReference] = useState('');
   const [savedBooking, setSavedBooking] = useState(null);
   const [showErrorSummary, setShowErrorSummary] = useState(false);
@@ -209,7 +266,7 @@ export default function Booking() {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const nextErrors = validate();
     setErrors(nextErrors);
@@ -228,66 +285,54 @@ export default function Booking() {
     setStatus('sending');
     const ref = bookingReference();
 
-    window.setTimeout(() => {
-      const booking = {
-        reference: ref,
-        createdAt: new Date().toISOString(),
-        package: selectedPackage.id,
-        packageName: selectedPackage.name,
-        packagePrice: selectedPackage.price,
-        rush: selectedRush.id,
-        rushName: selectedRush.id === 'none' ? 'None' : selectedRush.name,
-        rushPrice: selectedRush.price,
-        total,
-        eventType: form.eventType,
-        eventName: form.eventName.trim(),
-        eventDate: form.eventDate,
-        venue: form.venue.trim(),
-        guests: form.guests,
-        name: form.name.trim(),
-        email: form.email.trim(),
-        phone: form.phone.trim(),
-        notes: form.notes.trim(),
-        marketing: form.marketing,
-      };
+    const booking = {
+      reference: ref,
+      createdAt: new Date().toISOString(),
+      package: selectedPackage.id,
+      packageName: selectedPackage.name,
+      packagePrice: selectedPackage.price,
+      rush: selectedRush.id,
+      rushName: selectedRush.id === 'none' ? 'None' : selectedRush.name,
+      rushPrice: selectedRush.price,
+      total,
+      eventType: form.eventType,
+      eventName: form.eventName.trim(),
+      eventDate: form.eventDate,
+      venue: form.venue.trim(),
+      guests: form.guests,
+      name: form.name.trim(),
+      email: form.email.trim(),
+      phone: form.phone.trim(),
+      notes: form.notes.trim(),
+      marketing: form.marketing,
+    };
 
-      try {
-        const existing = JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '[]');
-        window.localStorage.setItem(
-          STORAGE_KEY,
-          JSON.stringify([...existing, booking].slice(-25)),
-        );
-      } catch {
-        /* storage unavailable */
-      }
+    try {
+      const existing = JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '[]');
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify([...existing, booking].slice(-25)));
+    } catch {
+      /* storage unavailable */
+    }
 
-      const finish = (copied) => {
-        setSavedBooking(booking);
-        setReference(ref);
-        setRowCopied(copied);
-        setStatus('done');
-        notify('Booking row ready', {
-          detail: copied
-            ? 'Your details are on the clipboard. Open the booking sheet and paste the row.'
-            : 'Open the booking sheet, then use Copy details to paste your row.',
-        });
-        window.scrollTo({ top: 160, behavior: 'smooth' });
-      };
+    const delivery = await deliverBooking(booking);
 
-      try {
-        if (navigator.clipboard?.writeText) {
-          navigator.clipboard.writeText(sheetRow(booking)).then(
-            () => finish(true),
-            () => finish(false),
-          );
-        } else {
-          finish(false);
-        }
-      } catch {
-        /* clipboard blocked, the download button is the fallback */
-        finish(false);
-      }
-    }, 620);
+    setSavedBooking(booking);
+    setReference(ref);
+    setDelivery(delivery);
+    setRowCopied(delivery === 'copy');
+    setStatus('done');
+    notify(
+      delivery === 'sheet' ? 'Request sent' : delivery === 'copy' ? 'Booking row ready' : 'Request saved',
+      {
+        detail:
+          delivery === 'sheet'
+            ? `Reference ${ref} is in the booking sheet. We reply within one working day.`
+            : delivery === 'copy'
+              ? 'Your details are on the clipboard. Paste the row into the booking sheet.'
+              : 'Download the row from the panel below and send it with the email button.',
+      },
+    );
+    window.scrollTo({ top: 160, behavior: 'smooth' });
   };
 
   const emailBody = savedBooking
@@ -369,16 +414,17 @@ export default function Booking() {
                       <CheckCircle />
                     </span>
                     <h2 style={{ fontSize: 'clamp(2rem,4vw,2.8rem)' }}>
-                      Your booking row is ready.
+                      {delivery === 'sheet' ? 'Request received.' : 'One more step.'}
                     </h2>
                     <p>
                       Thank you, {(savedBooking.name.split(' ')[0] || 'friend').trim()}. Your request
                       for <strong>{savedBooking.eventName}</strong> on{' '}
-                      {formatLongDate(savedBooking.eventDate)} is packed into one row for the live
-                      booking sheet.{' '}
-                      {rowCopied
-                        ? 'It is already on your clipboard, open the sheet and paste it into the next empty row.'
-                        : 'Open the sheet, then use “Copy details” and paste it into the next empty row.'}
+                      {formatLongDate(savedBooking.eventDate)} is{' '}
+                      {delivery === 'sheet'
+                        ? 'saved in the Aetheria booking sheet. The team reads it the same working day.'
+                        : delivery === 'copy'
+                          ? 'packed into one row and placed on your clipboard. Paste it into the booking sheet below and it is with the team.'
+                          : 'packed into one row. Download it from the buttons below and send it with the email button.'}
                     </p>
                     <span className="success__ref">
                       Reference <strong>{savedBooking.reference}</strong>
@@ -389,8 +435,11 @@ export default function Booking() {
                     <li>
                       <b>1</b>
                       <span>
-                        Open the booking sheet and paste the row into the next empty line, the
-                        columns match exactly.
+                        {delivery === 'sheet'
+                          ? 'Nothing else to do, the row is already in the sheet with your reference above.'
+                          : delivery === 'copy'
+                            ? 'Open the booking sheet and paste the row into the next empty line, the columns match exactly.'
+                            : 'Download or copy the row, then send it with the email button so nothing is lost.'}
                       </span>
                     </li>
                     <li>
@@ -411,15 +460,17 @@ export default function Booking() {
                   </ul>
 
                   <div className="booking-actions">
-                    <a
-                      className="btn btn--gold"
-                      href={brand.bookingSheet}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <ArrowRight style={{ width: 14, height: 14 }} aria-hidden="true" />
-                      Open the booking sheet
-                    </a>
+                    {delivery !== 'sheet' && (
+                      <a
+                        className="btn btn--gold"
+                        href={brand.bookingSheet}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <ArrowRight style={{ width: 14, height: 14 }} aria-hidden="true" />
+                        Open the booking sheet
+                      </a>
+                    )}
                     <button
                       type="button"
                       className="btn btn--ink-ghost"
@@ -444,13 +495,21 @@ export default function Booking() {
                       <Copy style={{ width: 14, height: 14 }} aria-hidden="true" />
                       {rowCopied ? 'Copied. Copy again' : 'Copy details'}
                     </button>
-                    <a className="btn btn--ink-ghost" href={emailHref}>
+                    <a
+                      className="btn btn--ink-ghost"
+                      href={emailHref}
+                      onClick={() =>
+                        notify('Email drafted', {
+                          detail: 'Your mail app opens with the request details already filled in.',
+                        })
+                      }
+                    >
                       <Mail style={{ width: 14, height: 14 }} aria-hidden="true" />
                       Email it to Aetheria
                     </a>
                     <button
                       type="button"
-                      className="btn btn--ink-ghost"
+                      className={`btn ${delivery === 'sheet' ? 'btn--gold' : 'btn--ink-ghost'}`}
                       onClick={() => {
                         downloadCalendar({
                           filename: 'aetheria-event-hold.ics',
@@ -475,9 +534,18 @@ export default function Booking() {
                       <Shield />
                     </span>
                     <span>
-                      <strong>Next step.</strong> The live booking sheet is the record of every
-                      request. Paste your row there and the digital fulfillment team picks it up the
-                      same working day.
+                      {delivery === 'sheet' ? (
+                        <>
+                          <strong>Saved.</strong> Your request is in the booking sheet under{' '}
+                          <strong>{savedBooking.reference}</strong>. The digital fulfillment team
+                          replies to <strong>{savedBooking.email}</strong> within one working day.
+                        </>
+                      ) : (
+                        <>
+                          <strong>One step left.</strong> Add the row to the booking sheet so the
+                          digital fulfillment team can pick it up the same working day.
+                        </>
+                      )}
                     </span>
                   </div>
 
@@ -931,12 +999,12 @@ export default function Booking() {
 
                       <div className="submit-row">
                         <button type="submit" className="btn btn--gold btn--lg" disabled={status === 'sending'}>
-                          {status === 'sending' ? 'Preparing your row…' : 'Continue to the booking sheet'}
+                          {status === 'sending' ? 'Sending your request…' : 'Send booking request'}
                           {status !== 'sending' && <ArrowRight />}
                         </button>
                         <p className="form-note">
-                          Booking happens in our live sheet. We copy your details into the next row
-                          for you, no payment is taken now.
+                          Your details go straight into the Aetheria booking sheet. No payment is
+                          taken now and nothing is charged online.
                         </p>
                       </div>
                     </fieldset>

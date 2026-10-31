@@ -324,15 +324,10 @@ export default function Packages() {
                 </p>
               </div>
               <div className="cta-band__actions">
-                <a
-                  href={brand.bookingSheet}
-                  className="btn btn--gold"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <Link to="/booking" className="btn btn--gold">
                   Start your booking
                   <ArrowRight />
-                </a>
+                </Link>
                 <Link to="/invitation" className="btn btn--ghost">
                   See a sample page
                 </Link>

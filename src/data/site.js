@@ -12,9 +12,13 @@ export const brand = {
   team: 'the Aetheria digital fulfillment team',
   hours: 'Monday to Friday, 8:00 AM – 5:00 PM (PHT)',
   serviceArea: 'Metro Manila & nationwide events',
-  // every booking entry point on the site opens this sheet
+  // the sheet that holds every request, opened only as a fallback
   bookingSheet:
     'https://docs.google.com/spreadsheets/d/1jUrvnfI1MtEY83iVdLOZKxxQUbCtou1F-yf1ABUqYqQ/edit?usp=sharing',
+  // Google Apps Script web app that appends a row to the sheet above.
+  // Paste the deployed /exec URL here and every form submission is written
+  // straight into the sheet. The script lives in docs/booking-sheet.gs.
+  bookingEndpoint: '',
 };
 
 export const nav = [

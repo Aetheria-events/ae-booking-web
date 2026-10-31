@@ -53,15 +53,10 @@ export default function Header() {
           </nav>
 
           <div className="header-actions">
-            <a
-              href={brand.bookingSheet}
-              className="btn btn--gold btn--header"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <Link to="/booking" className="btn btn--gold btn--header">
               Book your date
               <ArrowRight />
-            </a>
+            </Link>
             <button
               type="button"
               className="menu-btn"

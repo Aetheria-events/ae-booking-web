@@ -1043,3 +1043,64 @@
     aspect-ratio: 4 / 3;
   }
 }
+
+/* the note panel that closes the schedule column */
+.event-know {
+  margin-top: 2rem;
+  padding: 1.2rem 1.3rem 1.3rem;
+  border: 1px solid rgba(11, 49, 69, 0.08);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.66);
+  box-shadow: 0 20px 40px -34px rgba(0, 47, 108, 0.4);
+}
+
+.event-know__label {
+  margin: 0 0 0.6rem;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--e-gold-soft, #0a63c9);
+}
+
+.event-know__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.event-know__list li {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--e-dim);
+}
+
+.event-know__list strong {
+  color: var(--e-text);
+  font-weight: 600;
+}
+
+/* captions sit on their own plate with real padding */
+.event-photo figcaption {
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(6, 30, 60, 0.62);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* optical centring: letter-spacing leaves a trailing gap after the last glyph,
+   so the content box is nudged back by half of it */
+.event-kicker {
+  padding-left: 0.34em;
+}
+
+.event-date {
+  padding-left: 0.24em;
+}

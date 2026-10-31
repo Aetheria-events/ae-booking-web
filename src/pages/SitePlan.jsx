@@ -54,8 +54,8 @@ const pages = [
   {
     title: 'Booking',
     purpose:
-      'A short, low-friction request form, package, event, contact details, consent, with a live estimated total.',
-    action: 'Primary CTA: Send booking request.',
+      'A short, low-friction request form, package, event, contact details, consent, with a live estimated total. Every submission is written into the live booking sheet.',
+    action: 'Primary CTA: Send booking request, saved to the sheet.',
   },
   {
     title: 'Sample invitation',
@@ -673,15 +673,10 @@ export default function SitePlan() {
                 </p>
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem', alignSelf: 'center', justifyContent: 'flex-end' }}>
-                <a
-                  href={brand.bookingSheet}
-                  className="btn btn--gold"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <Link to="/booking" className="btn btn--gold">
                   Test the booking form
                   <ArrowRight />
-                </a>
+                </Link>
                 <Link to="/invitation" className="btn btn--ink-ghost">
                   Open the invitation
                 </Link>

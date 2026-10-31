@@ -33,7 +33,9 @@ live in the footer and are linked inline from every form.
   selector that carries over from the packages page (`/booking?package=premium`), rush-service
   pricing that respects package restrictions, a live estimated total, consent capture, and a
   success state with a reference number, a downloadable `.txt` summary, a mailto hand-off and an
-  `.ics` “hold the date”.
+  `.ics` “hold the date”. Every submission is written into the live Google Sheet; see
+  `docs/booking-sheet-setup.md` for the two-minute deployment that connects the two. If the
+  endpoint is unset or offline, the row falls back to the clipboard with a link to the sheet.
 - **Sample invitation**, live countdown, add-to-calendar (`.ics`), save-contact (`.vcf`), venue
   maps link, a three-photograph gallery, RSVP with attendance, guest count, optional note and
   consent.
@@ -45,8 +47,8 @@ live in the footer and are linked inline from every form.
   from every footer under “Privacy settings”.
 - **Site plan**, printable, and downloadable as a PDF from `/aetheria-events-site-plan.pdf`.
 
-Both forms currently store submissions in the visitor’s browser only. Nothing is transmitted , 
-see “Going live” below.
+The sample RSVP stays in the visitor’s browser so the invitation demo needs no backend. Booking
+requests go to the Google Sheet through the Apps Script receiver in `docs/`.
 
 ## Structure
 
@@ -118,9 +120,10 @@ subject rights, NPC complaint route.
 
 ## Going live
 
-1. **Connect the forms.** Point `handleSubmit` in `src/pages/Booking.jsx` (and `EventDemo.jsx` for
-   the sample RSVP) at a real endpoint, Google Apps Script → Sheets, Formspree, or a Cloudflare
-   Worker, and send acknowledgement emails. Keep the existing validation and success states.
+1. **Connect the forms.** Deploy `docs/booking-sheet.gs` inside the booking sheet and paste the
+   `/exec` URL into `brand.bookingEndpoint`; that single line turns the form into a live page that
+   writes to the sheet. Add acknowledgement emails from the same script when the domain is ready.
+   The sample RSVP in `EventDemo.jsx` stays local on purpose.
 2. **Automate retention.** Lock pages 6 days after the event, archive for 30 days, delete on day 36,
    and keep a deletion log without guest data.
 3. **Wire analytics to consent.** Only load analytics when

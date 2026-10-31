@@ -400,15 +400,10 @@ export default function Terms() {
                   <Shield style={{ width: 12, height: 12 }} aria-hidden="true" />
                   Privacy notice
                 </Link>
-                <a
-                  href={brand.bookingSheet}
-                  className="text-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <Link to="/booking" className="text-link">
                   Start a booking
                   <ArrowRight />
-                </a>
+                </Link>
               </div>
             </div>
           </div>
