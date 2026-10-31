@@ -10,6 +10,7 @@ const sitemap = [
       { name: 'Home', path: '/', status: 'live' },
       { name: 'Packages & pricing', path: '/packages', status: 'live' },
       { name: 'Booking request', path: '/booking', status: 'live' },
+      { name: 'About our Team', path: '/about', status: 'live' },
     ],
   },
   {
@@ -61,6 +62,12 @@ const pages = [
     purpose:
       'Show, don’t tell. A full event page with countdown, venue, schedule, save-the-date/contact and RSVP.',
     action: 'Guest CTA: Send my RSVP.',
+  },
+  {
+    title: 'About our Team',
+    purpose:
+      'Put faces to the inbox: the project coordination team, what each member owns, and the standards the work is held to.',
+    action: 'Primary CTA: email the team, or reserve a date.',
   },
   {
     title: 'Privacy notice',
