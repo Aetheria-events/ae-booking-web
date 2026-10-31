@@ -1,0 +1,12 @@
+node_modules
+dist
+.DS_Store
+*.local
+.vite
+
+dist-single
+Aetheria-Events-website.html
+
+# download mirror: page is tracked, the two large binaries are rebuilt locally
+public/downloads/Aetheria-Events-Website.html
+public/downloads/aetheria-events.zip
