@@ -5,6 +5,44 @@ import Reveal from '../components/Reveal';
 import SectionHead from '../components/SectionHead';
 import { brand } from '../data/site';
 import { usePageMeta } from '../lib/hooks';
+import team1 from '../assets/team-1-digital-fulfillment.webp';
+import team2 from '../assets/team-2-marketing.webp';
+import team3 from '../assets/team-3-digital-fulfillment.webp';
+import team4 from '../assets/team-4-strategic-partner.webp';
+import team5 from '../assets/team-5-strategic-partner.webp';
+
+const team = [
+  {
+    photo: team1,
+    role: 'Digital Fulfillment',
+    focus: 'Art direction and build',
+    body: 'Composes the page: palette, type, layout and the small motion that makes a link feel like an invitation.',
+  },
+  {
+    photo: team2,
+    role: 'Marketing',
+    focus: 'Wording and launch',
+    body: 'Writes the copy you approve, then prepares the announcement assets that carry the page to your guests.',
+  },
+  {
+    photo: team3,
+    role: 'Digital Fulfillment',
+    focus: 'RSVP and guest care',
+    body: 'Builds the forms, watches the guest list and answers the replies that arrive before the day.',
+  },
+  {
+    photo: team4,
+    role: 'Strategic Partner',
+    focus: 'Partnerships',
+    body: 'Introduces the team to planners, venues and studios, and keeps those introductions useful rather than frequent.',
+  },
+  {
+    photo: team5,
+    role: 'Strategic Partner',
+    focus: 'Venue and supplier network',
+    body: 'Opens doors to the venues and suppliers the team already trusts, so a date can be matched to a room.',
+  },
+];
 
 const disciplines = [
   {
@@ -102,10 +140,43 @@ export default function About() {
 
       <section className="section">
         <div className="wrap">
+          <SectionHead eyebrow="Our team" title="The project coordination team.">
+            <p>
+              Five people, one calendar, no hand-offs. Whoever answers your first message is still
+              in the room when the page goes live.
+            </p>
+          </SectionHead>
+
+          <div className="team-grid">
+            {team.map((member, index) => (
+              <Reveal as="figure" className="team-card" key={`${member.role}-${member.focus}`} delay={index * 70}>
+                <span className="team-card__frame">
+                  <img
+                    src={member.photo}
+                    alt={`${member.role}, ${member.focus}`}
+                    width="720"
+                    height="720"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </span>
+                <figcaption>
+                  <p className="team-card__role">{member.role}</p>
+                  <h3 className="team-card__focus">{member.focus}</h3>
+                  <p className="team-card__body">{member.body}</p>
+                </figcaption>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="wrap">
           <SectionHead eyebrow="Who does what" title="Three disciplines, one team.">
             <p>
-              Everyone here touches the work directly. No hand-offs between departments, no
-              telephone game between what you asked for and what gets built.
+              Between them the team covers every part of the work. Nobody hands your page to a
+              department you never meet.
             </p>
           </SectionHead>
 
