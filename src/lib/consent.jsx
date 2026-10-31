@@ -19,7 +19,7 @@ function writeStored(value) {
   try {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(value));
   } catch {
-    /* storage unavailable (private mode / blocked) — choice lasts for the session */
+    /* storage unavailable (private mode / blocked), choice lasts for the session */
   }
 }
 

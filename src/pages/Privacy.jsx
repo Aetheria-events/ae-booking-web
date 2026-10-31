@@ -22,7 +22,7 @@ const toc = [
 
 export default function Privacy() {
   usePageMeta(
-    'Privacy notice — Aetheria Events',
+    'Privacy notice · Aetheria Events',
     'How Aetheria Events collects, uses, shares, retains and deletes personal information for clients, guests and website visitors, under the Philippine Data Privacy Act of 2012 (RA 10173).',
   );
 
@@ -73,7 +73,7 @@ export default function Privacy() {
                 Aetheria Events is a general partnership registered in the Philippines, with its
                 business address at <strong>{brand.address}</strong>. For the personal data of our
                 clients and website visitors, Aetheria Events acts as the{' '}
-                <strong>Personal Information Controller (PIC)</strong> — we decide why and how the
+                <strong>Personal Information Controller (PIC)</strong>, we decide why and how the
                 data is processed.
               </p>
               <p>
@@ -122,8 +122,8 @@ export default function Privacy() {
                   <tr>
                     <td>Website visitors</td>
                     <td>
-                      Your privacy preference, stored in your own browser, and — only if you allow it
-                      — anonymous, aggregated analytics events.
+                      Your privacy preference, stored in your own browser. If you allow it,
+                      anonymous, aggregated analytics events.
                     </td>
                     <td>To remember your choice and improve the site.</td>
                   </tr>
@@ -153,19 +153,19 @@ export default function Privacy() {
               <p>Under the Data Privacy Act of 2012 and its Implementing Rules and Regulations, we rely on:</p>
               <ul>
                 <li>
-                  <strong>Contract</strong> — processing your booking details to deliver the service
+                  <strong>Contract</strong>, processing your booking details to deliver the service
                   you requested.
                 </li>
                 <li>
-                  <strong>Consent</strong> — for optional analytics and, for guests, the reply you
+                  <strong>Consent</strong>, for optional analytics and, for guests, the reply you
                   submit through the RSVP form.
                 </li>
                 <li>
-                  <strong>Legitimate interests</strong> — protecting the security of our site and
+                  <strong>Legitimate interests</strong>, protecting the security of our site and
                   service, and responding to enquiries.
                 </li>
                 <li>
-                  <strong>Legal obligation</strong> — retaining client contact and payment records as
+                  <strong>Legal obligation</strong>, retaining client contact and payment records as
                   required by Philippine law.
                 </li>
               </ul>
@@ -174,7 +174,7 @@ export default function Privacy() {
               <p>
                 This site uses no advertising cookies and no third-party tracking pixels. We use your
                 browser&rsquo;s local storage for two things: remembering whether you accepted
-                analytics, and — in our sample invitation — keeping your preview RSVP so you can see
+                analytics, and, in our sample invitation, keeping your preview RSVP so you can see
                 how the form behaves.
               </p>
               <p>
@@ -210,15 +210,15 @@ export default function Privacy() {
               </p>
               <ul>
                 <li>
-                  <strong>Google Workspace</strong> — email, file storage and the Google Sites
+                  <strong>Google Workspace</strong>, email, file storage and the Google Sites
                   landing page.
                 </li>
                 <li>
-                  <strong>Cloudflare</strong> — web application firewall, traffic security and bot
+                  <strong>Cloudflare</strong>, web application firewall, traffic security and bot
                   protection.
                 </li>
                 <li>
-                  <strong>Tally</strong> — the embedded RSVP form and its submissions.
+                  <strong>Tally</strong>, the embedded RSVP form and its submissions.
                 </li>
               </ul>
               <p>
@@ -260,7 +260,7 @@ export default function Privacy() {
                 <li>Only authorized partners of Aetheria Events can access guest data.</li>
                 <li>
                   If a security incident involving guest data occurs, we notify the client
-                  immediately and assist with — or file on their behalf — any notification required
+                  immediately and assist with, or file on their behalf, any notification required
                   to the National Privacy Commission and affected guests.
                 </li>
               </ul>
@@ -360,7 +360,7 @@ export default function Privacy() {
                 Questions, requests and complaints can be sent to our Data Protection Officer:
               </p>
               <div className="callout">
-                <strong>Data Protection Officer — Aetheria Events</strong>
+                <strong>Data Protection Officer, Aetheria Events</strong>
                 <br />
                 <a href={`mailto:${brand.dpoEmail}`}>
                   <Mail style={{ width: 13, height: 13, display: 'inline', verticalAlign: '-1px' }} />{' '}

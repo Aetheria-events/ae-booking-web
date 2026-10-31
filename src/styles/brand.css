@@ -1,5 +1,5 @@
 /* ============================================================
-   Aetheria Events — brand layer
+   Aetheria Events - brand layer
    White page, glass surfaces, deep-blue + sky accents taken
    straight from the logo. Loaded last so it can restyle any
    component without touching its layout rules.
@@ -1205,7 +1205,7 @@ h6 {
   color: var(--text);
 }
 
-/* the page has one shared atmosphere — per-section washes left visible seams */
+/* the page has one shared atmosphere - per-section washes left visible seams */
 .theme-light::before {
   display: none;
 }

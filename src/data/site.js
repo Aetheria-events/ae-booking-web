@@ -25,7 +25,7 @@ export const nav = [
   { label: 'Booking', to: '/booking', cta: true },
 ];
 
-// Kept out of the header on purpose — the site plan lives in the footer.
+// Kept out of the header on purpose, the site plan lives in the footer.
 export const footerNav = [
   { label: 'Home', to: '/' },
   { label: 'Packages & pricing', to: '/packages' },
@@ -50,7 +50,7 @@ export const packages = [
     price: 1499,
     turnaround: '2–4 working days',
     leadTime: 7,
-    summary: 'A beautiful one-page invitation with a working RSVP — everything essential, nothing extra.',
+    summary: 'A beautiful one-page invitation with a working RSVP, everything essential, nothing extra.',
     features: [
       'Responsive landing page on Google Sites',
       'Event details, countdown timer & location map',
@@ -180,7 +180,7 @@ export const processSteps = [
 export const homeFaqs = [
   {
     q: 'How fast can my page go live?',
-    a: 'Basic and Standard are delivered in 2–4 working days, Premium in 4–6. The period starts the next working day after we receive payment and your Asset Freeze. We recommend booking at least 7 calendar days before the event (14 for Premium) — later bookings are welcome, but same-day delivery is not guaranteed.',
+    a: 'Basic and Standard are delivered in 2–4 working days, Premium in 4–6. The period starts the next working day after we receive payment and your Asset Freeze. We recommend booking at least 7 calendar days before the event (14 for Premium), later bookings are welcome, but same-day delivery is not guaranteed.',
   },
   {
     q: 'What exactly counts as a revision?',
@@ -188,7 +188,7 @@ export const homeFaqs = [
   },
   {
     q: 'Can I cancel or get a refund?',
-    a: 'Yes, before the preview link is sent — the package fee is refunded. After the preview link is sent, fees are non-refundable except where Aetheria Events fails to deliver the service as described. Rush fees are refunded if we miss the approved rush deadline.',
+    a: 'Yes, before the preview link is sent, the package fee is refunded. After the preview link is sent, fees are non-refundable except where Aetheria Events fails to deliver the service as described. Rush fees are refunded if we miss the approved rush deadline.',
   },
   {
     q: 'Where does guest information go?',
@@ -196,7 +196,7 @@ export const homeFaqs = [
   },
   {
     q: 'Whose logo is on the page?',
-    a: 'A discreet “Powered by Aetheria” footer appears on every package. Your own branding, palette and typography lead the design — our mark stays out of the way.',
+    a: 'A discreet “Powered by Aetheria” footer appears on every package. Your own branding, palette and typography lead the design, our mark stays out of the way.',
   },
 ];
 
@@ -215,7 +215,7 @@ export const event = {
   dressCode: 'Black tie, in shades of midnight blue',
   type: 'The Wedding',
   schedule: [
-    { time: '4:00 PM', title: 'Ceremony', body: 'The garden aisle — please be seated by 3:45 PM.' },
+    { time: '4:00 PM', title: 'Ceremony', body: 'The garden aisle, please be seated by 3:45 PM.' },
     { time: '6:00 PM', title: 'Cocktails', body: 'Champagne and strings on the terrace.' },
     { time: '7:00 PM', title: 'Dinner & toasts', body: 'A five-course table, long and candlelit.' },
     { time: '9:00 PM', title: 'Dancing', body: 'Until the candles burn out.' },

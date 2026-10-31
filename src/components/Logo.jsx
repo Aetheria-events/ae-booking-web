@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 /**
- * Aetheria Events monogram — two overlapping rounded bars forming an "A".
+ * Aetheria Events monogram, two overlapping rounded bars forming an "A".
  * Traced from the supplied logo artwork and rebuilt as pure vector paths, so it
  * stays crisp at any size and can be recoloured with `variant`.
  */
@@ -40,7 +40,7 @@ export default function Logo({
   showSub = true,
   className = '',
   markVariant = 'color',
-  ariaLabel = 'Aetheria Events — home',
+  ariaLabel = 'Aetheria Events home',
 }) {
   const inner = (
     <>

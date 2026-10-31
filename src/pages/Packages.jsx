@@ -9,7 +9,7 @@ import { usePageMeta } from '../lib/hooks';
 
 export default function Packages() {
   usePageMeta(
-    'Packages & pricing — Aetheria Events',
+    'Packages & pricing · Aetheria Events',
     'Digital invitation packages from ₱1,499: Basic, Standard and Premium. Online RSVP, private dashboard, automated guest confirmations and a custom website name. Delivered in 2–6 working days.',
   );
 
@@ -37,18 +37,32 @@ export default function Packages() {
             </div>
 
             <div className="page-hero__aside">
-              <div className="pill-row">
-                <span className="chip chip--gold">
-                  <Sparkle style={{ width: 12, height: 12 }} aria-hidden="true" />
-                  One-time fees
-                </span>
-                <span className="chip">No hidden charges</span>
-                <span className="chip">2 revision rounds</span>
+              <div className="hero-panel">
+                <p className="hero-panel__label">At a glance</p>
+                <ul className="hero-panel__rows">
+                  {packages.map((plan) => (
+                    <li key={plan.id}>
+                      <span>
+                        {plan.name}
+                        {plan.featured && <em>Most booked</em>}
+                      </span>
+                      <strong>{formatPeso(plan.price)}</strong>
+                    </li>
+                  ))}
+                </ul>
+                <div className="pill-row">
+                  <span className="chip chip--gold">
+                    <Sparkle style={{ width: 12, height: 12 }} aria-hidden="true" />
+                    One-time fees
+                  </span>
+                  <span className="chip">No hidden charges</span>
+                  <span className="chip">2 revision rounds</span>
+                </div>
+                <p className="small">
+                  All prices are in Philippine pesos and inclusive of the package as described in
+                  the Service Level Agreement. Optional services are billed only after approval.
+                </p>
               </div>
-              <p className="small" style={{ margin: 0 }}>
-                All prices are in Philippine pesos and inclusive of the package as described in the
-                Service Level Agreement. Optional services are billed only after approval.
-              </p>
             </div>
           </div>
         </div>
@@ -170,7 +184,7 @@ export default function Packages() {
                         {value === false && (
                           <>
                             <span className="cell-no" aria-hidden="true">
-                              —
+                              &ndash;
                             </span>
                             <span className="sr-only">Not included</span>
                           </>
@@ -271,7 +285,7 @@ export default function Packages() {
               </span>
               <span>
                 <strong>Booking later than the recommended lead time?</strong> We will still try. The
-                team confirms capacity and may recommend a rush service — but delivery before
+                team confirms capacity and may recommend a rush service, but delivery before
                 the event date is not guaranteed.
               </span>
             </div>
@@ -285,8 +299,8 @@ export default function Packages() {
             <p className="eyebrow">Questions</p>
             <h2>Before you choose.</h2>
             <p className="lede" style={{ marginTop: '1.2rem' }}>
-              Still deciding between Standard and Premium? Write to us with the date and guest count
-              — we will recommend the honest option.
+              Still deciding between Standard and Premium? Write to us with the date and guest
+              count, and we will recommend the honest option.
             </p>
             <a href={`mailto:${brand.email}`} className="text-link" style={{ marginTop: '1.6rem' }}>
               {brand.email}

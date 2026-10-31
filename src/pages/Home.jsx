@@ -13,6 +13,7 @@ import SectionHead from '../components/SectionHead';
 import { brand, event, homeFaqs, packages, processSteps } from '../data/site';
 import { downloadCalendar } from '../lib/files';
 import { usePageMeta } from '../lib/hooks';
+import { useToast } from '../lib/toast';
 
 const styles = [
   {
@@ -27,7 +28,7 @@ const styles = [
   {
     meta: 'Milestones · Premium',
     title: 'The Blush Hour',
-    desc: 'Debuts, birthdays and anniversaries — as personal as the toast.',
+    desc: 'Debuts, birthdays and anniversaries, as personal as the toast.',
     image: sampleBirthday,
     alt: 'A birthday celebrant in a pink tulle dress holding a sparkler',
     objectPosition: 'center 30%',
@@ -60,7 +61,7 @@ const assurances = [
   {
     icon: Clock,
     title: 'A delivery date you can hold',
-    body: '2–4 working days for Basic and Standard, 4–6 for Premium — counted from payment and Asset Freeze.',
+    body: '2–4 working days for Basic and Standard, 4–6 for Premium, counted from payment and Asset Freeze.',
   },
   {
     icon: Users,
@@ -70,24 +71,27 @@ const assurances = [
   {
     icon: Star,
     title: 'Art-directed, not templated',
-    body: 'Palette, typography and layout composed around your celebration — never a stock theme.',
+    body: 'Palette, typography and layout composed around your celebration, never a stock theme.',
   },
 ];
 
 export default function Home() {
   usePageMeta(
-    'Aetheria Events — Digital invitations for unforgettable celebrations',
+    'Aetheria Events · Digital invitations for unforgettable celebrations',
     'Aetheria Events designs bespoke digital event pages with online RSVP for weddings, debuts, corporate gatherings and milestones. Live in 2–6 working days. Based in Bonifacio Global City, Taguig.',
   );
+
+  const { notify } = useToast();
 
   const saveSampleDate = () => {
     downloadCalendar({
       filename: 'ben-and-za.ics',
-      title: `${event.bride} & ${event.groom} — ${event.type}`,
+      title: `${event.bride} & ${event.groom} · ${event.type}`,
       description: 'A sample invitation by Aetheria Events. RSVP online.',
       location: `${event.venueAddress}`,
       start: event.isoDate,
     });
+    notify('Sample date saved', { detail: 'ben-and-za.ics is in your downloads. Open it to add 14 February 2027.' });
   };
 
   return (
@@ -172,7 +176,7 @@ export default function Home() {
                 <span className="aq-card__names">
                   Ben <em>&amp;</em> Za
                 </span>
-                <span className="aq-card__meta">14 · 02 · 2027 — Casa Lumen, Makati</span>
+                <span className="aq-card__meta">14 · 02 · 2027 · Casa Lumen, Makati</span>
               </span>
             </Link>
 
@@ -222,7 +226,7 @@ export default function Home() {
                 <h3 className="diff__title">Designed around your event</h3>
                 <p className="diff__body">
                   Your palette, your venue, your story. We art-direct the page to match the room it
-                  is inviting people into — then test every link, form and screen before you ever
+                  is inviting people into, then test every link, form and screen before you ever
                   see it.
                 </p>
               </div>
@@ -379,7 +383,7 @@ export default function Home() {
           >
             <p>
               A short, well-lit path. The delivery clock starts the next working day after we receive
-              both your payment and your Asset Freeze — the moment every photo, colour and venue
+              both your payment and your Asset Freeze, the moment every photo, colour and venue
               detail is final.
             </p>
           </SectionHead>
@@ -401,7 +405,7 @@ export default function Home() {
         <div className="wrap">
           <LogoMark className="manifesto__mark" />
           <p>
-            We design for the hush <em>before</em> the link opens — and the joy after.
+            We design for the hush <em>before</em> the link opens, and the joy after.
           </p>
           <cite>Aetheria Events · Bonifacio Global City</cite>
         </div>

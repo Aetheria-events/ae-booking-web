@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, FileText, Mail, Shield } from '../components/Icons';
+import { ArrowRight, Mail, Shield } from '../components/Icons';
 import { brand, formatPeso, packages } from '../data/site';
 import { usePageMeta } from '../lib/hooks';
 
@@ -24,7 +24,7 @@ const toc = [
 
 export default function Terms() {
   usePageMeta(
-    'Service terms & booking policy — Aetheria Events',
+    'Service terms & booking policy, Aetheria Events',
     'The Aetheria Events service terms: packages, booking and payment, Asset Freeze, delivery periods, rush services, revisions, cancellations and refunds, privacy roles and limitation of liability.',
   );
 
@@ -32,6 +32,7 @@ export default function Terms() {
     <>
       <section className="page-hero legal-hero">
         <div className="wrap">
+          <div className="legal-hero__grid">
           <div className="legal-hero__inner">
           <nav className="breadcrumb" aria-label="Breadcrumb">
             <Link to="/">Home</Link>
@@ -44,13 +45,42 @@ export default function Terms() {
             <span className="italic gold"> no surprises.</span>
           </h1>
           <p className="page-hero__lede">
-            The summary of how a booking works — the dates we keep, the revisions included, and what
+            The summary of how a booking works: the dates we keep, the revisions included, and what
             happens if plans change. The signed Service Level Agreement governs in every case.
           </p>
-          <p className="legal-updated">
-            <FileText style={{ width: 14, height: 14 }} aria-hidden="true" />
-            Version 1.0 · Last updated 30 October 2026 · Governed by Philippine law
-          </p>
+          </div>
+
+          <aside className="hero-panel hero-panel--doc">
+            <p className="hero-panel__label">Document</p>
+            <ul className="hero-panel__rows">
+              <li>
+                <span>Version</span>
+                <strong>1.0</strong>
+              </li>
+              <li>
+                <span>Last updated</span>
+                <strong>30 October 2026</strong>
+              </li>
+              <li>
+                <span>Governing law</span>
+                <strong>Philippine law</strong>
+              </li>
+            </ul>
+            <div className="hero-panel__links">
+              <Link to="/privacy">
+                Privacy notice
+                <ArrowRight aria-hidden="true" />
+              </Link>
+              <Link to="/privacy#guests">
+                Notice for guests
+                <ArrowRight aria-hidden="true" />
+              </Link>
+              <a href={`mailto:${brand.email}`}>
+                Ask a question
+                <ArrowRight aria-hidden="true" />
+              </a>
+            </div>
+          </aside>
           </div>
         </div>
       </section>
@@ -73,7 +103,7 @@ export default function Terms() {
                 These terms summarize the Aetheria Events Service Level Agreement (SLA) for a
                 Customized Digital Event Landing Page. A booking is made when a client chooses a
                 package, pays the package fee through the channels stated at booking, and gains access
-                to the intake page. The signed SLA — not this summary — is the full agreement between
+                to the intake page. The signed SLA, not this summary, is the full agreement between
                 the parties.
               </p>
               <div className="callout">
@@ -90,7 +120,7 @@ export default function Terms() {
               <ul>
                 {packages.map((plan) => (
                   <li key={plan.id}>
-                    <strong>{plan.name}</strong> — {formatPeso(plan.price)}. {plan.summary} Delivered
+                    <strong>{plan.name}</strong>, {formatPeso(plan.price)}. {plan.summary} Delivered
                     in {plan.turnaround}; recommended booking lead time of {plan.leadTime} calendar
                     days.
                   </li>
@@ -115,7 +145,7 @@ export default function Terms() {
                 </li>
                 <li>
                   <strong>Asset Freeze.</strong> The delivery period begins only after the client
-                  submits an Asset Freeze — a written confirmation that all photographs, event text,
+                  submits an Asset Freeze, a written confirmation that all photographs, event text,
                   colors and venue details are final. After the Asset Freeze, any change counts as a
                   revision.
                 </li>
@@ -156,8 +186,8 @@ export default function Terms() {
                   the event date is not guaranteed for later bookings.
                 </li>
                 <li>
-                  Delivery means the preview link — and later the live link and dashboard access where
-                  included — is sent to the client by email.
+                  Delivery means the preview link, and later the live link and dashboard access where
+                  included, is sent to the client by email.
                 </li>
               </ol>
 
@@ -196,7 +226,7 @@ export default function Terms() {
               <h2 id="revisions">6. Revisions &amp; additional fees</h2>
               <ol>
                 <li>
-                  Each package includes <strong>up to two rounds of minor revisions</strong> — small
+                  Each package includes <strong>up to two rounds of minor revisions</strong>, small
                   changes such as typographical corrections, text updates and asset swaps within the
                   chosen layout. A referred client receives a third round on the first order.
                 </li>
@@ -229,7 +259,7 @@ export default function Terms() {
               <h2 id="client">8. Client responsibilities</h2>
               <ul>
                 <li>Provide accurate and complete event details, and review the preview link promptly.</li>
-                <li>Provide only content — photos, text, logos — that the client has the right to use.</li>
+                <li>Provide only content, photos, text, logos, that the client has the right to use.</li>
                 <li>
                   Keep the dashboard link key and PIN confidential and report any suspected
                   unauthorized access immediately.

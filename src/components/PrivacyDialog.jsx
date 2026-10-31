@@ -85,7 +85,7 @@ export default function PrivacyDialog() {
             Your privacy
           </h2>
           <p className="consent__copy" id="privacy-dialog-desc">
-            We store only what keeps this site working — including this choice. If you allow it, we
+            We store only what keeps this site working, including this choice. If you allow it, we
             also collect anonymous, aggregated analytics to improve the site. No advertising
             cookies, no data sold, ever. {' '}
             <Link to="/privacy" onClick={closeDialog}>

@@ -16,7 +16,7 @@ const disciplines = [
   {
     icon: Users,
     title: 'Build & RSVP',
-    body: 'The page is tested on real phones before it is handed over — every link, every form, every screen. RSVPs land in a guest list you can read at a glance.',
+    body: 'The page is tested on real phones before it is handed over, every link, every form, every screen. RSVPs land in a guest list you can read at a glance.',
     meta: 'Tested on real devices',
   },
   {
@@ -54,7 +54,7 @@ const principles = [
 
 export default function About() {
   usePageMeta(
-    'About our team — Aetheria Events',
+    'About our team · Aetheria Events',
     'Aetheria Events is a digital fulfillment team in Bonifacio Global City building bespoke digital invitations, RSVP pages and private guest dashboards for celebrations across the Philippines.',
   );
 
@@ -80,7 +80,7 @@ export default function About() {
             <p className="lede">
               Aetheria Events designs and builds one thing well: the page that carries your
               celebration from a link to a room full of people. We are a compact team in Bonifacio
-              Global City — designers and builders who take few enough dates to give each one a
+              Global City, designers and builders who take few enough dates to give each one a
               proper look.
             </p>
           </div>
@@ -166,7 +166,7 @@ export default function About() {
               <p className="eyebrow">Say hello</p>
               <h2>One inbox, answered by the people doing the work.</h2>
               <p className="lede" style={{ marginTop: '1rem', maxWidth: '48ch' }}>
-                Questions about a date, a package or a page that already exists — write to us and a
+                Questions about a date, a package or a page that already exists, write to us and a
                 member of the digital fulfillment team will reply within one working day.
               </p>
             </div>

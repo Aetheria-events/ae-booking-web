@@ -16,9 +16,13 @@ import {
 import Logo from '../components/Logo';
 import benZaPortrait from '../assets/ben-za-portrait.webp';
 import benZaWide from '../assets/ben-za.webp';
+import gardenReception from '../assets/garden-reception.webp';
+import glasshouseCouple from '../assets/glasshouse-couple.webp';
+import welcomeSign from '../assets/welcome-sign.webp';
 import { brand, event } from '../data/site';
 import { downloadCalendar, downloadVCard } from '../lib/files';
 import { usePageMeta } from '../lib/hooks';
+import { useToast } from '../lib/toast';
 
 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
   `${event.venue}, Philippines`,
@@ -28,9 +32,11 @@ const emailPattern = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
 
 export default function EventDemo() {
   usePageMeta(
-    `${event.bride} & ${event.groom} — a sample invitation by Aetheria Events`,
+    `${event.bride} & ${event.groom} · a sample invitation by Aetheria Events`,
     'A sample digital wedding invitation by Aetheria Events: countdown, venue details, save-the-date and online RSVP with guest privacy built in.',
   );
+
+  const { notify } = useToast();
 
   const [rsvp, setRsvp] = useState({
     name: '',
@@ -92,16 +98,22 @@ export default function EventDemo() {
     }
 
     setSubmitted(true);
+    notify('Reply sent', {
+      detail: `Thank you, ${rsvp.name.trim().split(' ')[0] || 'friend'}. Your reply is on the couple's list.`,
+    });
   };
 
   const addToCalendar = () => {
     downloadCalendar({
       filename: 'ben-and-za.ics',
-      title: `${event.bride} & ${event.groom} — ${event.type}`,
+      title: `${event.bride} & ${event.groom} · ${event.type}`,
       description: `${event.kicker}. Ceremony at 4:00 PM, dinner at 7:00 PM. RSVP by ${event.rsvpDeadline}. A sample invitation by Aetheria Events.`,
       location: `${event.venueAddress}`,
       start: event.isoDate,
       durationHours: 7,
+    });
+    notify('Added to your calendar', {
+      detail: 'ben-and-za.ics has been downloaded. Open it to save 14 February 2027.',
     });
   };
 
@@ -114,6 +126,9 @@ export default function EventDemo() {
       email: brand.email,
       address: brand.address,
       note: `Event contact for ${event.bride} & ${event.groom}'s wedding, 14 February 2027, ${event.venue}. Sample invitation by Aetheria Events.`,
+    });
+    notify('Contact saved', {
+      detail: 'aetheria-events.vcf is in your downloads. Open it to add the team to your phone.',
     });
   };
 
@@ -316,6 +331,58 @@ export default function EventDemo() {
                   <ArrowRight />
                 </a>
               </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ---------------- in pictures ---------------- */}
+        <section className="event-section event-gallery-section" aria-labelledby="gallery-title">
+          <div className="event-wrap">
+            <div className="event-section__head">
+              <p className="eyebrow">In pictures</p>
+              <h2 id="gallery-title">A day at the glasshouse.</h2>
+              <p>
+                Blue hydrangeas, long tables under the glass, and the two of them in the middle of
+                it. This is the room we are asking you to step into.
+              </p>
+            </div>
+
+            <div className="event-gallery">
+              <figure className="event-gallery__wide">
+                <img
+                  src={gardenReception}
+                  alt="A long banquet table dressed in white linen, blue hydrangea centrepieces and gold chairs inside a glass-walled hall"
+                  width="1376"
+                  height="768"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>The long table · Casa Lumen</figcaption>
+              </figure>
+
+              <figure className="event-gallery__half">
+                <img
+                  src={glasshouseCouple}
+                  alt="Ben and Za laughing together in front of the glass wall of the pavilion"
+                  width="1376"
+                  height="768"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>Just before the ceremony</figcaption>
+              </figure>
+
+              <figure className="event-gallery__half">
+                <img
+                  src={welcomeSign}
+                  alt="A framed welcome sign for Ben and Za in blue florals beside the open doors of the venue"
+                  width="1200"
+                  height="670"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>Please find your name</figcaption>
+              </figure>
             </div>
           </div>
         </section>
@@ -562,7 +629,7 @@ export default function EventDemo() {
               <Clock style={{ width: 22, height: 22 }} />
             </span>
             <p style={{ maxWidth: '34ch', margin: '0 auto 1rem', fontFamily: 'var(--font-display)', fontSize: 'clamp(1.5rem, 3.6vw, 2.2rem)', lineHeight: 1.3, color: 'var(--e-text)' }}>
-              “No gifts, please. Your presence — and your reply by the first of February — is the
+              “No gifts, please. Your presence, and your reply by the first of February, is the
               whole present.”
             </p>
             <p className="meta" style={{ color: 'var(--e-dim)', marginBottom: 0 }}>

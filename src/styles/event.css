@@ -1,5 +1,5 @@
 /* ============================================================
-   Aetheria Events — sample invitation (demo landing page)
+   Aetheria Events - sample invitation (demo landing page)
    A darker, more intimate sub-brand for the client event itself
    ============================================================ */
 
@@ -182,7 +182,8 @@
 }
 
 .event-kicker {
-  margin: 0 0 0.4rem;
+  margin: 0 auto 0.4rem;
+  max-width: min(100%, 34rem);
   font-size: 0.66rem;
   letter-spacing: 0.34em;
   text-transform: uppercase;
@@ -967,4 +968,78 @@
 
 .event-page .form-note a {
   color: var(--e-gold);
+}
+
+/* ------------------------------------------------------------
+   Gallery: the photographs the sample is built around
+   ------------------------------------------------------------ */
+
+.event-gallery-section {
+  padding-block: clamp(2.2rem, 5vw, 4rem);
+}
+
+.event-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.7rem, 1.4vw, 1.1rem);
+}
+
+.event-gallery figure {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 40px 80px -58px rgba(0, 42, 96, 0.55);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.event-gallery__wide {
+  grid-column: 1 / -1;
+  aspect-ratio: 21 / 9;
+}
+
+.event-gallery__half {
+  aspect-ratio: 16 / 10;
+}
+
+.event-gallery img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s var(--ease-out);
+}
+
+.event-gallery figure:hover img {
+  transform: scale(1.03);
+}
+
+.event-gallery figcaption {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 2;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(0, 28, 62, 0.74);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+@media (max-width: 720px) {
+  .event-gallery {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .event-gallery__wide,
+  .event-gallery__half {
+    grid-column: 1 / -1;
+    aspect-ratio: 4 / 3;
+  }
 }

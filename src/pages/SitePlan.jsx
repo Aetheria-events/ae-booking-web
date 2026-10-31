@@ -53,7 +53,7 @@ const pages = [
   {
     title: 'Booking',
     purpose:
-      'A short, low-friction request form — package, event, contact details, consent — with a live estimated total.',
+      'A short, low-friction request form, package, event, contact details, consent, with a live estimated total.',
     action: 'Primary CTA: Send booking request.',
   },
   {
@@ -93,7 +93,7 @@ const assetChecklist = [
   'Final domain name and Cloudflare/DNS access',
   'Signed-off privacy notice and service terms, reviewed by counsel',
   'Booking inbox address, plus the person who owns replies',
-  'Real packages, fees and lead times — currently taken from the SLA',
+  'Real packages, fees and lead times, currently taken from the SLA',
 ];
 
 const buildSteps = [
@@ -137,14 +137,14 @@ const launchChecklist = [
 ];
 
 const warnings = [
-  'Legal copy is a good-faith draft based on the SLA — not legal advice.',
+  'Legal copy is a good-faith draft based on the SLA, not legal advice.',
   'The booking form has no server yet; submissions stay in the visitor’s browser.',
   'Event photography is represented by original code-drawn artwork until real photos are supplied.',
 ];
 
 export default function SitePlan() {
   usePageMeta(
-    'Site plan — Aetheria Events',
+    'Site plan, Aetheria Events',
     'The plan behind the Aetheria Events website: sitemap, page intent, design system, privacy and compliance plan, integrations, content checklist and launch checklist.',
   );
 
@@ -164,7 +164,7 @@ export default function SitePlan() {
           </h1>
           <p className="page-hero__lede">
             A working sitemap, design system, content checklist and compliance plan for the Aetheria
-            Events website — including what is finished, what needs a decision, and what must happen
+            Events website, including what is finished, what needs a decision, and what must happen
             before launch.
           </p>
 
@@ -235,7 +235,7 @@ export default function SitePlan() {
                 <h3>Reassure</h3>
                 <p>
                   Privacy, refunds, delivery dates and liability in plain language. A consent dialog,
-                  a real DPO contact and terms grounded in the SLA keep the team credible — and
+                  a real DPO contact and terms grounded in the SLA keep the team credible, and
                   reduce disputes before they start.
                 </p>
               </div>
@@ -311,7 +311,7 @@ export default function SitePlan() {
               </div>
               <p>
                 Each page has a single job and a single primary action. Anything that does not help
-                that action is decoration — and decoration has to earn its place.
+                that action is decoration, and decoration has to earn its place.
               </p>
             </div>
 
@@ -371,7 +371,7 @@ export default function SitePlan() {
                 <h2>Light, quiet, legible.</h2>
               </div>
               <p>
-                Inter carries every size — display headings, labels, forms and prices — and the
+                Inter carries every size, display headings, labels, forms and prices, and the
                 palette comes straight from the logo: brand blue for anything that acts, sky blue
                 for accents, over a soft blue wash behind frosted glass.
               </p>

@@ -1,12 +1,12 @@
 /* ============================================================
-   Aetheria Events — foundations
+   Aetheria Events - foundations
    Palette, type scale, reset, background atmosphere
    ============================================================ */
 
 :root {
   color-scheme: light;
 
-  /* Brand — from the Aetheria Events logo */
+  /* Brand - from the Aetheria Events logo */
   --blue-700: #003a8c;
   --blue-600: #004aad;
   --blue-500: #1462c4;
@@ -121,7 +121,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Fixed atmosphere — soft brand washes that make the glass read */
+/* Fixed atmosphere - soft brand washes that make the glass read */
 body::before {
   content: '';
   position: fixed;

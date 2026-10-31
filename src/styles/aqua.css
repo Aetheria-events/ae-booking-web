@@ -1,5 +1,5 @@
 /* ============================================================
-   Aetheria Events — aqua theme
+   Aetheria Events - aqua theme
    Light, airy, photographic. Oversized type, frosted glass,
    pill buttons, Inter on every page and every surface.
    Loaded last: it re-points the design tokens so every existing
@@ -305,7 +305,7 @@ body > .grain,
 }
 
 /* ------------------------------------------------------------
-   3. Logo — Inter, uppercase AETHERIA over lowercase events
+   3. Logo - Inter, uppercase AETHERIA over lowercase events
    ------------------------------------------------------------ */
 
 .logo__name {
@@ -346,7 +346,7 @@ body > .grain,
   color: #8fd4ff;
 }
 
-/* the giant sample watermark keeps only its mark — no tiny type to misread */
+/* the giant sample watermark keeps only its mark - no tiny type to misread */
 .event-stage__watermark .logo__sub {
   display: none;
 }
@@ -365,7 +365,7 @@ body > .grain,
 }
 
 /* ------------------------------------------------------------
-   4. Hero — full-bleed photograph fading into the page,
+   4. Hero - full-bleed photograph fading into the page,
       copy left, three glass cards tucked into the corner
    ------------------------------------------------------------ */
 
@@ -704,7 +704,7 @@ h2 .italic,
 }
 
 /* ------------------------------------------------------------
-   5. Sections — glass on glass, no bare bands
+   5. Sections - glass on glass, no bare bands
    ------------------------------------------------------------ */
 
 .section > .wrap,
@@ -793,7 +793,7 @@ h2 .italic,
   color: var(--aq-600);
 }
 
-/* ampersands stay upright — no synthesised italics anywhere */
+/* ampersands stay upright - no synthesised italics anywhere */
 .amp,
 .invite__names .amp,
 .event-title .amp,
@@ -929,7 +929,7 @@ h2 .italic,
 }
 
 /* ------------------------------------------------------------
-   7. Deep surfaces — aqua, not navy
+   7. Deep surfaces - aqua, not navy
    ------------------------------------------------------------ */
 
 .site-footer,
@@ -1189,7 +1189,7 @@ textarea,
   color: var(--aq-ink);
 }
 
-/* one chevron, once, on the right — never tiled across the field */
+/* one chevron, once, on the right - never tiled across the field */
 select,
 .select,
 .field select {
@@ -1281,7 +1281,7 @@ textarea:focus-visible {
 }
 
 /* ------------------------------------------------------------
-   12. Sample invitation — Ben & Za
+   12. Sample invitation - Ben & Za
    ------------------------------------------------------------ */
 
 .event-card__window::after {
@@ -1361,7 +1361,7 @@ textarea:focus-visible {
   z-index: 2;
   padding: 0.4rem 0.72rem;
   border-radius: 999px;
-  background: rgba(0, 40, 84, 0.62);
+  background: rgba(0, 28, 62, 0.74);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   font-size: 0.58rem;
@@ -1489,4 +1489,417 @@ textarea:focus-visible {
   .aq-card__go {
     transition: none;
   }
+}
+
+/* ------------------------------------------------------------
+   Round four: padding floors
+   Every card gives its copy room to breathe. These rules sit
+   last so they win over the older, tighter component styles.
+   ------------------------------------------------------------ */
+
+.aq-card {
+  padding: 1rem 1.05rem 1.1rem;
+}
+
+.aq-card--feature {
+  padding: 1.15rem 1.2rem 1.3rem;
+}
+
+.step {
+  padding: 1.35rem 1.45rem 1.55rem;
+}
+
+.step__num {
+  position: static;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 0.95rem;
+  font-size: 0.72rem;
+}
+
+.diff {
+  padding: 1.45rem 1.6rem;
+}
+
+.assurance {
+  padding: 1.5rem 1.55rem 1.6rem;
+}
+
+.plan {
+  padding: clamp(1.5rem, 2.2vw, 1.9rem);
+}
+
+.booking-help {
+  padding: 1.45rem 1.5rem;
+}
+
+.terms-strip__item {
+  padding: 1.25rem 1.35rem;
+}
+
+.notice,
+.notice--light {
+  padding: 1.05rem 1.2rem;
+}
+
+.event-save {
+  padding: 0.9rem 1.1rem;
+}
+
+/* site plan and legal documents share the same roomy cards */
+.plan-block,
+.type-specimen,
+.sp-branch,
+.status-legend,
+.plan-meta,
+.plan-meta__item {
+  padding: 1.5rem 1.6rem;
+}
+
+.swatch__meta {
+  padding: 0.75rem 0.85rem;
+  gap: 0.15rem;
+}
+
+.plan-meta__item {
+  padding: 1.1rem 1.25rem;
+}
+
+.save-contact {
+  padding: 0.85rem 1rem;
+}
+
+/* ------------------------------------------------------------
+   Round four: hero panels
+   The right-hand side of a page hero holds a compact summary
+   panel instead of floating chips in a field of white.
+   ------------------------------------------------------------ */
+
+.page-hero__aside {
+  align-content: center;
+}
+
+.hero-panel {
+  display: grid;
+  gap: 1rem;
+  padding: 1.4rem 1.5rem 1.5rem;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.78);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: 0 28px 60px -50px rgba(13, 60, 84, 0.55);
+}
+
+.hero-panel__label {
+  margin: 0;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--aq-mute);
+}
+
+.hero-panel__rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.hero-panel__rows li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(11, 49, 69, 0.08);
+}
+
+.hero-panel__rows li:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.hero-panel__rows span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.86rem;
+  color: var(--aq-ink);
+}
+
+.hero-panel__rows em {
+  font-style: normal;
+  font-size: 0.54rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--aq-700);
+  background: rgba(0, 74, 173, 0.09);
+  border-radius: 999px;
+  padding: 0.22rem 0.5rem;
+}
+
+.hero-panel__rows strong {
+  font-size: 0.98rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--aq-ink);
+  white-space: nowrap;
+}
+
+.hero-panel .pill-row {
+  margin: 0;
+}
+
+.hero-panel .small a {
+  color: var(--aq-700);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.hero-panel .small {
+  margin: 0;
+  font-size: 0.76rem;
+  line-height: 1.62;
+  color: var(--aq-mute);
+}
+
+.hero-panel__links {
+  display: grid;
+  gap: 0.45rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(11, 49, 69, 0.08);
+}
+
+.hero-panel__links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--aq-700);
+  text-decoration: none;
+  padding: 0.45rem 0.65rem;
+  margin-inline: -0.65rem;
+  border-radius: 10px;
+  transition: background 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+.hero-panel__links a:hover {
+  background: rgba(0, 74, 173, 0.07);
+}
+
+.hero-panel__links svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* legal hero: two balanced columns instead of one narrow column in a wide card */
+.legal-hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.32fr) minmax(0, 0.68fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
+}
+
+@media (min-width: 901px) {
+  .legal-hero__inner {
+    max-width: none;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .legal-hero__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ------------------------------------------------------------
+   Round four: on-screen confirmations
+   ------------------------------------------------------------ */
+
+.toast-stack {
+  position: fixed;
+  left: 50%;
+  bottom: clamp(1.1rem, 3vw, 2rem);
+  transform: translateX(-50%);
+  z-index: 120;
+  display: grid;
+  gap: 0.55rem;
+  width: min(100% - 2rem, 30rem);
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.85rem 0.9rem 0.85rem 1rem;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.96);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  backdrop-filter: blur(24px) saturate(160%);
+  box-shadow:
+    0 30px 60px -34px rgba(0, 32, 70, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  animation: toast-in 0.28s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+
+.toast__icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: linear-gradient(140deg, #38b6ff, #004aad);
+  color: #ffffff;
+  flex: none;
+}
+
+.toast__icon svg {
+  width: 15px;
+  height: 15px;
+}
+
+.toast__text {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.toast__text strong {
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--aq-ink);
+}
+
+.toast__text span {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--aq-mute);
+}
+
+.toast__close {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(11, 49, 69, 0.06);
+  color: var(--aq-ink-soft);
+  cursor: pointer;
+  flex: none;
+}
+
+.toast__close:hover {
+  background: rgba(11, 49, 69, 0.12);
+  color: var(--aq-ink);
+}
+
+.toast__close svg {
+  width: 12px;
+  height: 12px;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .toast-stack {
+    bottom: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    animation: none;
+  }
+}
+
+/* the team card carries a face, not initials */
+.booking-help__avatar {
+  display: block;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 22px -14px rgba(0, 32, 70, 0.6);
+}
+
+.booking-help__avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 28%;
+}
+
+/* the type specimen: tight rows, no stray paragraph margins */
+.type-specimen {
+  gap: 0.7rem;
+}
+
+.type-specimen p {
+  margin: 0;
+}
+
+.type-specimen__labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1.6rem;
+  margin-top: 0.35rem;
+  padding-top: 0.95rem;
+  border-top: 1px solid rgba(11, 49, 69, 0.08);
+}
+
+.type-specimen__labels span {
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--aq-mute);
+}
+
+/* package and reply choices get room too */
+.choice__box {
+  padding: 1rem 1.1rem;
+}
+
+/* the save-contact row: full-width details, button on its own line */
+.save-contact {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.7rem 0.75rem;
+}
+
+.save-contact .btn {
+  grid-column: 1 / -1;
+  justify-self: start;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.68rem;
+}
+
+.save-contact__text span {
+  font-size: 0.72rem;
+  overflow-wrap: anywhere;
 }

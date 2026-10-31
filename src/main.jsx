@@ -16,12 +16,15 @@ import './styles/aqua.css';
 
 import App from './App.jsx';
 import { ConsentProvider } from './lib/consent.jsx';
+import { ToastProvider } from './lib/toast.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <ConsentProvider>
-        <App />
+        <ToastProvider>
+          <App />
+        </ToastProvider>
       </ConsentProvider>
     </BrowserRouter>
   </StrictMode>,

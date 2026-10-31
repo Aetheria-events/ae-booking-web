@@ -99,7 +99,7 @@ export function bookingReference(date = new Date()) {
 
 export function bookingSummaryText(booking) {
   const lines = [
-    'AETHERIA EVENTS — BOOKING REQUEST',
+    'AETHERIA EVENTS · BOOKING REQUEST',
     `Reference: ${booking.reference}`,
     `Submitted: ${new Date(booking.createdAt).toLocaleString('en-PH')}`,
     '',
@@ -116,7 +116,7 @@ export function bookingSummaryText(booking) {
     `Name: ${booking.name}`,
     `Email: ${booking.email}`,
     `Mobile: ${booking.phone}`,
-    `Notes: ${booking.notes || '—'}`,
+    `Notes: ${booking.notes || 'None'}`,
     '',
     'No payment has been taken. Aetheria Events confirms capacity and sends an invoice',
     'within one working day. The delivery period starts after payment and the Asset Freeze.',

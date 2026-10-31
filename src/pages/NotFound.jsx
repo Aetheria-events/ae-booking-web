@@ -3,7 +3,7 @@ import { ArrowRight } from '../components/Icons';
 import { usePageMeta } from '../lib/hooks';
 
 export default function NotFound() {
-  usePageMeta('Page not found — Aetheria Events', 'The page you were looking for is not here.');
+  usePageMeta('Page not found · Aetheria Events', 'The page you were looking for is not here.');
 
   return (
     <section className="section" style={{ minHeight: '58vh', display: 'grid', placeItems: 'center' }}>

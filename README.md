@@ -1,4 +1,4 @@
-# Aetheria Events — website
+# Aetheria Events, website
 
 A bespoke marketing site, booking flow and sample digital invitation for **Aetheria Events**
 (Bonifacio Global City, Taguig). Built with React 19 + Vite as a static single-page app.
@@ -16,7 +16,7 @@ npm run preview  # serve the production build on http://localhost:4173
 | --- | --- |
 | `/` | Hero, positioning, three atmospheres, packages, process, FAQ, CTA |
 | `/packages` | Full pricing, inclusions, optional fees, side-by-side comparison, plain-language terms |
-| `/booking` | Simple booking form — package, event, contact details, consent, live estimate |
+| `/booking` | Simple booking form, package, event, contact details, consent, live estimate |
 | `/invitation` | Labelled sample event page: countdown, details, schedule, save-the-date/contact, RSVP |
 | `/privacy` | Privacy notice (PIC/PIP roles, retention, rights, guest notice, DPO) |
 | `/terms` | Service terms summarised from the SLA (delivery, revisions, refunds, liability) |
@@ -24,25 +24,28 @@ npm run preview  # serve the production build on http://localhost:4173
 | `/aetheria-events-site-plan.pdf` | Downloadable PDF of the site plan for sending to the client |
 | any other | 404 page |
 
-The header shows Home, Packages, Invitation, Site plan and a “Book your date” button; legal pages
+The header shows Home, Packages, Invitation, About our Team and a “Book your date” button; legal pages
 live in the footer and are linked inline from every form.
 
 ## What is interactive
 
-- **Booking form** — client-side validation with inline errors and an error summary, a package
+- **Booking form**, client-side validation with inline errors and an error summary, a package
   selector that carries over from the packages page (`/booking?package=premium`), rush-service
   pricing that respects package restrictions, a live estimated total, consent capture, and a
   success state with a reference number, a downloadable `.txt` summary, a mailto hand-off and an
   `.ics` “hold the date”.
-- **Sample invitation** — live countdown, add-to-calendar (`.ics`), save-contact (`.vcf`), venue
-  maps link, RSVP with attendance, guest count, optional note and consent.
-- **Privacy dialog** — appears once on first visit, offers *Accept all*, *Essential only* and
+- **Sample invitation**, live countdown, add-to-calendar (`.ics`), save-contact (`.vcf`), venue
+  maps link, a three-photograph gallery, RSVP with attendance, guest count, optional note and
+  consent.
+- **On-screen confirmations**, a small toast (bottom centre, `role="status"`) acknowledges saved
+  contacts, calendar downloads, copied rows, downloaded summaries and sent replies.
+- **Privacy dialog**, appears once on first visit, offers *Accept all*, *Essential only* and
   *Decline non-essential*, records the choice in `localStorage` (`aetheria.consent.v1`), exposes it
   as `document.documentElement.dataset.consent`, traps focus, closes on `Esc`, and can be reopened
   from every footer under “Privacy settings”.
-- **Site plan** — printable, and downloadable as a PDF from `/aetheria-events-site-plan.pdf`.
+- **Site plan**, printable, and downloadable as a PDF from `/aetheria-events-site-plan.pdf`.
 
-Both forms currently store submissions in the visitor’s browser only. Nothing is transmitted —
+Both forms currently store submissions in the visitor’s browser only. Nothing is transmitted , 
 see “Going live” below.
 
 ## Structure
@@ -78,7 +81,7 @@ for accents, and a soft blue wash behind the glass.
 
 The design language is **light glass**: a fixed blue wash behind the page, with frosted panels
 (1px white edge, 20&nbsp;px blur) holding every section, plus brand-blue bands (featured plan,
-booking summary, CTA, footer) for contrast. `src/styles/aqua.css` is the theme layer — it
+booking summary, CTA, footer) for contrast. `src/styles/aqua.css` is the theme layer, it
 re-points the older tokens, so changing a value there moves the whole site.
 
 Type: **Inter** everywhere (variable, 200&ndash;700), self-hosted via `@fontsource-variable`, so
@@ -97,7 +100,7 @@ Photography now leads. `src/assets/` holds the supplied photographs, compressed 
 
 `src/components/Artwork.jsx` still draws the original decorative SVGs (draped silk, arches,
 orbiting moons) and remains available for anywhere a photograph is not supplied. To swap a photo,
-keep the same filename and rebuild — the frames, overlays and rounded corners are all CSS.
+keep the same filename and rebuild, the frames, overlays and rounded corners are all CSS.
 
 Every card carries the Aetheria logo as a translucent watermark at the back of the artwork, and the
 site footer carries the “Powered by Aetheria” credit required by the SLA for client pages.
@@ -116,8 +119,8 @@ subject rights, NPC complaint route.
 ## Going live
 
 1. **Connect the forms.** Point `handleSubmit` in `src/pages/Booking.jsx` (and `EventDemo.jsx` for
-   the sample RSVP) at a real endpoint — Google Apps Script → Sheets, Formspree, or a Cloudflare
-   Worker — and send acknowledgement emails. Keep the existing validation and success states.
+   the sample RSVP) at a real endpoint, Google Apps Script → Sheets, Formspree, or a Cloudflare
+   Worker, and send acknowledgement emails. Keep the existing validation and success states.
 2. **Automate retention.** Lock pages 6 days after the event, archive for 30 days, delete on day 36,
    and keep a deletion log without guest data.
 3. **Wire analytics to consent.** Only load analytics when
@@ -134,11 +137,11 @@ subject rights, NPC complaint route.
 ## Fonts
 
 Inter is bundled from `@fontsource-variable` (SIL Open Font License) and is the only typeface
-in the project — display, UI, forms, labels and numerals all use it.
+in the project, display, UI, forms, labels and numerals all use it.
 
 ### One-file build (no server needed)
 
-`npm run build:single` produces a single self-contained HTML document — CSS, fonts,
+`npm run build:single` produces a single self-contained HTML document, CSS, fonts,
 artwork and the site-plan PDF are all inlined, and routing switches to `#/…` hashes so it
 runs from a plain file. Use it when you need to hand the site to someone who will not run
 `npm install`.

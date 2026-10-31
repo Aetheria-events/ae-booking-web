@@ -24,7 +24,9 @@ import {
   downloadVCard,
   formatLongDate,
 } from '../lib/files';
+import teamAvatar from '../assets/team-avatar.webp';
 import { usePageMeta } from '../lib/hooks';
+import { useToast } from '../lib/toast';
 
 const STORAGE_KEY = 'aetheria.bookings.v1';
 
@@ -103,7 +105,7 @@ function daysUntil(value) {
 
 export default function Booking() {
   usePageMeta(
-    'Booking — Aetheria Events',
+    'Booking · Aetheria Events',
     'Reserve your event date with Aetheria Events. Choose a digital invitation package, add a rush service if you need it, and send your details. No payment is taken online.',
   );
 
@@ -129,6 +131,7 @@ export default function Booking() {
   });
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState('idle');
+  const { notify } = useToast();
   const [rowCopied, setRowCopied] = useState(false);
   const [reference, setReference] = useState('');
   const [savedBooking, setSavedBooking] = useState(null);
@@ -178,7 +181,7 @@ export default function Booking() {
     if (!values.eventName.trim()) next.eventName = 'Give the page a working title.';
     if (!values.eventDate) next.eventDate = 'Choose your event date.';
     else if (daysUntil(values.eventDate) !== null && daysUntil(values.eventDate) < 0)
-      next.eventDate = 'The date has already passed — choose a future date.';
+      next.eventDate = 'The date has already passed. Choose a future date.';
     if (!values.venue.trim()) next.venue = 'Tell us the venue or city.';
     if (values.guests) {
       const guests = Number(values.guests);
@@ -258,23 +261,32 @@ export default function Booking() {
         /* storage unavailable */
       }
 
-      setSavedBooking(booking);
-      setReference(ref);
-      setRowCopied(false);
+      const finish = (copied) => {
+        setSavedBooking(booking);
+        setReference(ref);
+        setRowCopied(copied);
+        setStatus('done');
+        notify('Booking row ready', {
+          detail: copied
+            ? 'Your details are on the clipboard. Open the booking sheet and paste the row.'
+            : 'Open the booking sheet, then use Copy details to paste your row.',
+        });
+        window.scrollTo({ top: 160, behavior: 'smooth' });
+      };
 
       try {
         if (navigator.clipboard?.writeText) {
           navigator.clipboard.writeText(sheetRow(booking)).then(
-            () => setRowCopied(true),
-            () => setRowCopied(false),
+            () => finish(true),
+            () => finish(false),
           );
+        } else {
+          finish(false);
         }
       } catch {
-        /* clipboard blocked — the download button is the fallback */
+        /* clipboard blocked, the download button is the fallback */
+        finish(false);
       }
-
-      setStatus('done');
-      window.scrollTo({ top: 160, behavior: 'smooth' });
     }, 620);
   };
 
@@ -283,7 +295,7 @@ export default function Booking() {
     : '';
   const emailHref = savedBooking
     ? `mailto:${brand.email}?subject=${encodeURIComponent(
-        `Booking request ${savedBooking.reference} — ${savedBooking.eventName}`,
+        `Booking request ${savedBooking.reference}, ${savedBooking.eventName}`,
       )}&body=${emailBody}`
     : `mailto:${brand.email}`;
 
@@ -312,21 +324,35 @@ export default function Booking() {
               </p>
             </div>
             <div className="page-hero__aside">
-              <div className="pill-row">
-                <span className="chip chip--gold">
-                  <Sparkle style={{ width: 12, height: 12 }} aria-hidden="true" />
-                  Reply within 1 working day
-                </span>
-                <span className="chip">No payment online</span>
-                <span className="chip">Consent built in</span>
+              <div className="hero-panel">
+                <p className="hero-panel__label">How it works</p>
+                <ul className="hero-panel__rows">
+                  <li>
+                    <span>Choose a package</span>
+                    <strong>1</strong>
+                  </li>
+                  <li>
+                    <span>Send your details</span>
+                    <strong>2</strong>
+                  </li>
+                  <li>
+                    <span>We reply in a day</span>
+                    <strong>3</strong>
+                  </li>
+                </ul>
+                <div className="pill-row">
+                  <span className="chip chip--gold">
+                    <Sparkle style={{ width: 12, height: 12 }} aria-hidden="true" />
+                    Reply within 1 working day
+                  </span>
+                  <span className="chip">No payment online</span>
+                  <span className="chip">Consent built in</span>
+                </div>
+                <p className="small">
+                  Prefer to talk first? Email{' '}
+                  <a href={`mailto:${brand.email}`}>{brand.email}</a> or call during {brand.hours}.
+                </p>
               </div>
-              <p className="small" style={{ margin: 0 }}>
-                Prefer to talk first? Email{' '}
-                <a href={`mailto:${brand.email}`} style={{ color: 'inherit', textDecoration: 'underline' }}>
-                  {brand.email}
-                </a>{' '}
-                or call during {brand.hours}.
-              </p>
             </div>
           </div>
         </div>
@@ -351,7 +377,7 @@ export default function Booking() {
                       {formatLongDate(savedBooking.eventDate)} is packed into one row for the live
                       booking sheet.{' '}
                       {rowCopied
-                        ? 'It is already on your clipboard — open the sheet and paste it into the next empty row.'
+                        ? 'It is already on your clipboard, open the sheet and paste it into the next empty row.'
                         : 'Open the sheet, then use “Copy details” and paste it into the next empty row.'}
                     </p>
                     <span className="success__ref">
@@ -363,7 +389,7 @@ export default function Booking() {
                     <li>
                       <b>1</b>
                       <span>
-                        Open the booking sheet and paste the row into the next empty line — the
+                        Open the booking sheet and paste the row into the next empty line, the
                         columns match exactly.
                       </span>
                     </li>
@@ -379,7 +405,7 @@ export default function Booking() {
                       <b>3</b>
                       <span>
                         After payment, you receive the intake page. Submit the Asset Freeze and the
-                        delivery clock starts — 2–4 working days for Basic and Standard.
+                        delivery clock starts, 2–4 working days for Basic and Standard.
                       </span>
                     </li>
                   </ul>
@@ -401,16 +427,22 @@ export default function Booking() {
                         try {
                           navigator.clipboard?.writeText?.(sheetRow(savedBooking));
                           setRowCopied(true);
+                          notify('Row copied', {
+                            detail: 'Paste it into the next empty line of the booking sheet.',
+                          });
                         } catch {
                           downloadBlob(
                             `aetheria-booking-${savedBooking.reference}.txt`,
                             `${SHEET_COLUMNS.join('\t')}\n${sheetRow(savedBooking)}\n`,
                           );
+                          notify('Row downloaded', {
+                            detail: 'Paste the tab-separated row into the booking sheet.',
+                          });
                         }
                       }}
                     >
                       <Copy style={{ width: 14, height: 14 }} aria-hidden="true" />
-                      {rowCopied ? 'Copied — copy again' : 'Copy details'}
+                      {rowCopied ? 'Copied. Copy again' : 'Copy details'}
                     </button>
                     <a className="btn btn--ink-ghost" href={emailHref}>
                       <Mail style={{ width: 14, height: 14 }} aria-hidden="true" />
@@ -422,11 +454,14 @@ export default function Booking() {
                       onClick={() => {
                         downloadCalendar({
                           filename: 'aetheria-event-hold.ics',
-                          title: `${savedBooking.eventName} — ${savedBooking.packageName} package`,
+                          title: `${savedBooking.eventName}, ${savedBooking.packageName} package`,
                           description: `Aetheria Events booking request ${savedBooking.reference}. Not yet confirmed.`,
                           location: savedBooking.venue,
                           start: `${savedBooking.eventDate}T10:00:00+08:00`,
                           durationHours: 2,
+                        });
+                        notify('Date held', {
+                          detail: 'aetheria-event-hold.ics is in your downloads. This is a hold, not a confirmation.',
                         });
                       }}
                     >
@@ -440,9 +475,9 @@ export default function Booking() {
                       <Shield />
                     </span>
                     <span>
-                      <strong>Preview build note.</strong> This request is saved in your browser
-                      only. Before launch, connect the form to Aetheria&rsquo;s intake endpoint (see
-                      the site plan) so submissions reach digital fulfillment automatically.
+                      <strong>Next step.</strong> The live booking sheet is the record of every
+                      request. Paste your row there and the digital fulfillment team picks it up the
+                      same working day.
                     </span>
                   </div>
 
@@ -497,7 +532,7 @@ export default function Booking() {
                         <Warning />
                       </span>
                       <span>
-                        <strong>Almost there.</strong> Please check the highlighted fields below — we
+                        <strong>Almost there.</strong> Please check the highlighted fields below, we
                         need a few details before we can hold the date.
                       </span>
                     </div>
@@ -622,7 +657,7 @@ export default function Booking() {
                             <span className="field__hint" id="booking-eventDate-hint">
                               {form.eventDate
                                 ? insideLeadTime
-                                  ? `Inside the recommended ${selectedPackage.leadTime}-day lead time — we will confirm capacity.`
+                                  ? `Inside the recommended ${selectedPackage.leadTime}-day lead time, we will confirm capacity.`
                                   : `${leadDays} days to prepare · recommended lead time met.`
                                 : `Recommended: at least ${selectedPackage.leadTime} days before the event.`}
                             </span>
@@ -858,8 +893,8 @@ export default function Booking() {
                             and the{' '}
                             <Link to="/terms" target="_blank" rel="noreferrer">
                               Service Terms
-                            </Link>
-                            , and I agree that Aetheria Events may process these details to respond
+                            </Link>{' '}
+                            and I agree that Aetheria Events may process these details to respond
                             to this booking. <span className="req">*</span>
                           </span>
                         </label>
@@ -878,7 +913,7 @@ export default function Booking() {
                           />
                           <span>
                             Send me occasional design notes from Aetheria Events.{' '}
-                            <span className="field__opt">Optional — you can unsubscribe anytime.</span>
+                            <span className="field__opt">Optional, you can unsubscribe anytime.</span>
                           </span>
                         </label>
                       </div>
@@ -901,7 +936,7 @@ export default function Booking() {
                         </button>
                         <p className="form-note">
                           Booking happens in our live sheet. We copy your details into the next row
-                          for you — no payment is taken now.
+                          for you, no payment is taken now.
                         </p>
                       </div>
                     </fieldset>
@@ -979,8 +1014,15 @@ export default function Booking() {
                   sits waiting while someone is out of office.
                 </p>
                 <div className="booking-help__person">
-                  <span className="booking-help__monogram" aria-hidden="true">
-                    AE
+                  <span className="booking-help__avatar">
+                    <img
+                      src={teamAvatar}
+                      alt="A member of the Aetheria digital fulfillment team"
+                      width="480"
+                      height="480"
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </span>
                   <div style={{ minWidth: 0 }}>
                     <strong style={{ display: 'block', color: 'var(--on-light)', fontSize: '0.9rem' }}>
@@ -998,12 +1040,12 @@ export default function Booking() {
                   </span>
                   <span className="save-contact__text">
                     <strong>Aetheria Events</strong>
-                    <span>{brand.email} · digital fulfillment contact</span>
+                    <span>{brand.email}</span>
                   </span>
                   <button
                     type="button"
                     className="btn btn--ink-ghost btn--xs"
-                    onClick={() =>
+                    onClick={() => {
                       downloadVCard({
                         firstName: 'Aetheria',
                         lastName: 'Events',
@@ -1011,9 +1053,12 @@ export default function Booking() {
                         title: 'Digital fulfillment',
                         email: brand.email,
                         address: brand.address,
-                        note: 'Aetheria Events — digital invitations, RSVP pages and private guest dashboards.',
-                      })
-                    }
+                        note: 'Aetheria Events · digital invitations, RSVP pages and private guest dashboards.',
+                      });
+                      notify('Contact saved', {
+                        detail: 'aetheria-events.vcf is in your downloads. Open it to add the team to your phone.',
+                      });
+                    }}
                   >
                     <Download style={{ width: 13, height: 13 }} aria-hidden="true" />
                     Save contact
@@ -1027,7 +1072,7 @@ export default function Booking() {
                   What we collect
                 </h3>
                 <p>
-                  Your name, email, mobile number and event details — used to quote and deliver your
+                  Your name, email, mobile number and event details, used to quote and deliver your
                   page. We never ask for health information, government IDs or card numbers.
                 </p>
                 <p style={{ marginBottom: 0 }}>

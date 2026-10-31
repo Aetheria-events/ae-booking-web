@@ -1,12 +1,12 @@
 /* ============================================================
-   Aetheria Events — round two
+   Aetheria Events - round two
    Logo typography, glass-everywhere surfaces, photographic sample
    cards and the About our Team page.
    Loaded last so it wins over every earlier layer.
    ============================================================ */
 
 /* ------------------------------------------------------------
-   1. Logo — geometric sans lockup: AETHERIA over events
+   1. Logo - geometric sans lockup: AETHERIA over events
    ------------------------------------------------------------ */
 
 .logo {
@@ -70,7 +70,7 @@
 }
 
 /* ------------------------------------------------------------
-   4. Glass everywhere — no bare page showing through a section
+   4. Glass everywhere - no bare page showing through a section
    ------------------------------------------------------------ */
 
 .section > .wrap {
@@ -101,7 +101,7 @@
   padding: clamp(1.6rem, 3.4vw, 3.2rem);
 }
 
-/* cinch the gaps between panels — the page shouldn't show through in wide bands */
+/* cinch the gaps between panels - the page shouldn't show through in wide bands */
 .section {
   padding-block: clamp(0.7rem, 1.4vw, 1.1rem);
 }
