@@ -20,7 +20,7 @@ js = js.split("/aetheria-events-site-plan.pdf").join(pdfUri);
 const favicon = fs.readFileSync(path.resolve('public/favicon.svg'), 'utf8');
 const faviconUri = `data:image/svg+xml;base64,${Buffer.from(favicon).toString('base64')}`;
 
-// NOTE: always use function replacers — the payloads contain `$` sequences that
+// NOTE: always use function replacers, the payloads contain `$` sequences that
 // String.replace would otherwise interpret as capture references.
 html = html.replace(/<link rel="stylesheet"[^>]*>/i, () => `<style>\n${css}\n</style>`);
 html = html.replace(/<script type="module"[^>]*src="[^"]*"[^>]*><\/script>/i, () => `<script type="module">\n${js}\n</script>`);

@@ -1,7 +1,7 @@
 {
   "name": "aetheria-events",
   "version": "1.0.0",
-  "description": "Aetheria Events — bespoke event websites and digital experiences.",
+  "description": "Aetheria Events · bespoke event websites and digital experiences.",
   "main": "index.js",
   "scripts": {
     "dev": "vite",
