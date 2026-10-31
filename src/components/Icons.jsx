@@ -119,6 +119,13 @@ export const FileText = (props) => (
   </svg>
 );
 
+export const Copy = (props) => (
+  <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
+    <rect x="8.6" y="8.6" width="11" height="11" rx="2.2" {...stroke} />
+    <path d="M15.4 8.6V6.4a2 2 0 0 0-2-2H6.4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h2.2" {...stroke} />
+  </svg>
+);
+
 export const Lock = (props) => (
   <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
     <rect x="4.5" y="10" width="15" height="10" rx="2" {...stroke} />

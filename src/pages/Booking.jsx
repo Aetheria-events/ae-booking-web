@@ -5,6 +5,7 @@ import {
   Check,
   CheckCircle,
   Clock,
+  Copy,
   Download,
   Lock,
   Mail,
@@ -45,6 +46,47 @@ const rushOptions = [
 ];
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
+
+// the live booking sheet is the system of record; the form prepares one row for it
+const SHEET_COLUMNS = [
+  'Reference',
+  'Submitted',
+  'Package',
+  'Package price',
+  'Rush service',
+  'Rush price',
+  'Total',
+  'Event type',
+  'Event name',
+  'Event date',
+  'Venue',
+  'Guests',
+  'Contact name',
+  'Email',
+  'Mobile',
+  'Notes',
+];
+
+function sheetRow(booking) {
+  return [
+    booking.reference,
+    new Date(booking.createdAt).toISOString().slice(0, 16).replace('T', ' '),
+    booking.packageName,
+    booking.packagePrice,
+    booking.rushName,
+    booking.rushPrice,
+    booking.total,
+    booking.eventType,
+    booking.eventName,
+    booking.eventDate,
+    booking.venue,
+    booking.guests,
+    booking.name,
+    booking.email,
+    booking.phone,
+    (booking.notes || '').replace(/[\t\r\n]+/g, ' '),
+  ].join('\t');
+}
 
 function isoDate(date) {
   const d = new Date(date);
@@ -87,6 +129,7 @@ export default function Booking() {
   });
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState('idle');
+  const [rowCopied, setRowCopied] = useState(false);
   const [reference, setReference] = useState('');
   const [savedBooking, setSavedBooking] = useState(null);
   const [showErrorSummary, setShowErrorSummary] = useState(false);
@@ -217,9 +260,22 @@ export default function Booking() {
 
       setSavedBooking(booking);
       setReference(ref);
+      setRowCopied(false);
+
+      try {
+        if (navigator.clipboard?.writeText) {
+          navigator.clipboard.writeText(sheetRow(booking)).then(
+            () => setRowCopied(true),
+            () => setRowCopied(false),
+          );
+        }
+      } catch {
+        /* clipboard blocked — the download button is the fallback */
+      }
+
       setStatus('done');
       window.scrollTo({ top: 160, behavior: 'smooth' });
-    }, 700);
+    }, 620);
   };
 
   const emailBody = savedBooking
@@ -286,12 +342,17 @@ export default function Booking() {
                     <span className="success__icon" aria-hidden="true">
                       <CheckCircle />
                     </span>
-                    <h2 style={{ fontSize: 'clamp(2rem,4vw,2.8rem)' }}>Your date is pencilled in.</h2>
+                    <h2 style={{ fontSize: 'clamp(2rem,4vw,2.8rem)' }}>
+                      Your booking row is ready.
+                    </h2>
                     <p>
-                      Thank you, {(savedBooking.name.split(' ')[0] || 'friend').trim()}. We have your
-                      request for <strong>{savedBooking.eventName}</strong> on{' '}
-                      {formatLongDate(savedBooking.eventDate)}. Aetheria Events will confirm capacity
-                      by email within one working day.
+                      Thank you, {(savedBooking.name.split(' ')[0] || 'friend').trim()}. Your request
+                      for <strong>{savedBooking.eventName}</strong> on{' '}
+                      {formatLongDate(savedBooking.eventDate)} is packed into one row for the live
+                      booking sheet.{' '}
+                      {rowCopied
+                        ? 'It is already on your clipboard — open the sheet and paste it into the next empty row.'
+                        : 'Open the sheet, then use “Copy details” and paste it into the next empty row.'}
                     </p>
                     <span className="success__ref">
                       Reference <strong>{savedBooking.reference}</strong>
@@ -302,39 +363,54 @@ export default function Booking() {
                     <li>
                       <b>1</b>
                       <span>
-                        We check the calendar for your date and reply to{' '}
-                        <strong>{savedBooking.email}</strong> with an invoice and payment channels.
+                        Open the booking sheet and paste the row into the next empty line — the
+                        columns match exactly.
                       </span>
                     </li>
                     <li>
                       <b>2</b>
                       <span>
-                        After payment, you receive the intake page to upload photos, event text,
-                        colours and venue details.
+                        We review the sheet every working morning and reply to{' '}
+                        <strong>{savedBooking.email}</strong> with an invoice and payment channels
+                        within one working day.
                       </span>
                     </li>
                     <li>
                       <b>3</b>
                       <span>
-                        Submit the Asset Freeze and the delivery clock starts — 2–4 working days for
-                        Basic and Standard, 4–6 for Premium.
+                        After payment, you receive the intake page. Submit the Asset Freeze and the
+                        delivery clock starts — 2–4 working days for Basic and Standard.
                       </span>
                     </li>
                   </ul>
 
                   <div className="booking-actions">
+                    <a
+                      className="btn btn--gold"
+                      href={brand.bookingSheet}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <ArrowRight style={{ width: 14, height: 14 }} aria-hidden="true" />
+                      Open the booking sheet
+                    </a>
                     <button
                       type="button"
-                      className="btn btn--gold"
+                      className="btn btn--ink-ghost"
                       onClick={() => {
-                        downloadBlob(
-                          `aetheria-booking-${savedBooking.reference}.txt`,
-                          bookingSummaryText(savedBooking),
-                        );
+                        try {
+                          navigator.clipboard?.writeText?.(sheetRow(savedBooking));
+                          setRowCopied(true);
+                        } catch {
+                          downloadBlob(
+                            `aetheria-booking-${savedBooking.reference}.txt`,
+                            `${SHEET_COLUMNS.join('\t')}\n${sheetRow(savedBooking)}\n`,
+                          );
+                        }
                       }}
                     >
-                      <Download style={{ width: 14, height: 14 }} aria-hidden="true" />
-                      Download summary
+                      <Copy style={{ width: 14, height: 14 }} aria-hidden="true" />
+                      {rowCopied ? 'Copied — copy again' : 'Copy details'}
                     </button>
                     <a className="btn btn--ink-ghost" href={emailHref}>
                       <Mail style={{ width: 14, height: 14 }} aria-hidden="true" />
@@ -812,7 +888,7 @@ export default function Booking() {
                           <Lock />
                         </span>
                         <span>
-                          Your details go to our booking inbox, not to a third-party ad network.
+                          Your details go into our booking sheet, not to a third-party ad network.
                           Guest data from the RSVP is deleted 36 days after the event. Questions?{' '}
                           <a href={`mailto:${brand.dpoEmail}`}>{brand.dpoEmail}</a>.
                         </span>
@@ -820,12 +896,12 @@ export default function Booking() {
 
                       <div className="submit-row">
                         <button type="submit" className="btn btn--gold btn--lg" disabled={status === 'sending'}>
-                          {status === 'sending' ? 'Sending…' : 'Send booking request'}
+                          {status === 'sending' ? 'Preparing your row…' : 'Continue to the booking sheet'}
                           {status !== 'sending' && <ArrowRight />}
                         </button>
                         <p className="form-note">
-                          No payment is taken now. We confirm capacity first, then send the invoice
-                          and intake page.
+                          Booking happens in our live sheet. We copy your details into the next row
+                          for you — no payment is taken now.
                         </p>
                       </div>
                     </fieldset>

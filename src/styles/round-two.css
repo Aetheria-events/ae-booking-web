@@ -206,7 +206,7 @@
 }
 
 .about-fact {
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.9);
   padding: 1.1rem 1.15rem;
   display: grid;
   gap: 0.3rem;
@@ -216,7 +216,7 @@
   font-size: 0.64rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--text-mute);
+  color: #466a7f;
 }
 
 .about-fact strong {

@@ -201,9 +201,14 @@ export default function About() {
                   {brand.email}
                   <ArrowRight />
                 </a>
-                <Link to="/booking" className="btn btn--ghost">
+                <a
+                  href={brand.bookingSheet}
+                  className="btn btn--ghost"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Reserve a date
-                </Link>
+                </a>
               </div>
             </div>
           </div>

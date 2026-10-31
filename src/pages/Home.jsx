@@ -22,6 +22,7 @@ const styles = [
     image: sampleWedding,
     alt: 'A bride and groom beside a floral arch, mountains at sunset behind them',
     objectPosition: 'center 42%',
+    href: 'https://sites.google.com/view/aetheriaevents/home?authuser=1',
   },
   {
     meta: 'Milestones · Premium',
@@ -30,6 +31,7 @@ const styles = [
     image: sampleBirthday,
     alt: 'A birthday celebrant in a pink tulle dress holding a sparkler',
     objectPosition: 'center 30%',
+    href: 'https://sites.google.com/view/lily18thbirthday/home',
   },
   {
     meta: 'Family · Standard',
@@ -38,6 +40,7 @@ const styles = [
     image: samplePortrait,
     alt: 'A smiling child standing against a tree in a sunlit garden',
     objectPosition: 'center 34%',
+    href: 'https://sites.google.com/view/baptismofhana/home',
   },
 ];
 
@@ -91,6 +94,16 @@ export default function Home() {
     <>
       {/* ---------------- hero ---------------- */}
       <section className="aq-hero">
+        <div className="aq-hero__backdrop" aria-hidden="true">
+          <img
+            src={heroPhoto}
+            alt=""
+            width="1500"
+            height="837"
+            fetchPriority="high"
+            decoding="async"
+          />
+        </div>
         <div className="aq-hero__wash" aria-hidden="true" />
 
         <div className="wrap aq-hero__inner">
@@ -109,80 +122,77 @@ export default function Home() {
             </p>
 
             <div className="aq-hero__actions">
-              <Link to="/booking" className="aq-btn aq-btn--primary">
+              <a
+                href={brand.bookingSheet}
+                className="aq-btn aq-btn--primary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Reserve your date
                 <span className="aq-btn__arrow" aria-hidden="true">
                   <ArrowRight />
                 </span>
-              </Link>
+              </a>
               <Link to="/packages" className="aq-btn aq-btn--ghost">
                 View packages
               </Link>
             </div>
           </div>
 
-          <div className="aq-hero__media">
-            <img
-              src={heroPhoto}
-              alt="A guest reading her invitation on a phone in a bright, flower-filled venue"
-              width="1500"
-              height="837"
-              fetchPriority="high"
-              decoding="async"
-            />
-          </div>
-
           <div className="aq-hero__stack">
-            <Link to="/invitation" className="aq-card aq-card--tall">
+            <Link to="/invitation" className="aq-card">
               <span className="aq-card__top">
-                <span className="aq-card__tag">Sample invitation</span>
+                <span className="aq-card__icon" aria-hidden="true">
+                  <Sparkle />
+                </span>
                 <span className="aq-card__go" aria-hidden="true">
                   <ArrowRight />
                 </span>
               </span>
               <span className="aq-card__body">
-                <span className="aq-card__names">
-                  Ben <em>&amp;</em> Za
+                <span className="aq-card__tag">Live RSVP</span>
+                <span className="aq-card__stat">
+                  142<em>replies</em>
                 </span>
-                <span className="aq-card__meta">14 · 02 · 2027 — Makati City</span>
+                <span className="aq-card__meta">Guest list updates the moment someone replies.</span>
               </span>
             </Link>
 
-            <div className="aq-hero__row">
-              <Link to="/invitation" className="aq-card">
-                <span className="aq-card__top">
-                  <span className="aq-card__icon" aria-hidden="true">
-                    <Sparkle />
-                  </span>
-                  <span className="aq-card__go" aria-hidden="true">
-                    <ArrowRight />
-                  </span>
+            <Link to="/invitation" className="aq-card aq-card--feature">
+              <span className="aq-card__top">
+                <span className="aq-card__icon" aria-hidden="true">
+                  <Star />
                 </span>
-                <span className="aq-card__body">
-                  <span className="aq-card__stat">
-                    142<em>replies</em>
-                  </span>
-                  <span className="aq-card__meta">RSVP live on the sample page</span>
+                <span className="aq-card__go" aria-hidden="true">
+                  <ArrowRight />
                 </span>
-              </Link>
+              </span>
+              <span className="aq-card__body">
+                <span className="aq-card__tag">Sample invitation</span>
+                <span className="aq-card__names">
+                  Ben <em>&amp;</em> Za
+                </span>
+                <span className="aq-card__meta">14 · 02 · 2027 — Casa Lumen, Makati</span>
+              </span>
+            </Link>
 
-              <button type="button" className="aq-card aq-card--solid" onClick={saveSampleDate}>
-                <span className="aq-card__top">
-                  <span className="aq-card__icon" aria-hidden="true">
-                    <Calendar />
-                  </span>
-                  <span className="aq-card__go" aria-hidden="true">
-                    <ArrowRight />
-                  </span>
+            <button type="button" className="aq-card aq-card--solid" onClick={saveSampleDate}>
+              <span className="aq-card__top">
+                <span className="aq-card__icon" aria-hidden="true">
+                  <Calendar />
                 </span>
-                <span className="aq-card__body">
-                  <span className="aq-card__stat">
-                    6<em>days live</em>
-                  </span>
-                  <span className="aq-card__meta">Save the date to your calendar</span>
+                <span className="aq-card__go" aria-hidden="true">
+                  <ArrowRight />
                 </span>
-              </button>
-            </div>
+              </span>
+              <span className="aq-card__body">
+                <span className="aq-card__tag">Save the date</span>
+                <span className="aq-card__stat">
+                  6<em>days live</em>
+                </span>
+                <span className="aq-card__meta">Drop the sample date into your calendar.</span>
+              </span>
+            </button>
           </div>
         </div>
       </section>
@@ -268,10 +278,17 @@ export default function Home() {
               A glimpse of what can be composed: letterpress calm, a sparkler-lit milestone, or a
               slow afternoon in the garden. Each is a direction, not a locked template.
             </p>
-            <Link to="/invitation" className="text-link" style={{ marginTop: '1.2rem' }}>
+            <a
+              href="https://sites.google.com/view/aetheriaevents/home?authuser=1"
+              className="text-link"
+              style={{ marginTop: '1.2rem' }}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Open a full sample page
               <ArrowRight />
-            </Link>
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
           </SectionHead>
 
           <div className="style-grid">
@@ -295,10 +312,16 @@ export default function Home() {
                     <span className="style-card__meta">{style.meta}</span>
                     <h3 className="style-card__title">{style.title}</h3>
                     <p className="style-card__desc">{style.desc}</p>
-                    <Link to="/invitation" className="style-card__cta">
+                    <a
+                      href={style.href}
+                      className="style-card__cta"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       View the sample
                       <ArrowRight style={{ width: 12, height: 12 }} aria-hidden="true" />
-                    </Link>
+                      <span className="sr-only"> (opens in a new tab)</span>
+                    </a>
                   </div>
                 </div>
               </Reveal>
@@ -431,10 +454,15 @@ export default function Home() {
                 </p>
               </div>
               <div className="cta-band__actions">
-                <Link to="/booking" className="btn btn--gold">
+                <a
+                  href={brand.bookingSheet}
+                  className="btn btn--gold"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Start your booking
                   <ArrowRight />
-                </Link>
+                </a>
                 <a href={`mailto:${brand.email}`} className="btn btn--ghost">
                   Email the team
                 </a>

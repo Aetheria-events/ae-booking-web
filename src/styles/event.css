@@ -10,7 +10,7 @@
   --e-gold: #004aad;
   --e-gold-soft: #0f6fd1;
   --e-text: #08284b;
-  --e-dim: #5b7793;
+  --e-dim: #47647d;
   --e-line: rgba(0, 74, 173, 0.16);
   position: relative;
   min-height: 100vh;
@@ -301,8 +301,8 @@
   letter-spacing: 0.06em;
   color: #fff;
   text-shadow: 0 2px 18px rgba(0, 42, 96, 0.45);
-  background: rgba(0, 74, 173, 0.08);
-  backdrop-filter: blur(4px);
+  background: rgba(0, 38, 86, 0.72);
+  backdrop-filter: blur(6px);
   box-shadow: 0 0 0 8px rgba(233, 214, 172, 0.06);
 }
 

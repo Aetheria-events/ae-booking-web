@@ -666,10 +666,15 @@ export default function SitePlan() {
                 </p>
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem', alignSelf: 'center', justifyContent: 'flex-end' }}>
-                <Link to="/booking" className="btn btn--gold">
+                <a
+                  href={brand.bookingSheet}
+                  className="btn btn--gold"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Test the booking form
                   <ArrowRight />
-                </Link>
+                </a>
                 <Link to="/invitation" className="btn btn--ink-ghost">
                   Open the invitation
                 </Link>

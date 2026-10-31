@@ -12,6 +12,9 @@ export const brand = {
   team: 'the Aetheria digital fulfillment team',
   hours: 'Monday to Friday, 8:00 AM – 5:00 PM (PHT)',
   serviceArea: 'Metro Manila & nationwide events',
+  // every booking entry point on the site opens this sheet
+  bookingSheet:
+    'https://docs.google.com/spreadsheets/d/1jUrvnfI1MtEY83iVdLOZKxxQUbCtou1F-yf1ABUqYqQ/edit?usp=sharing',
 };
 
 export const nav = [
