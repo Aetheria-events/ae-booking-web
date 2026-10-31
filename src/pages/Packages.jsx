@@ -108,7 +108,7 @@ export default function Packages() {
           >
             <p>
               Add these at booking or later. Rush services are subject to availability and approval
-              by the studio team, and are paid only once approved.
+              by the digital fulfillment team, and are paid only once approved.
             </p>
           </SectionHead>
 

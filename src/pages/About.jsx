@@ -28,7 +28,7 @@ const disciplines = [
 ];
 
 const facts = [
-  { label: 'Studio', value: 'Bonifacio Global City, Taguig' },
+  { label: 'Base', value: 'Bonifacio Global City, Taguig' },
   { label: 'Hours', value: 'Mon–Fri, 8:00 AM – 5:00 PM (PHT)' },
   { label: 'Replies within', value: 'One working day' },
   { label: 'Delivery', value: '2–6 working days after Asset Freeze' },
@@ -37,7 +37,7 @@ const facts = [
 const principles = [
   {
     num: '01',
-    title: 'Small studio, short chain',
+    title: 'A short chain, on purpose',
     body: 'The person who reads your booking is the person who art-directs the page. There is no account manager between you and the work.',
   },
   {
@@ -55,7 +55,7 @@ const principles = [
 export default function About() {
   usePageMeta(
     'About our team — Aetheria Events',
-    'Aetheria Events is a small design studio in Bonifacio Global City building bespoke digital invitations, RSVP pages and private guest dashboards for celebrations across the Philippines.',
+    'Aetheria Events is a digital fulfillment team in Bonifacio Global City building bespoke digital invitations, RSVP pages and private guest dashboards for celebrations across the Philippines.',
   );
 
   return (
@@ -72,9 +72,9 @@ export default function About() {
             <div>
               <p className="eyebrow">About our Team</p>
               <h1>
-                A small studio,{' '}
+                Digital fulfillment,{' '}
                 <br />
-                <span className="italic">deliberately so.</span>
+                <span className="italic">done properly.</span>
               </h1>
             </div>
             <p className="lede">
@@ -135,7 +135,7 @@ export default function About() {
                 kept every time.
               </h2>
               <p className="lede" style={{ marginTop: '1.2rem' }}>
-                The studio runs on three habits that are easy to promise and hard to keep. We keep
+                The team runs on three habits that are easy to promise and hard to keep. We keep
                 them on every booking, from a ₱1,499 one-pager to a four-hundred-guest evening.
               </p>
               <p className="about-stamp">
@@ -167,7 +167,7 @@ export default function About() {
               <h2>One inbox, answered by the people doing the work.</h2>
               <p className="lede" style={{ marginTop: '1rem', maxWidth: '48ch' }}>
                 Questions about a date, a package or a page that already exists — write to us and a
-                member of the studio will reply within one working day.
+                member of the digital fulfillment team will reply within one working day.
               </p>
             </div>
 
@@ -175,14 +175,14 @@ export default function About() {
               <div className="about-contact__row">
                 <Clock aria-hidden="true" />
                 <div>
-                  <span>Studio hours</span>
+                  <span>Office hours</span>
                   <strong>{brand.hours}</strong>
                 </div>
               </div>
               <div className="about-contact__row">
                 <Star aria-hidden="true" />
                 <div>
-                  <span>Studio</span>
+                  <span>Office</span>
                   <strong>{brand.address}</strong>
                 </div>
               </div>

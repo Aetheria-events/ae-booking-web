@@ -64,22 +64,21 @@ src/
 
 ### Design tokens
 
-The page palette is a light aqua scale; the logo keeps the deeper brand blues.
+The palette comes straight from the logo artwork: brand blue for anything that acts, sky blue
+for accents, and a soft blue wash behind the glass.
 
 | Token | Value | Use |
 | --- | --- | --- |
-| Mist | `#EEF9FC` | Page wash, glass tint (`--aq-100`) |
-| Aqua 200 | `#D2EAF3` | Section tints, borders |
-| Aqua 500 | `#4AA8DD` | Accents, glow |
-| Aqua 700 | `#1077BB` | CTAs, gradients |
+| Brand blue | `#004AAD` | Logo, CTAs, buttons, links |
+| Sky | `#38B6FF` | Logo `events`, accents, ticks, marquee stars |
+| Deep blue | `#002F6C` | Footer, featured plan, dark panels |
+| Wash | `#EEF9FC` | Page tint behind the glass |
 | Ink | `#0B3145` | Headings and body text |
 | Ink soft | `#3F6478` | Secondary text |
-| Brand blue | `#004AAD` | Logo mark only |
-| Sky blue | `#38B6FF` | Logo mark only |
 
-The design language is **light glass**: a misty aqua wash fixed behind the page, with frosted
-panels (1px white edge, 20&nbsp;px blur) holding every section, plus deep aqua bands (featured
-plan, booking summary, CTA, footer) for contrast. `src/styles/aqua.css` is the theme layer — it
+The design language is **light glass**: a fixed blue wash behind the page, with frosted panels
+(1px white edge, 20&nbsp;px blur) holding every section, plus brand-blue bands (featured plan,
+booking summary, CTA, footer) for contrast. `src/styles/aqua.css` is the theme layer — it
 re-points the older tokens, so changing a value there moves the whole site.
 
 Type: **Inter** everywhere (variable, 200&ndash;700), self-hosted via `@fontsource-variable`, so
@@ -87,11 +86,18 @@ there are no external font requests and nothing falls back to a serif.
 
 ### Artwork
 
-All imagery is **original SVG generated in code** (`src/components/Artwork.jsx`): draped silk,
-arches, orbiting moons, blooms and a subtle film grain. Nothing is stock photography, so there are
-no image licences and no layout shift. To use real event photography, replace an `<Artwork />`
-with an `<img className="art" src="…" />` inside the same `.art-frame` — the frames, overlays and
-watermarks already handle framing.
+Photography now leads. `src/assets/` holds the supplied photographs, compressed to WebP:
+
+| File | Used on |
+| --- | --- |
+| `hero-photo.webp` | Home hero, right half |
+| `ben-za.webp` | Sample invitation, “the evening” section |
+| `ben-za-portrait.webp` | Sample invitation, hero card window |
+| `sample-wedding.webp`, `sample-birthday.webp`, `sample-portrait.webp` | Home sample cards |
+
+`src/components/Artwork.jsx` still draws the original decorative SVGs (draped silk, arches,
+orbiting moons) and remains available for anywhere a photograph is not supplied. To swap a photo,
+keep the same filename and rebuild — the frames, overlays and rounded corners are all CSS.
 
 Every card carries the Aetheria logo as a translucent watermark at the back of the artwork, and the
 site footer carries the “Powered by Aetheria” credit required by the SLA for client pages.
@@ -116,7 +122,7 @@ subject rights, NPC complaint route.
    and keep a deletion log without guest data.
 3. **Wire analytics to consent.** Only load analytics when
    `document.documentElement.dataset.consent === 'all'`.
-4. **Add real assets.** Event photography, confirmed studio mobile number, social handles and
+4. **Add real assets.** Event photography, confirmed business mobile number, social handles and
    final legal copy (see the Site plan page for the full checklist).
 5. **Deploy** the `dist/` folder to Cloudflare Pages behind the WAF, with HSTS and a CSP.
    Because this is a single-page app, add an SPA fallback so deep links resolve:

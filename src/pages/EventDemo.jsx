@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Artwork from '../components/Artwork';
 import Countdown from '../components/Countdown';
 import {
   ArrowRight,
@@ -15,6 +14,8 @@ import {
   Warning,
 } from '../components/Icons';
 import Logo from '../components/Logo';
+import benZaPortrait from '../assets/ben-za-portrait.webp';
+import benZaWide from '../assets/ben-za.webp';
 import { brand, event } from '../data/site';
 import { downloadCalendar, downloadVCard } from '../lib/files';
 import { usePageMeta } from '../lib/hooks';
@@ -27,7 +28,7 @@ const emailPattern = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
 
 export default function EventDemo() {
   usePageMeta(
-    'Isabel & Mateo — a sample invitation by Aetheria Events',
+    `${event.bride} & ${event.groom} — a sample invitation by Aetheria Events`,
     'A sample digital wedding invitation by Aetheria Events: countdown, venue details, save-the-date and online RSVP with guest privacy built in.',
   );
 
@@ -81,7 +82,7 @@ export default function EventDemo() {
           ...existing,
           {
             ...rsvp,
-            event: 'isabel-and-mateo',
+            event: 'ben-and-za',
             submittedAt: new Date().toISOString(),
           },
         ]),
@@ -95,8 +96,8 @@ export default function EventDemo() {
 
   const addToCalendar = () => {
     downloadCalendar({
-      filename: 'isabel-and-mateo.ics',
-      title: `Isabel & Mateo — ${event.type}`,
+      filename: 'ben-and-za.ics',
+      title: `${event.bride} & ${event.groom} — ${event.type}`,
       description: `${event.kicker}. Ceremony at 4:00 PM, dinner at 7:00 PM. RSVP by ${event.rsvpDeadline}. A sample invitation by Aetheria Events.`,
       location: `${event.venueAddress}`,
       start: event.isoDate,
@@ -109,10 +110,10 @@ export default function EventDemo() {
       firstName: 'Aetheria',
       lastName: 'Events',
       org: 'Aetheria Events',
-      title: 'Studio team',
+      title: 'Digital fulfillment',
       email: brand.email,
       address: brand.address,
-      note: `Event contact for Isabel & Mateo's wedding, 14 February 2027, ${event.venue}. Sample invitation by Aetheria Events.`,
+      note: `Event contact for ${event.bride} & ${event.groom}'s wedding, 14 February 2027, ${event.venue}. Sample invitation by Aetheria Events.`,
     });
   };
 
@@ -147,7 +148,7 @@ export default function EventDemo() {
 
             <p className="event-kicker">{event.kicker}</p>
             <h1 className="event-title">
-              Isabel <span className="amp">&amp;</span> Mateo
+              {event.bride} <span className="amp">&amp;</span> {event.groom}
             </h1>
             <p className="event-title__sub">
               request the pleasure of your company at the celebration of their marriage
@@ -166,7 +167,15 @@ export default function EventDemo() {
 
               <article className="event-card">
                 <div className="event-card__window">
-                  <Artwork variant="ribbon" palette="midnight" />
+                  <img
+                    className="event-card__photo"
+                    src={benZaPortrait}
+                    alt={`${event.bride} and ${event.groom} walking hand in hand through a glass-walled hall`}
+                    width="1100"
+                    height="1034"
+                    loading="eager"
+                    decoding="async"
+                  />
                   <span className="event-card__chip">{event.type}</span>
                   <div className="event-card__monogram" aria-hidden="true">
                     <span>{event.monogram}</span>
@@ -174,7 +183,7 @@ export default function EventDemo() {
                 </div>
                 <div className="event-card__plate">
                   <p className="event-card__names">
-                    Isabel <span className="amp">&amp;</span> Mateo
+                    {event.bride} <span className="amp">&amp;</span> {event.groom}
                   </p>
                   <p className="event-card__meta">
                     {event.dateShort} · Casa Lumen, Makati
@@ -188,7 +197,7 @@ export default function EventDemo() {
                 </span>
                 <span className="event-save__text">
                   <strong>Save contact</strong>
-                  <span>The Aetheria studio team</span>
+                  <span>{brand.team}</span>
                 </span>
                 <button type="button" className="event-save__btn" onClick={saveContact}>
                   <Download aria-hidden="true" />
@@ -197,7 +206,10 @@ export default function EventDemo() {
               </div>
             </div>
 
-            <Countdown target={event.isoDate} label="Countdown to Isabel and Mateo's wedding" />
+            <Countdown
+              target={event.isoDate}
+              label={`Countdown to ${event.bride} and ${event.groom}'s wedding`}
+            />
           </div>
         </section>
 
@@ -272,15 +284,19 @@ export default function EventDemo() {
             </div>
 
             <div>
-              <div
-                className="art-frame"
-                style={{ aspectRatio: '4 / 4.2', marginBottom: '1.5rem' }}
-              >
-                <Artwork variant="orb" palette="champagne" />
-                <div className="style-card__watermark" aria-hidden="true">
-                  <Logo as="span" showSub={false} />
-                </div>
-              </div>
+              <figure className="event-photo" style={{ aspectRatio: '4 / 4.2', marginBottom: '1.5rem' }}>
+                <img
+                  src={benZaWide}
+                  alt={`${event.bride} and ${event.groom} laughing together in a sunlit glass pavilion`}
+                  width="1600"
+                  height="893"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>
+                  {event.bride} &amp; {event.groom} · {event.venue}
+                </figcaption>
+              </figure>
               <p className="eyebrow">The venue</p>
               <h2 style={{ fontSize: '1.85rem' }}>{event.venue}</h2>
               <p>{event.venueAddress}</p>
@@ -550,7 +566,7 @@ export default function EventDemo() {
               whole present.”
             </p>
             <p className="meta" style={{ color: 'var(--e-dim)', marginBottom: 0 }}>
-              Isabel &amp; Mateo
+              {event.bride} &amp; {event.groom}
             </p>
           </div>
         </section>
@@ -562,7 +578,7 @@ export default function EventDemo() {
             <Logo as="span" showSub={false} />
           </div>
           <p>
-            Isabel &amp; Mateo · 14 February 2027 · Casa Lumen, Makati
+            {event.bride} &amp; {event.groom} · {event.dateLabel} · {event.venue}
           </p>
           <p style={{ fontSize: '0.72rem', opacity: 0.8 }}>
             Sample invitation designed by Aetheria Events. No real event, guest list or

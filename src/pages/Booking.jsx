@@ -366,7 +366,7 @@ export default function Booking() {
                     <span>
                       <strong>Preview build note.</strong> This request is saved in your browser
                       only. Before launch, connect the form to Aetheria&rsquo;s intake endpoint (see
-                      the site plan) so submissions reach the studio automatically.
+                      the site plan) so submissions reach digital fulfillment automatically.
                     </span>
                   </div>
 
@@ -502,7 +502,7 @@ export default function Booking() {
                             id="booking-eventName"
                             className="input"
                             type="text"
-                            placeholder="Isabel & Mateo"
+                            placeholder="Ben & Za"
                             value={form.eventName}
                             onChange={(event) => update('eventName', event.target.value)}
                             onBlur={() => handleBlur('eventName')}
@@ -899,7 +899,7 @@ export default function Booking() {
               <div className="booking-help">
                 <h3>Your Aetheria team</h3>
                 <p>
-                  Every request is read by the studio team and answered from one inbox, so nothing
+                  Every request is read by the digital fulfillment team and answered from one inbox, so nothing
                   sits waiting while someone is out of office.
                 </p>
                 <div className="booking-help__person">
@@ -908,7 +908,7 @@ export default function Booking() {
                   </span>
                   <div style={{ minWidth: 0 }}>
                     <strong style={{ display: 'block', color: 'var(--on-light)', fontSize: '0.9rem' }}>
-                      The Aetheria studio
+                      Aetheria digital fulfillment
                     </strong>
                     <span style={{ fontSize: '0.76rem', color: 'var(--on-light-mute)' }}>
                       {brand.hours}
@@ -922,7 +922,7 @@ export default function Booking() {
                   </span>
                   <span className="save-contact__text">
                     <strong>Aetheria Events</strong>
-                    <span>{brand.email} · studio contact</span>
+                    <span>{brand.email} · digital fulfillment contact</span>
                   </span>
                   <button
                     type="button"
@@ -932,7 +932,7 @@ export default function Booking() {
                         firstName: 'Aetheria',
                         lastName: 'Events',
                         org: brand.name,
-                        title: 'Studio team',
+                        title: 'Digital fulfillment',
                         email: brand.email,
                         address: brand.address,
                         note: 'Aetheria Events — digital invitations, RSVP pages and private guest dashboards.',

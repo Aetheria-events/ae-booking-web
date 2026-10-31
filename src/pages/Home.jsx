@@ -79,7 +79,7 @@ export default function Home() {
 
   const saveSampleDate = () => {
     downloadCalendar({
-      filename: 'isabel-and-mateo.ics',
+      filename: 'ben-and-za.ics',
       title: `${event.bride} & ${event.groom} — ${event.type}`,
       description: 'A sample invitation by Aetheria Events. RSVP online.',
       location: `${event.venueAddress}`,
@@ -92,14 +92,6 @@ export default function Home() {
       {/* ---------------- hero ---------------- */}
       <section className="aq-hero">
         <div className="aq-hero__wash" aria-hidden="true" />
-        <p className="aq-hero__wordmark" aria-hidden="true">
-          <span>Aetheria</span>
-          <span>Events</span>
-        </p>
-
-        <div className="aq-hero__subject" aria-hidden="true">
-          <img src={heroPhoto} alt="" width="1500" height="837" fetchPriority="high" decoding="async" />
-        </div>
 
         <div className="wrap aq-hero__inner">
           <div className="aq-hero__copy">
@@ -129,6 +121,17 @@ export default function Home() {
             </div>
           </div>
 
+          <div className="aq-hero__media">
+            <img
+              src={heroPhoto}
+              alt="A guest reading her invitation on a phone in a bright, flower-filled venue"
+              width="1500"
+              height="837"
+              fetchPriority="high"
+              decoding="async"
+            />
+          </div>
+
           <div className="aq-hero__stack">
             <Link to="/invitation" className="aq-card aq-card--tall">
               <span className="aq-card__top">
@@ -139,7 +142,7 @@ export default function Home() {
               </span>
               <span className="aq-card__body">
                 <span className="aq-card__names">
-                  Isabel <em>&amp;</em> Mateo
+                  Ben <em>&amp;</em> Za
                 </span>
                 <span className="aq-card__meta">14 · 02 · 2027 — Makati City</span>
               </span>
@@ -433,7 +436,7 @@ export default function Home() {
                   <ArrowRight />
                 </Link>
                 <a href={`mailto:${brand.email}`} className="btn btn--ghost">
-                  Email the studio
+                  Email the team
                 </a>
               </div>
             </div>

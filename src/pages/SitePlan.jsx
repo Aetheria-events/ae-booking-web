@@ -77,11 +77,11 @@ const pages = [
 ];
 
 const swatches = [
-  { name: 'Mist', hex: '#EEF9FC', use: 'Page wash, glass tint' },
-  { name: 'Aqua 200', hex: '#D2EAF3', use: 'Section tints, borders' },
-  { name: 'Aqua 500', hex: '#4AA8DD', use: 'Accents, glow' },
-  { name: 'Aqua 700', hex: '#1077BB', use: 'CTAs, gradients' },
-  { name: 'Ink', hex: '#0B3145', use: 'Headings, body text' },
+  { name: 'Brand blue', hex: '#004AAD', use: 'Logo, CTAs, deep panels' },
+  { name: 'Sky', hex: '#38B6FF', use: 'Logo “events”, accents, ticks' },
+  { name: 'Deep blue', hex: '#002F6C', use: 'Footer, featured plan' },
+  { name: 'Wash', hex: '#EEF9FC', use: 'Page tint behind the glass' },
+  { name: 'Ink', hex: '#0B3145', use: 'Headings and body text' },
   { name: 'Ink soft', hex: '#3F6478', use: 'Muted text' },
 ];
 
@@ -89,7 +89,7 @@ const assetChecklist = [
   'Vector logo files (SVG/AI/EPS) and any partner marks',
   'Twelve to twenty real event photographs for the portfolio and page mock-ups',
   'Confirmed brand palette and type preferences, if different from this direction',
-  'A studio mobile number and social handles for the footer',
+  'A business mobile number and social handles for the footer',
   'Final domain name and Cloudflare/DNS access',
   'Signed-off privacy notice and service terms, reviewed by counsel',
   'Booking inbox address, plus the person who owns replies',
@@ -235,7 +235,7 @@ export default function SitePlan() {
                 <h3>Reassure</h3>
                 <p>
                   Privacy, refunds, delivery dates and liability in plain language. A consent dialog,
-                  a real DPO contact and terms grounded in the SLA keep the studio credible — and
+                  a real DPO contact and terms grounded in the SLA keep the team credible — and
                   reduce disputes before they start.
                 </p>
               </div>
@@ -356,7 +356,7 @@ export default function SitePlan() {
                 <ul className="check-list">
                   <li><Check aria-hidden="true" /> Opens the event link from an invitation or QR.</li>
                   <li><Check aria-hidden="true" /> Reads the date, venue, dress code and schedule.</li>
-                  <li><Check aria-hidden="true" /> Saves the date and the studio’s contact.</li>
+                  <li><Check aria-hidden="true" /> Saves the date and the team’s contact.</li>
                   <li><Check aria-hidden="true" /> Replies with attendance, guest count and consent.</li>
                   <li><Check aria-hidden="true" /> Receives confirmation once the host accepts the RSVP.</li>
                 </ul>
@@ -371,9 +371,9 @@ export default function SitePlan() {
                 <h2>Light, quiet, legible.</h2>
               </div>
               <p>
-                Inter carries every size — the oversized hero wordmark, headings, labels, forms and
-                prices. A misty aqua wash keeps the page calm, and frosted glass panels lift each
-                block off the background so nothing sits on bare space.
+                Inter carries every size — display headings, labels, forms and prices — and the
+                palette comes straight from the logo: brand blue for anything that acts, sky blue
+                for accents, over a soft blue wash behind frosted glass.
               </p>
             </div>
 
@@ -514,7 +514,7 @@ export default function SitePlan() {
                 <h3>Content decisions</h3>
                 <ul className="check-list">
                   <li>
-                    <Check aria-hidden="true" /> Keep the aqua palette, or switch to the
+                    <Check aria-hidden="true" /> Keep the brand palette (blue and sky), or switch to the
                     client&rsquo;s existing brand colours.
                   </li>
                   <li>
@@ -622,7 +622,7 @@ export default function SitePlan() {
                 <h2>What we need to decide next.</h2>
               </div>
               <p>
-                These are the conversations that turn the prototype into the studio&rsquo;s real
+                These are the conversations that turn the prototype into the team&rsquo;s real
                 website.
               </p>
             </div>
