@@ -72,7 +72,7 @@ export default function About() {
             <div>
               <p className="eyebrow">About our Team</p>
               <h1>
-                A small studio,
+                A small studio,{' '}
                 <br />
                 <span className="italic">deliberately so.</span>
               </h1>

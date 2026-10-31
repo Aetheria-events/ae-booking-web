@@ -65,8 +65,8 @@
   --glass-edge: rgba(0, 74, 173, 0.1);
   --glass-blur: blur(20px) saturate(140%);
 
-  --font-display: 'Cormorant Garamond Variable', 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
-  --font-sans: 'Jost Variable', 'Jost', 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Inter Variable', 'Inter', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --font-sans: 'Inter Variable', 'Inter', 'Helvetica Neue', Arial, system-ui, sans-serif;
 
   --step--2: clamp(0.68rem, 0.66rem + 0.08vw, 0.73rem);
   --step--1: clamp(0.79rem, 0.76rem + 0.12vw, 0.87rem);

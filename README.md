@@ -58,30 +58,32 @@ src/
   components/              Header, Footer, Logo, Icons, Artwork, PrivacyDialog,
                            Accordion, Countdown, Marquee, PlanCard, Reveal, SectionHead
   pages/                   Home, Packages, Booking, EventDemo, Privacy, Terms, SitePlan, NotFound
-  styles/                  base (tokens), layout, components, pages, event, print, brand
+  styles/                  base (tokens), layout, components, pages, event, print,
+                           brand, round-two, aqua (the current theme, loads last)
 ```
 
 ### Design tokens
 
-The palette comes straight from the Aetheria Events logo: deep blue, sky blue and white.
+The page palette is a light aqua scale; the logo keeps the deeper brand blues.
 
 | Token | Value | Use |
 | --- | --- | --- |
-| Deep blue | `#004AAD` | Logo bar, links, primary accents |
-| Sky blue | `#38B6FF` | Logo bar, highlights, focus |
-| Night ink | `#08284B` | Headings and body text |
-| Quiet ink | `#35597F` | Secondary text |
-| Page | `#FFFFFF` | Base background |
-| Mist | `#F2F8FF` | Page wash behind the glass |
-| Glass | `rgba(255,255,255,.62)` | Cards, panels, dialogs (`--glass-fill`) |
+| Mist | `#EEF9FC` | Page wash, glass tint (`--aq-100`) |
+| Aqua 200 | `#D2EAF3` | Section tints, borders |
+| Aqua 500 | `#4AA8DD` | Accents, glow |
+| Aqua 700 | `#1077BB` | CTAs, gradients |
+| Ink | `#0B3145` | Headings and body text |
+| Ink soft | `#3F6478` | Secondary text |
+| Brand blue | `#004AAD` | Logo mark only |
+| Sky blue | `#38B6FF` | Logo mark only |
 
-The design language is **white + glass**: frosted cards with a 1px white edge over a soft
-blue wash, plus deep-blue bands (featured plan, booking summary, CTA, footer) for contrast.
-`src/styles/brand.css` is the layer that applies this on top of the base components — change a
-colour there and it moves everywhere.
+The design language is **light glass**: a misty aqua wash fixed behind the page, with frosted
+panels (1px white edge, 20&nbsp;px blur) holding every section, plus deep aqua bands (featured
+plan, booking summary, CTA, footer) for contrast. `src/styles/aqua.css` is the theme layer — it
+re-points the older tokens, so changing a value there moves the whole site.
 
-Type: **Cormorant Garamond** (display) and **Jost** (UI, forms, labels), self-hosted via
-`@fontsource-variable` so there are no external font requests.
+Type: **Inter** everywhere (variable, 200&ndash;700), self-hosted via `@fontsource-variable`, so
+there are no external font requests and nothing falls back to a serif.
 
 ### Artwork
 
@@ -125,7 +127,8 @@ subject rights, NPC complaint route.
 
 ## Fonts
 
-Cormorant Garamond and Jost are bundled from `@fontsource-variable` (SIL Open Font License).
+Inter is bundled from `@fontsource-variable` (SIL Open Font License) and is the only typeface
+in the project — display, UI, forms, labels and numerals all use it.
 
 ### One-file build (no server needed)
 

@@ -77,12 +77,12 @@ const pages = [
 ];
 
 const swatches = [
-  { name: 'Ink', hex: '#0B0810', use: 'Primary background' },
-  { name: 'Plum', hex: '#3B2043', use: 'Depth, gradients' },
-  { name: 'Rose', hex: '#C98D9E', use: 'Warmth, glow' },
-  { name: 'Gold', hex: '#C3A05F', use: 'Accents, CTAs' },
-  { name: 'Ivory', hex: '#F8F2E8', use: 'Light sections' },
-  { name: 'Dusk', hex: '#9D91A3', use: 'Muted text' },
+  { name: 'Mist', hex: '#EEF9FC', use: 'Page wash, glass tint' },
+  { name: 'Aqua 200', hex: '#D2EAF3', use: 'Section tints, borders' },
+  { name: 'Aqua 500', hex: '#4AA8DD', use: 'Accents, glow' },
+  { name: 'Aqua 700', hex: '#1077BB', use: 'CTAs, gradients' },
+  { name: 'Ink', hex: '#0B3145', use: 'Headings, body text' },
+  { name: 'Ink soft', hex: '#3F6478', use: 'Muted text' },
 ];
 
 const assetChecklist = [
@@ -368,11 +368,12 @@ export default function SitePlan() {
             <div className="plan-section__head">
               <div>
                 <p className="eyebrow">05 · Design system</p>
-                <h2>Celestial, restrained, legible.</h2>
+                <h2>Light, quiet, legible.</h2>
               </div>
               <p>
-                Cormorant Garamond carries the romance; Jost keeps labels, forms and prices crisp.
-                Dark sections set the mood, ivory sections make reading and transacting easy.
+                Inter carries every size — the oversized hero wordmark, headings, labels, forms and
+                prices. A misty aqua wash keeps the page calm, and frosted glass panels lift each
+                block off the background so nothing sits on bare space.
               </p>
             </div>
 
@@ -390,17 +391,17 @@ export default function SitePlan() {
             </div>
 
             <div className="type-specimen">
-              <p className="type-specimen__display">Moments that feel like destiny.</p>
-              <p className="type-specimen__sans">Cormorant Garamond · Jost · letterspaced labels</p>
+              <p className="type-specimen__display">Make your first impression unforgettable.</p>
+              <p className="type-specimen__sans">Inter · 200–600 · letterspaced labels</p>
               <p className="type-specimen__body">
                 Body copy sits at 16–18px with 1.7 line height for comfortable reading. Forms keep
                 labels above fields, visible focus rings and inline error messages that explain how to
                 fix the problem.
               </p>
               <div className="type-specimen__labels">
-                <span>Display · 300–400</span>
-                <span>Body · 350–400</span>
-                <span>Labels · 450–500</span>
+                <span>Display · 200–400</span>
+                <span>Body · 300–400</span>
+                <span>Labels · 450–600</span>
                 <span>Radius · 12–42px</span>
                 <span>Motion · 400–900ms</span>
               </div>
@@ -513,7 +514,7 @@ export default function SitePlan() {
                 <h3>Content decisions</h3>
                 <ul className="check-list">
                   <li>
-                    <Check aria-hidden="true" /> Keep the celestial palette, or switch to the
+                    <Check aria-hidden="true" /> Keep the aqua palette, or switch to the
                     client&rsquo;s existing brand colours.
                   </li>
                   <li>

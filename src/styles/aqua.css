@@ -183,7 +183,7 @@ blockquote {
 }
 
 .lede,
-.hero2__lede {
+.aq-hero__lede {
   font-weight: 300;
   color: var(--text-dim);
 }
@@ -695,6 +695,68 @@ body > .grain,
   border-color: var(--aq-600);
 }
 
+/* the three reasons read as separate cards, not table rows */
+.diff-list {
+  display: grid;
+  gap: 0.7rem;
+  border-top: 0;
+}
+
+.diff {
+  padding: 1.25rem 1.35rem;
+  border-bottom: 0;
+  gap: 0.9rem;
+}
+
+.diff__num {
+  padding-top: 0.15rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+}
+
+/* the numbers sit in their own band under both columns */
+.split > .stats {
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin-top: 0.4rem;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  overflow: visible;
+}
+
+.split > .stats .stat {
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.62);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: 0 18px 40px -38px rgba(13, 60, 84, 0.5);
+}
+
+/* the running band reads as one uniform line of letterspaced caps */
+.marquee__item,
+.marquee__item--accent {
+  font-style: normal;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.marquee__item--accent {
+  color: var(--aq-600);
+}
+
+/* ampersands stay upright — no synthesised italics anywhere */
+.amp,
+.invite__names .amp,
+.event-title .amp,
+.event-card__names .amp {
+  font-style: normal;
+  font-weight: 300;
+}
+
 /* generic cards inherit the glass treatment */
 .diff,
 .assurance,
@@ -964,6 +1026,12 @@ textarea:focus-visible {
    11. Responsive
    ------------------------------------------------------------ */
 
+@media (max-width: 1080px) and (min-width: 721px) {
+  .split > .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 1080px) {
   .aq-hero__subject {
     width: min(74vw, 700px);
@@ -1084,6 +1152,12 @@ textarea:focus-visible {
 
   .site-footer {
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .split > .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

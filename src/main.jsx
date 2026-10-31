@@ -3,9 +3,6 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
 import '@fontsource-variable/inter/index.css';
-import '@fontsource-variable/cormorant-garamond/index.css';
-import '@fontsource-variable/cormorant-garamond/wght-italic.css';
-import '@fontsource-variable/jost/index.css';
 
 import './styles/base.css';
 import './styles/layout.css';

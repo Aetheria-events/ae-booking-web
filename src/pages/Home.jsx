@@ -202,51 +202,49 @@ export default function Home() {
             </Link>
           </div>
 
-          <div>
-            <div className="diff-list">
-              <Reveal as="div" className="diff">
-                <span className="diff__num">01</span>
-                <div>
-                  <h3 className="diff__title">Designed around your event</h3>
-                  <p className="diff__body">
-                    Your palette, your venue, your story. We art-direct the page to match the room it
-                    is inviting people into — then test every link, form and screen before you ever
-                    see it.
-                  </p>
-                </div>
-              </Reveal>
-              <Reveal as="div" className="diff" delay={80}>
-                <span className="diff__num">02</span>
-                <div>
-                  <h3 className="diff__title">An RSVP you can actually manage</h3>
-                  <p className="diff__body">
-                    Guests reply online; you accept, decline or seat them from a private dashboard.
-                    Confirmations send automatically in Standard and Premium, and the guest list is
-                    always exportable while the page is live.
-                  </p>
-                </div>
-              </Reveal>
-              <Reveal as="div" className="diff" delay={160}>
-                <span className="diff__num">03</span>
-                <div>
-                  <h3 className="diff__title">Privacy that is already handled</h3>
-                  <p className="diff__body">
-                    A plain-language notice for guests, consent on every form, restricted access and a
-                    hard deletion date. You host the celebration; we look after the data behind it.
-                  </p>
-                </div>
-              </Reveal>
-            </div>
-
-            <Reveal className="stats" delay={200}>
-              {stats.map((stat) => (
-                <div className="stat" key={stat.label}>
-                  <div className="stat__value">{stat.value}</div>
-                  <div className="stat__label">{stat.label}</div>
-                </div>
-              ))}
+          <div className="diff-list">
+            <Reveal as="div" className="diff">
+              <span className="diff__num">01</span>
+              <div>
+                <h3 className="diff__title">Designed around your event</h3>
+                <p className="diff__body">
+                  Your palette, your venue, your story. We art-direct the page to match the room it
+                  is inviting people into — then test every link, form and screen before you ever
+                  see it.
+                </p>
+              </div>
+            </Reveal>
+            <Reveal as="div" className="diff" delay={80}>
+              <span className="diff__num">02</span>
+              <div>
+                <h3 className="diff__title">An RSVP you can actually manage</h3>
+                <p className="diff__body">
+                  Guests reply online; you accept, decline or seat them from a private dashboard.
+                  Confirmations send automatically in Standard and Premium, and the guest list is
+                  always exportable while the page is live.
+                </p>
+              </div>
+            </Reveal>
+            <Reveal as="div" className="diff" delay={160}>
+              <span className="diff__num">03</span>
+              <div>
+                <h3 className="diff__title">Privacy that is already handled</h3>
+                <p className="diff__body">
+                  A plain-language notice for guests, consent on every form, restricted access and a
+                  hard deletion date. You host the celebration; we look after the data behind it.
+                </p>
+              </div>
             </Reveal>
           </div>
+
+          <Reveal className="stats" delay={200}>
+            {stats.map((stat) => (
+              <div className="stat" key={stat.label}>
+                <div className="stat__value">{stat.value}</div>
+                <div className="stat__label">{stat.label}</div>
+              </div>
+            ))}
+          </Reveal>
         </div>
       </section>
 
@@ -264,8 +262,8 @@ export default function Home() {
             }
           >
             <p>
-              A glimpse of what can be composed: fine-art restraint, candlelit warmth, or a little
-              celestial drama. Each is a direction, not a locked template.
+              A glimpse of what can be composed: letterpress calm, a sparkler-lit milestone, or a
+              slow afternoon in the garden. Each is a direction, not a locked template.
             </p>
             <Link to="/invitation" className="text-link" style={{ marginTop: '1.2rem' }}>
               Open a full sample page
