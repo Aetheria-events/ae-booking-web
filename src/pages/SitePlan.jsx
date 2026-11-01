@@ -267,12 +267,12 @@ export default function SitePlan() {
             <div className="plan-section__head">
               <div>
                 <p className="eyebrow">02 · Sitemap</p>
-                <h2>Eleven destinations, one journey.</h2>
+                <h2>Every route, one journey.</h2>
               </div>
               <p>
-                Navigation stays short: Home, Packages, Invitation, Site plan and Booking in the
-                header. Legal pages live in the footer, where they belong, but every form links to
-                them inline.
+                The header stays short: Home, Packages, Invitation, About our Team and one booking
+                button. Booking, the site plan and the legal pages live in the footer, where they
+                belong, but every form links to them inline.
               </p>
             </div>
 

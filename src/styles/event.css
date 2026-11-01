@@ -1104,3 +1104,33 @@
 .event-date {
   padding-left: 0.24em;
 }
+
+/* phones: the kicker sits in its own small pill so the plate matches the
+   date pill below and the pair reads as one centred group, not a stray line */
+@media (max-width: 560px) {
+  .event-kicker {
+    display: inline-block;
+    max-width: 100%;
+    margin: 0 auto 0.75rem;
+    padding: 0.42rem 0.9rem 0.42rem 1.24rem;
+    border: 1px solid var(--e-line);
+    border-radius: 999px;
+    font-size: 0.56rem;
+    letter-spacing: 0.2em;
+    line-height: 1.4;
+    background: rgba(255, 255, 255, 0.66);
+  }
+
+  .event-date {
+    margin-top: 0.9rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.16em;
+    gap: 0.35rem 0.6rem;
+    max-width: 100%;
+  }
+
+  .event-title {
+    font-size: clamp(2.6rem, 15vw, 3.6rem);
+  }
+}
