@@ -158,6 +158,11 @@ node scripts/inline-single.mjs   # folds assets + PDF into Aetheria-Events-websi
 (including VS Code Live Server) shows a blank screen, because the browser receives raw JSX.
 Use `npm run dev`, or the one-file build above.
 
+## Live site
+
+Built and published by GitHub Actions to <https://tapasul.github.io/Aetheria/>. Pages is set to
+serve the workflow artifact, so what is live is always `dist` from `main`, never the source tree.
+
 ## Deploying
 
 The site is a static bundle, so any host works; it is deployed to GitHub Pages from `main`.
