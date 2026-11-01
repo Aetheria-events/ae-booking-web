@@ -15,12 +15,17 @@ import './styles/round-two.css';
 import './styles/aqua.css';
 
 import App from './App.jsx';
+
+// GitHub Pages project sites mount the app under /Aetheria/, so the router has
+// to know that prefix. Vite's BASE_URL carries it ('./' for the one-file build,
+// '/' for local dev and Netlify).
+const routerBase = import.meta.env.BASE_URL.startsWith('/') ? import.meta.env.BASE_URL : '/';
 import { ConsentProvider } from './lib/consent.jsx';
 import { ToastProvider } from './lib/toast.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={routerBase}>
       <ConsentProvider>
         <ToastProvider>
           <App />

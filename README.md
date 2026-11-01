@@ -157,3 +157,21 @@ node scripts/inline-single.mjs   # folds assets + PDF into Aetheria-Events-websi
 `source/index.html` is the Vite template, not a page: opening it with a static file server
 (including VS Code Live Server) shows a blank screen, because the browser receives raw JSX.
 Use `npm run dev`, or the one-file build above.
+
+## Deploying
+
+The site is a static bundle, so any host works; it is deployed to GitHub Pages from `main`.
+
+GitHub Pages serves a project site from `https://<owner>.github.io/Aetheria/`, not from the domain
+root, so two things follow the base path automatically:
+
+- `vite.config.js` takes the prefix from `GITHUB_REPOSITORY` during Actions builds (`/Aetheria/`)
+  and stays at `/` for local dev and Netlify.
+- `BrowserRouter` receives that same prefix as `basename`, so `/Aetheria/booking` resolves instead
+  of falling through to the 404 page.
+
+Pages has no single-page-app fallback, so the workflow copies `dist/index.html` to `dist/404.html`
+and adds `.nojekyll`. Deep links then boot the router and render the site's own not-found page.
+
+Booking is unaffected by the host: the form posts to the Apps Script receiver in
+`brand.bookingEndpoint`, not to the site's own domain.
