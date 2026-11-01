@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react';
 // The dev server is exposed through a proxied preview host, so it must bind
 // to 0.0.0.0 and accept requests for that host.
 export default defineConfig({
+  base: process.env.GITHUB_ACTIONS === 'true' ? '/Aetheria/' : '/',
   plugins: [react()],
   server: {
     host: '0.0.0.0',

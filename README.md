@@ -130,7 +130,10 @@ subject rights, NPC complaint route.
    `document.documentElement.dataset.consent === 'all'`.
 4. **Add real assets.** Event photography, confirmed business mobile number, social handles and
    final legal copy (see the Site plan page for the full checklist).
-5. **Deploy** the `dist/` folder to Cloudflare Pages behind the WAF, with HSTS and a CSP.
+5. **Deploy** to GitHub Pages by pushing to `main`; `.github/workflows/deploy.yml` builds the site
+   and publishes `dist/` at `https://tapasul.github.io/Aetheria/`. The workflow uses hash-based
+   routes so deep links work on GitHub Pages. For Cloudflare Pages, deploy the `dist/` folder
+   behind the WAF, with HSTS and a CSP.
    Because this is a single-page app, add an SPA fallback so deep links resolve:
    `public/_redirects` (`/*  /index.html  200`) already covers Netlify and Cloudflare Pages, and
    `netlify.toml` mirrors it. On other hosts, point 404s at `/index.html`.

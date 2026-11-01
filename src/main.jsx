@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 
 import '@fontsource-variable/inter/index.css';
 
@@ -18,14 +18,16 @@ import App from './App.jsx';
 import { ConsentProvider } from './lib/consent.jsx';
 import { ToastProvider } from './lib/toast.jsx';
 
+const Router = import.meta.env.BASE_URL === '/Aetheria/' ? HashRouter : BrowserRouter;
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    <Router>
       <ConsentProvider>
         <ToastProvider>
           <App />
         </ToastProvider>
       </ConsentProvider>
-    </BrowserRouter>
+    </Router>
   </StrictMode>,
 );

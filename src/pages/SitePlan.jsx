@@ -205,7 +205,7 @@ export default function SitePlan() {
             </button>
             <a
               className="btn btn--ghost btn--sm"
-              href="/aetheria-events-site-plan.pdf"
+              href={`${import.meta.env.BASE_URL}aetheria-events-site-plan.pdf`}
               download="Aetheria-Events-Site-Plan.pdf"
             >
               <FileText style={{ width: 14, height: 14 }} aria-hidden="true" />
