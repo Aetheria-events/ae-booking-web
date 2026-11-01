@@ -33,9 +33,9 @@ live in the footer and are linked inline from every form.
   selector that carries over from the packages page (`/booking?package=premium`), rush-service
   pricing that respects package restrictions, a live estimated total, consent capture, and a
   success state with a reference number, a downloadable `.txt` summary, a mailto hand-off and an
-  `.ics` “hold the date”. Every submission is written into the live Google Sheet; see
-  `docs/booking-sheet-setup.md` for the two-minute deployment that connects the two. If the
-  endpoint is unset or offline, the row falls back to the clipboard with a link to the sheet.
+  `.ics` “hold the date”. Every submission is POSTed to the Apps Script receiver in `docs/` and
+  appended to the live Google Sheet, timestamps in Manila time. If the endpoint is unset or
+  unreachable, the row falls back to the clipboard with a link to the sheet.
 - **Sample invitation**, live countdown, add-to-calendar (`.ics`), save-contact (`.vcf`), venue
   maps link, a three-photograph gallery, RSVP with attendance, guest count, optional note and
   consent.

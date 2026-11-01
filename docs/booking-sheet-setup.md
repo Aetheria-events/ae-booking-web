@@ -22,8 +22,9 @@ anonymous writes. The bridge is a small Apps Script that lives inside the sheet.
    spreadsheets", nothing else.
 5. Copy the deployment URL. It looks like
    `https://script.google.com/macros/s/AKfy…/exec`.
-6. Paste it into `brand.bookingEndpoint` in `src/data/site.js`, rebuild, and
-   submit one test booking from `/booking`.
+6. The `/exec` URL is already wired into `brand.bookingEndpoint` in
+   `src/data/site.js`. If the deployment ever moves, paste the new URL there,
+   rebuild, and submit one test booking from `/booking`.
 
 Opening that URL in a browser should answer
 `{"ok":true,"service":"Aetheria Events booking receiver"}`. That means the

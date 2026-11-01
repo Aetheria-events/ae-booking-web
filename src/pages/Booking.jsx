@@ -70,10 +70,30 @@ const SHEET_COLUMNS = [
   'Notes',
 ];
 
+// the sheet is read in Manila, so timestamps are stamped in Manila, not UTC
+function manilaStamp(value) {
+  const date = value ? new Date(value) : new Date();
+  try {
+    return new Intl.DateTimeFormat('sv-SE', {
+      timeZone: 'Asia/Manila',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+    })
+      .format(date)
+      .replace(',', '');
+  } catch {
+    return date.toISOString().slice(0, 16).replace('T', ' ');
+  }
+}
+
 function sheetRow(booking) {
   return [
     booking.reference,
-    new Date(booking.createdAt).toISOString().slice(0, 16).replace('T', ' '),
+    manilaStamp(booking.createdAt),
     booking.packageName,
     booking.packagePrice,
     booking.rushName,
@@ -94,7 +114,7 @@ function sheetRow(booking) {
 function bookingPayload(booking) {
   return {
     reference: booking.reference,
-    submitted: new Date(booking.createdAt).toISOString().slice(0, 16).replace('T', ' '),
+    submitted: manilaStamp(booking.createdAt),
     package: booking.packageName,
     packagePrice: booking.packagePrice,
     rush: booking.rushName,

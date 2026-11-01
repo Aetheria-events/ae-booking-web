@@ -18,7 +18,8 @@ export const brand = {
   // Google Apps Script web app that appends a row to the sheet above.
   // Paste the deployed /exec URL here and every form submission is written
   // straight into the sheet. The script lives in docs/booking-sheet.gs.
-  bookingEndpoint: '',
+  bookingEndpoint:
+    'https://script.google.com/macros/s/AKfycbz-cu2WlIuLjRnn3EJ11900lsTnmWq6lnM1NCHppfXjQu0upgXhALj1VrWvK_YwP3KyaA/exec',
 };
 
 export const nav = [
