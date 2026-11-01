@@ -20,15 +20,29 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
+
       - name: Install dependencies
         run: npm ci
+
+      # vite.config.js reads GITHUB_REPOSITORY, so the build is emitted with
+      # the /Aetheria/ prefix that a project page needs.
       - name: Build site
         run: npm run build
+
+      # GitHub Pages has no SPA fallback. Serving index.html for unknown paths
+      # (as 404.html) lets /Aetheria/booking and friends boot the router
+      # instead of showing Pages' own 404 page.
+      - name: Add SPA fallback
+        run: |
+          cp dist/index.html dist/404.html
+          touch dist/.nojekyll
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
