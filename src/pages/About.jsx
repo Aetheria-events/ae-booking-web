@@ -12,6 +12,8 @@ import team3 from '../assets/team-3-digital-fulfillment.webp';
 import team4 from '../assets/team-4-strategic-partner.webp';
 import team5 from '../assets/team-5-strategic-partner.webp';
 
+const [emailUser, emailDomain] = brand.email.split('@');
+
 const team = [
   {
     photo: team1,
@@ -264,7 +266,10 @@ export default function About() {
                 <div>
                   <span>Data protection officer</span>
                   <strong>
-                    <a href={`mailto:${brand.dpoEmail}`}>{brand.dpoEmail}</a>
+                    <a href={`mailto:${brand.dpoEmail}`}>
+                      {brand.dpoEmail.split('@')[0]}@<wbr />
+                      {brand.dpoEmail.split('@')[1]}
+                    </a>
                   </strong>
                 </div>
               </div>
@@ -279,7 +284,10 @@ export default function About() {
                     })
                   }
                 >
-                  {brand.email}
+                  <span className="about-contact__email">
+                    {emailUser}@<wbr />
+                    {emailDomain}
+                  </span>
                   <ArrowRight />
                 </a>
                 <Link to="/booking" className="btn btn--ghost">

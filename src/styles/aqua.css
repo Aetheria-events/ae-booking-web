@@ -2207,3 +2207,77 @@ textarea:focus-visible {
 .type-specimen {
   padding: clamp(1.1rem, 1.6vw, 1.45rem);
 }
+
+/* ------------------------------------------------------------
+   22. Mobile hardening: long words and grid floors
+   ------------------------------------------------------------ */
+
+/* a grid track sized 1fr still has an automatic min-content floor, so one long
+   email address can push a card past the edge of a phone. Every single-column
+   fallback gets an explicit zero floor, and the cards that hold running text
+   are allowed to be narrower than their longest word. */
+@media (max-width: 760px) {
+  .plan-grid-2 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.plan-block,
+.plan-section,
+.about-contact__card,
+.about-contact__row,
+.diff,
+.step,
+.notice,
+.summary {
+  min-width: 0;
+}
+
+.about-contact__card {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.about-contact__row > div {
+  min-width: 0;
+}
+
+.about-contact__row strong,
+.about-contact__row a {
+  overflow-wrap: anywhere;
+}
+
+/* the contact buttons: the address wraps at the @ instead of forcing the card wide */
+.about-contact__actions {
+  min-width: 0;
+}
+
+.about-contact__actions .btn {
+  max-width: 100%;
+  white-space: normal;
+  text-align: left;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.about-contact__email {
+  display: inline;
+}
+
+@media (max-width: 460px) {
+  .about-contact__actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .about-contact__actions .btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.78rem;
+    padding-inline: 0.9rem;
+  }
+
+  .about-contact__actions .btn svg {
+    display: none;
+  }
+}
