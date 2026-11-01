@@ -1,0 +1,397 @@
+/* ============================================================
+   Aetheria Events - round two
+   Logo typography, glass-everywhere surfaces, photographic sample
+   cards and the About our Team page.
+   Loaded last so it wins over every earlier layer.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. Logo - geometric sans lockup: AETHERIA over events
+   ------------------------------------------------------------ */
+
+.logo {
+  gap: 0.62rem;
+  align-items: center;
+}
+
+.logo__type {
+  display: grid;
+  gap: 0.08em;
+  line-height: 1;
+}
+
+.logo__name {
+  font-family: var(--font-sans);
+  font-size: 1.34rem;
+  font-weight: 700;
+  line-height: 0.94;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  color: var(--blue-600);
+  padding-left: 0;
+}
+
+.logo__sub {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 0.9;
+  letter-spacing: 0.03em;
+  text-transform: lowercase;
+  color: var(--sky-500);
+  padding-left: 0;
+}
+
+.site-footer .logo__name {
+  color: #fff;
+}
+
+.site-footer .logo__sub {
+  color: var(--sky-300);
+}
+
+.logo--ink .logo__name {
+  color: var(--on-light);
+}
+
+.logo--ink .logo__sub {
+  color: var(--sky-500);
+}
+
+/* watermark variants keep the same shape, softened */
+.watermark .logo__name,
+.style-card__watermark .logo__name {
+  color: var(--blue-600);
+}
+
+.watermark .logo__sub,
+.style-card__watermark .logo__sub {
+  color: var(--sky-500);
+}
+
+/* ------------------------------------------------------------
+   4. Glass everywhere - no bare page showing through a section
+   ------------------------------------------------------------ */
+
+.section > .wrap {
+  background: var(--glass-fill);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow:
+    var(--shadow-glass),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  padding: clamp(1.5rem, 3.2vw, 3rem);
+}
+
+.section--flush-top > .wrap {
+  margin-top: 0;
+}
+
+.page-hero > .wrap {
+  background: var(--glass-fill);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow:
+    var(--shadow-glass),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  padding: clamp(1.6rem, 3.4vw, 3.2rem);
+}
+
+/* cinch the gaps between panels - the page shouldn't show through in wide bands */
+.section {
+  padding-block: clamp(0.7rem, 1.4vw, 1.1rem);
+}
+
+.section--flush-top {
+  padding-top: 0;
+}
+
+.page-hero {
+  padding-top: clamp(1rem, 2vw, 1.6rem);
+  padding-bottom: clamp(0.7rem, 1.4vw, 1.1rem);
+}
+
+/* nested cards stay legible: soften the inner fills so panels do not stack too dark */
+.section .diff {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.section .stat,
+.section .assurance,
+.section .step {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* ------------------------------------------------------------
+   5. Photographic sample cards
+   ------------------------------------------------------------ */
+
+/* the mark becomes a faint emboss on the photograph, not a graphic on top */
+.style-card__watermark {
+  color: rgba(255, 255, 255, 0.5);
+  opacity: 0.22;
+  mix-blend-mode: soft-light;
+}
+
+.style-card__watermark .logo__mark {
+  width: clamp(80px, 34%, 124px);
+}
+
+.style-card__watermark .logo__name,
+.style-card__watermark .logo__sub {
+  color: #fff;
+}
+
+.style-card__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 1.6s var(--ease-out);
+}
+
+.style-card:hover .style-card__photo {
+  transform: scale(1.06);
+}
+
+.style-card__media::after {
+  background: linear-gradient(
+    180deg,
+    rgba(3, 22, 45, 0.42) 0%,
+    rgba(3, 22, 45, 0.1) 30%,
+    rgba(3, 22, 45, 0.74) 72%,
+    rgba(3, 22, 45, 0.96) 100%
+  );
+}
+
+.style-card {
+  background: #08294d;
+}
+
+/* ------------------------------------------------------------
+   6. About our Team
+   ------------------------------------------------------------ */
+
+.about-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(1.4rem, 4vw, 3.4rem);
+  align-items: end;
+  margin-top: 1.2rem;
+}
+
+.about-head h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4.6vw, 3.7rem);
+  line-height: 1.02;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin: 0.4rem 0 0;
+}
+
+.about-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.about-fact {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1.1rem 1.15rem;
+  display: grid;
+  gap: 0.3rem;
+}
+
+.about-fact span {
+  font-size: 0.64rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #466a7f;
+}
+
+.about-fact strong {
+  font-size: 0.94rem;
+  font-weight: 500;
+  color: var(--navy-900);
+  line-height: 1.35;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.9rem, 1.6vw, 1.4rem);
+  margin-top: clamp(1.8rem, 3vw, 2.6rem);
+}
+
+.about-card {
+  display: grid;
+  gap: 0.6rem;
+  padding: clamp(1.3rem, 2vw, 1.7rem);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-glass), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+}
+
+.about-card__icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: linear-gradient(140deg, rgba(56, 182, 255, 0.18), rgba(0, 74, 173, 0.1));
+  border: 1px solid rgba(0, 74, 173, 0.14);
+  color: var(--blue-600);
+}
+
+.about-card__icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.about-card__title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--navy-900);
+  margin: 0.2rem 0 0;
+}
+
+.about-card__body {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--text-dim);
+  margin: 0;
+}
+
+.about-card__meta {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue-500);
+  margin-top: 0.2rem;
+}
+
+.about-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 1.6rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+
+.about-stamp .logo__mark {
+  width: 20px;
+  height: 20px;
+  color: var(--blue-600);
+}
+
+.about-contact {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.4rem, 3vw, 2.6rem);
+  align-items: start;
+}
+
+.about-contact__card {
+  display: grid;
+  gap: 0.9rem;
+  padding: clamp(1.3rem, 2vw, 1.8rem);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.66);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-glass), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.about-contact__row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.about-contact__row svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  margin-top: 0.15rem;
+  color: var(--blue-600);
+}
+
+.about-contact__row span {
+  display: block;
+  font-size: 0.64rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  margin-bottom: 0.15rem;
+}
+
+.about-contact__row strong {
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--navy-900);
+}
+
+.about-contact__row a {
+  color: var(--blue-600);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 74, 173, 0.3);
+}
+
+.about-contact__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.about-contact__actions .btn {
+  min-height: 48px;
+}
+
+/* ------------------------------------------------------------
+   7. Responsive
+   ------------------------------------------------------------ */
+
+@media (max-width: 980px) {
+  .about-head,
+  .about-contact {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .about-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .about-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .section > .wrap,
+  .page-hero > .wrap {
+    padding: 1.15rem;
+    border-radius: var(--radius-lg);
+  }
+
+  .about-strip {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

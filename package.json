@@ -1,0 +1,35 @@
+{
+  "name": "aetheria-events",
+  "version": "1.0.0",
+  "description": "Aetheria Events · bespoke event websites and digital experiences.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "build:single": "vite build --config vite.single.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TapAsul/Aetheria.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TapAsul/Aetheria/issues"
+  },
+  "homepage": "https://github.com/TapAsul/Aetheria#readme",
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.3.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-router-dom": "^7.18.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.1.2",
+    "vite": "^8.3.5"
+  },
+  "private": true,
+  "type": "module"
+}

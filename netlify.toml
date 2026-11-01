@@ -1,0 +1,5 @@
+# SPA fallback so deep links (e.g. /packages) resolve to index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

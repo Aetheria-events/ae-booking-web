@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en-PH">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aetheria Events · Digital invitations for unforgettable celebrations</title>
+    <meta name="description" content="Bespoke digital event pages with online RSVP for weddings, debuts, corporate gatherings and milestones. Live in 2–6 working days. Based in Bonifacio Global City, Taguig." />
+    <meta name="theme-color" content="#0B0810" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <style>
+      html { background: #0b0810; }
+.boot-note {
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: clamp(2rem, 8vw, 5rem) 1.5rem;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #f9f4ec;
+  background: #0b0810;
+  line-height: 1.6;
+}
+.boot-note[hidden] { display: none; }
+.boot-note h1 { font-size: 1.6rem; font-weight: 400; margin: 0 0 0.6rem; }
+.boot-note p { margin: 0; color: #c9bfae; font-size: 0.95rem; }
+.boot-note a { color: #e3cb9c; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <noscript>
+      <div class="boot-note">
+        <h1>Aetheria Events</h1>
+        <p>This page needs JavaScript for the invitation previews. To book, email
+        <a href="mailto:digitalfulfillment@aetheriaevents.com">digitalfulfillment@aetheriaevents.com</a>.</p>
+      </div>
+    </noscript>
+
+    <!-- Safety net: if the app has not mounted (blocked script, offline copy opened
+         in a restrictive viewer), say so instead of leaving a blank page. The note is
+         built only on failure, so a healthy page stays exactly as exported. -->
+    <div id="boot-note" class="boot-note" hidden aria-live="polite"></div>
+    <script>
+      window.setTimeout(function () {
+        var root = document.getElementById('root');
+        if (!root || root.childElementCount > 0) return;
+        var note = document.getElementById('boot-note');
+        if (!note) return;
+        var message = location.protocol === 'file:'
+          ? 'This copy could not start its scripts. Try opening the file in Chrome, Safari or Firefox, or serve the folder with a local web server.'
+          : 'This copy could not start its scripts. If you uploaded it to a host, check that inline scripts are allowed.';
+        note.hidden = false;
+        note.textContent = '';
+        var heading = document.createElement('h1');
+        heading.textContent = 'Aetheria Events';
+        var body = document.createElement('p');
+        body.textContent = message;
+        note.appendChild(heading);
+        note.appendChild(body);
+      }, 2500);
+    </script>
+
+    <script type="module" src="/src/main.single.jsx"></script>
+  </body>
+</html>

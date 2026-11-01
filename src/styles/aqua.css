@@ -1,0 +1,2209 @@
+/* ============================================================
+   Aetheria Events - aqua theme
+   Light, airy, photographic. Oversized type, frosted glass,
+   pill buttons, Inter on every page and every surface.
+   Loaded last: it re-points the design tokens so every existing
+   component inherits the new palette without being rewritten.
+   ============================================================ */
+
+:root {
+  color-scheme: light;
+
+  /* --- brand, taken from the logo artwork --- */
+  --brand-blue: #004aad;
+  --brand-sky: #38b6ff;
+  --brand-deep: #002f6c;
+
+  /* --- light wash tint, then the brand blues for anything that acts --- */
+  --aq-50: #f4fbfd;
+  --aq-100: #eaf6fa;
+  --aq-150: #e0f1f7;
+  --aq-200: #d2eaf3;
+  --aq-300: #b9dfec;
+  --aq-400: #7cc7f2;
+  --aq-500: #38b6ff;
+  --aq-600: #0a63c9;
+  --aq-700: #004aad;
+  --aq-800: #002f6c;
+
+  /* --- ink --- */
+  --aq-ink: #0b3145;
+  --aq-ink-soft: #3a5d73;
+  --aq-mute: #466a7f;
+
+  /* --- type: Inter everywhere --- */
+  --font-display: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-sans: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* --- legacy tokens re-pointed onto the aqua palette --- */
+  --blue-700: #002f6c;
+  --blue-600: #004aad;
+  --blue-500: #0a63c9;
+  --sky-500: #38b6ff;
+  --sky-400: #7cc7f2;
+  --sky-300: #b9e1fb;
+  --sky-200: #d2eaf3;
+  --sky-100: #eaf6fa;
+
+  --ink-950: #eaf6fa;
+  --ink-900: #ffffff;
+  --ink-850: #f6fcfe;
+  --ink-800: #eef9fc;
+  --ink-700: #e2f2f8;
+  --plum-900: #d9eef6;
+  --plum-800: #cbe8f2;
+  --plum-700: #b5dceb;
+  --plum-500: #8cc6dd;
+  --rose-500: #a9d9e9;
+  --rose-300: #d7eefa;
+
+  --gold-600: #004aad;
+  --gold-500: #0a63c9;
+  --gold-400: #38b6ff;
+  --gold-300: #0a63c9;
+
+  --ivory-50: #ffffff;
+  --ivory-100: #f6fcfe;
+  --ivory-200: #ecf7fb;
+  --ivory-300: #dceff6;
+
+  --navy-900: #0b3145;
+  --navy-700: #3f6478;
+  --text: #0b3145;
+  --text-dim: #3a5d73;
+  --text-mute: #466a7f;
+  --line: rgba(11, 49, 69, 0.1);
+  --line-soft: rgba(11, 49, 69, 0.06);
+
+  --on-light: #0b3145;
+  --on-light-dim: #3a5d73;
+  --on-light-mute: #466a7f;
+  --line-dark: rgba(11, 49, 69, 0.1);
+  --line-dark-soft: rgba(11, 49, 69, 0.06);
+
+  /* --- glass --- */
+  --glass-fill: rgba(255, 255, 255, 0.56);
+  --glass-fill-strong: rgba(255, 255, 255, 0.8);
+  --glass-fill-soft: rgba(255, 255, 255, 0.38);
+  --glass-border: rgba(255, 255, 255, 0.72);
+  --glass-edge: rgba(11, 49, 69, 0.07);
+  --glass-blur: blur(24px) saturate(150%);
+
+  --radius-sm: 14px;
+  --radius: 22px;
+  --radius-lg: 30px;
+  --radius-xl: 36px;
+  --maxw: 1240px;
+
+  --shadow-deep: 0 40px 90px -60px rgba(13, 60, 84, 0.45);
+  --shadow-card: 0 30px 70px -52px rgba(13, 60, 84, 0.4);
+  --shadow-glass: 0 26px 60px -42px rgba(13, 60, 84, 0.35);
+}
+
+/* ------------------------------------------------------------
+   1. Page + typography
+   ------------------------------------------------------------ */
+
+html {
+  scroll-padding-top: 88px;
+}
+
+body {
+  background-color: var(--aq-100);
+  background-image:
+    radial-gradient(1200px 760px at 8% -12%, #ffffff 0%, rgba(255, 255, 255, 0) 58%),
+    radial-gradient(1100px 700px at 96% 4%, #d8eef7 0%, rgba(216, 238, 247, 0) 60%),
+    linear-gradient(180deg, #eef9fc 0%, #e4f3f9 46%, #eaf7fb 100%);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  letter-spacing: -0.006em;
+}
+
+h1,
+h2,
+h3,
+h4,
+.display,
+.logo__name {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  letter-spacing: -0.035em;
+  color: var(--aq-ink);
+}
+
+h1 {
+  font-weight: 300;
+  line-height: 1.02;
+}
+
+h2 {
+  font-weight: 300;
+  line-height: 1.06;
+}
+
+h3 {
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* the old serif italic accent becomes a soft weight-and-colour shift */
+.italic,
+em {
+  font-style: normal;
+}
+
+.manifesto em,
+.aq-card__names em,
+h1 .italic,
+h2 .italic {
+  font-style: normal;
+}
+
+.manifesto {
+  padding-block: clamp(3rem, 6vw, 5rem);
+}
+
+h1 .italic,
+h2 .italic,
+.aq-hero__soft {
+  color: var(--aq-500);
+  font-weight: 300;
+}
+
+p,
+li,
+label,
+input,
+select,
+textarea,
+button,
+a,
+dd,
+dt,
+figcaption,
+blockquote {
+  font-family: var(--font-sans);
+}
+
+.lede,
+.aq-hero__lede {
+  font-weight: 300;
+  color: var(--text-dim);
+}
+
+.eyebrow,
+.aq-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--aq-700);
+}
+
+/* kill the decorative washes / grids from the old themes */
+.theme-light::before,
+.hero__grid::before,
+body > .grain,
+.grid-wash {
+  display: none !important;
+}
+
+/* ------------------------------------------------------------
+   2. Header
+   ------------------------------------------------------------ */
+
+.site-header {
+  background: rgba(244, 251, 253, 0.72);
+  border-bottom: 1px solid rgba(11, 49, 69, 0.06);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  backdrop-filter: blur(22px) saturate(160%);
+  box-shadow: none;
+}
+
+.site-header.is-scrolled {
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 10px 40px -32px rgba(13, 60, 84, 0.5);
+}
+
+.nav__link {
+  font-size: 0.86rem;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  color: var(--aq-ink-soft);
+  text-transform: none;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  transition: color 0.25s var(--ease), background 0.25s var(--ease);
+}
+
+.nav__link::after {
+  display: none;
+}
+
+.nav__link:hover {
+  color: var(--aq-ink);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.nav__link.is-active {
+  color: var(--aq-ink);
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 6px 18px -14px rgba(13, 60, 84, 0.7);
+}
+
+/* the header CTA becomes the reference's white pill */
+.btn--header,
+.site-header .btn--gold {
+  background: #ffffff;
+  color: var(--aq-ink);
+  border: 1px solid rgba(11, 49, 69, 0.08);
+  border-radius: 999px;
+  box-shadow: 0 10px 26px -18px rgba(13, 60, 84, 0.55);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  text-transform: none;
+}
+
+.btn--header:hover,
+.site-header .btn--gold:hover {
+  background: #ffffff;
+  color: var(--aq-700);
+  box-shadow: 0 14px 30px -16px rgba(13, 60, 84, 0.55);
+}
+
+.menu-btn {
+  border-color: rgba(11, 49, 69, 0.12);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.menu-btn__bars span {
+  background: var(--aq-ink);
+}
+
+/* mobile drawer */
+.mobile-nav,
+.nav-panel {
+  background: rgba(244, 251, 253, 0.96);
+  -webkit-backdrop-filter: blur(26px);
+  backdrop-filter: blur(26px);
+}
+
+.mobile-nav__link {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: var(--aq-ink);
+}
+
+.mobile-nav__link.is-active {
+  color: var(--aq-600);
+}
+
+/* ------------------------------------------------------------
+   3. Logo - Inter, uppercase AETHERIA over lowercase events
+   ------------------------------------------------------------ */
+
+.logo__name {
+  font-family: var(--font-sans);
+  font-size: 1.17rem;
+  font-weight: 700;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  color: var(--brand-blue);
+}
+
+.logo__sub {
+  font-family: var(--font-sans);
+  font-size: 0.81rem;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  text-transform: lowercase;
+  color: var(--brand-sky);
+}
+
+.site-footer .logo__name {
+  color: #ffffff;
+}
+
+.site-footer .logo__sub {
+  color: var(--brand-sky);
+}
+
+/* the sky half of the lockup needs the deeper blue on light surfaces */
+.logo__sub,
+.site-header .logo__sub {
+  color: var(--aq-700);
+}
+
+.site-footer .logo__sub,
+.style-card__watermark .logo__sub,
+.watermark .logo__sub {
+  color: #8fd4ff;
+}
+
+/* the giant sample watermark keeps only its mark - no tiny type to misread */
+.event-stage__watermark .logo__sub {
+  display: none;
+}
+
+/* mark sized to sit level with the two lines of type, as in the artwork */
+.site-header .logo__mark {
+  width: 42px;
+  height: 42px;
+}
+
+@media (max-width: 720px) {
+  .site-header .logo__mark {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* ------------------------------------------------------------
+   4. Hero - full-bleed photograph fading into the page,
+      copy left, three glass cards tucked into the corner
+   ------------------------------------------------------------ */
+
+.aq-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  min-height: clamp(660px, 86vh, 880px);
+  padding: clamp(6.5rem, 9vw, 9rem) 0 clamp(1.6rem, 2.6vw, 2.4rem);
+  background:
+    radial-gradient(120% 90% at 46% 0%, #f2fbff 0%, #ddecfa 46%, #cfe6f7 100%);
+}
+
+/* the photograph is the background, feathered on the left and the bottom */
+.aq-hero__backdrop {
+  position: absolute;
+  z-index: 0;
+  inset: 0 0 0 auto;
+  width: min(82%, 1240px);
+  pointer-events: none;
+  -webkit-mask-image:
+    linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.45) 14%, #000 38%),
+    linear-gradient(180deg, #000 0%, #000 58%, rgba(0, 0, 0, 0.55) 82%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.45) 14%, #000 38%),
+    linear-gradient(180deg, #000 0%, #000 58%, rgba(0, 0, 0, 0.55) 82%, rgba(0, 0, 0, 0) 100%);
+  mask-composite: intersect;
+}
+
+.aq-hero__backdrop img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 68% 40%;
+}
+
+/* a light veil keeps the copy crisp over the left third */
+.aq-hero__wash {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(238, 249, 254, 0.96) 0%, rgba(238, 249, 254, 0.86) 24%, rgba(238, 249, 254, 0.32) 46%, rgba(238, 249, 254, 0) 62%),
+    linear-gradient(180deg, rgba(238, 249, 254, 0.55) 0%, rgba(238, 249, 254, 0) 26%, rgba(238, 249, 254, 0) 62%, rgba(238, 249, 254, 0.92) 100%);
+}
+
+.aq-hero__inner {
+  position: relative;
+  z-index: 3;
+  width: min(100% - (var(--gutter) * 2), var(--maxw));
+  display: grid;
+  grid-template-columns: minmax(0, 30rem) minmax(0, 1fr);
+  column-gap: clamp(1.2rem, 3vw, 3rem);
+  row-gap: clamp(1.6rem, 3vw, 2.4rem);
+  align-items: end;
+}
+
+.aq-hero__copy {
+  align-self: center;
+  max-width: 32rem;
+  padding-block: clamp(0.4rem, 1.6vw, 1.2rem);
+}
+
+.aq-hero__title {
+  font-size: clamp(2.5rem, 4.6vw, 4.1rem);
+  font-weight: 300;
+  line-height: 1.03;
+  letter-spacing: -0.045em;
+  margin: 0.7rem 0 1.1rem;
+  color: var(--aq-ink);
+}
+
+.aq-hero__soft {
+  color: var(--aq-600);
+}
+
+/* the accent half of a heading stays saturated enough to read */
+h1 .italic,
+h2 .italic,
+.italic {
+  color: var(--aq-700);
+}
+
+.aq-hero__lede {
+  max-width: 36ch;
+  margin: 0 0 1.7rem;
+  font-size: clamp(0.96rem, 1.08vw, 1.05rem);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--aq-ink-soft);
+}
+
+.aq-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+/* --- buttons --- */
+
+.aq-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.68rem 0.72rem 0.68rem 1.4rem;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 0.86rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), background 0.25s var(--ease);
+}
+
+.aq-btn:hover {
+  transform: translateY(-1px);
+}
+
+.aq-btn--primary {
+  background: linear-gradient(135deg, #2fa4ff 0%, #0a63c9 52%, #004aad 100%);
+  color: #ffffff;
+  box-shadow: 0 18px 34px -18px rgba(0, 74, 173, 0.75);
+}
+
+.aq-btn--primary:hover {
+  box-shadow: 0 24px 44px -16px rgba(0, 74, 173, 0.8);
+}
+
+.aq-btn__arrow {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+  margin-left: 0.3rem;
+}
+
+.aq-btn__arrow svg {
+  width: 14px;
+  height: 14px;
+}
+
+.aq-btn--ghost {
+  padding: 0.78rem 1.5rem;
+  background: #ffffff;
+  color: var(--aq-ink);
+  box-shadow: 0 14px 30px -22px rgba(0, 47, 108, 0.55);
+}
+
+.aq-btn--ghost:hover {
+  color: var(--aq-700);
+}
+
+/* --- three glass cards, pressed together in the corner --- */
+
+.aq-hero__stack {
+  justify-self: end;
+  align-self: end;
+  width: 100%;
+  max-width: 44rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: end;
+  gap: 0;
+  filter: drop-shadow(0 34px 46px rgba(0, 47, 108, 0.16));
+}
+
+.aq-card {
+  position: relative;
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.9rem 0.95rem 1rem;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.42);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  backdrop-filter: blur(22px) saturate(160%);
+  box-shadow:
+    0 26px 50px -34px rgba(0, 47, 108, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  color: var(--aq-ink);
+  text-decoration: none;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  transition: transform 0.3s var(--ease), background 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.aq-card:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow:
+    0 32px 58px -32px rgba(0, 47, 108, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+/* the middle card lifts out of the row and presses into its neighbours,
+   so the three read as one cluster rather than three separate tiles */
+.aq-card--feature {
+  z-index: 2;
+  align-self: stretch;
+  margin: -0.9rem -0.62rem -0.45rem;
+  padding: 1.1rem 1.1rem 1.25rem;
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 40px 70px -34px rgba(0, 47, 108, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+.aq-card--feature:hover {
+  background: #ffffff;
+}
+
+.aq-card--solid {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+/* outer cards sit under the feature card, so slightly tighter on the inner edge */
+.aq-card:first-child {
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+}
+
+.aq-card:last-child {
+  border-top-left-radius: 14px;
+  border-bottom-left-radius: 14px;
+}
+
+.aq-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.aq-card__tag {
+  font-size: 0.54rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--aq-700);
+}
+
+.aq-card__icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  background: linear-gradient(140deg, rgba(56, 182, 255, 0.3), rgba(0, 74, 173, 0.12));
+  border: 1px solid rgba(0, 74, 173, 0.16);
+  color: var(--aq-700);
+}
+
+.aq-card__icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.aq-card__go {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(0, 47, 108, 0.1);
+  color: var(--aq-ink-soft);
+  flex: none;
+  transition: transform 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.aq-card__go svg {
+  width: 12px;
+  height: 12px;
+}
+
+.aq-card:hover .aq-card__go {
+  transform: translate(2px, -2px);
+  color: var(--aq-700);
+}
+
+.aq-card__body {
+  display: grid;
+  gap: 0.28rem;
+}
+
+.aq-card__names {
+  font-size: 1.02rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--aq-ink);
+}
+
+.aq-card--feature .aq-card__names {
+  font-size: 1.16rem;
+}
+
+.aq-card__names em {
+  color: var(--aq-500);
+}
+
+.aq-card__stat {
+  display: flex;
+  align-items: baseline;
+  gap: 0.32rem;
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--aq-ink);
+}
+
+.aq-card__stat em {
+  font-size: 0.64rem;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: 0;
+  color: var(--aq-ink-soft);
+}
+
+.aq-card__meta {
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 1.4;
+  color: var(--aq-mute);
+}
+
+/* ------------------------------------------------------------
+   5. Sections - glass on glass, no bare bands
+   ------------------------------------------------------------ */
+
+.section > .wrap,
+.page-hero > .wrap {
+  background: rgba(255, 255, 255, 0.52);
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: var(--radius-xl);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow:
+    0 30px 70px -54px rgba(13, 60, 84, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  padding: clamp(1.6rem, 3.4vw, 3.2rem);
+}
+
+.section-head h2,
+.pricing__head h2,
+.split__sticky h2 {
+  font-weight: 300;
+  letter-spacing: -0.038em;
+}
+
+.text-link {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--aq-700);
+  border-bottom: 1px solid rgba(16, 119, 187, 0.28);
+}
+
+.text-link:hover {
+  border-color: var(--aq-600);
+}
+
+/* the three reasons read as separate cards, not table rows */
+.diff-list {
+  display: grid;
+  gap: 0.7rem;
+  border-top: 0;
+}
+
+.diff {
+  padding: 1.25rem 1.35rem;
+  border-bottom: 0;
+  gap: 0.9rem;
+}
+
+.diff__num {
+  padding-top: 0.15rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+}
+
+/* the numbers sit in their own band under both columns */
+.split > .stats {
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin-top: 0.4rem;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  overflow: visible;
+}
+
+.split > .stats .stat {
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.62);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: 0 18px 40px -38px rgba(13, 60, 84, 0.5);
+}
+
+/* the running band reads as one uniform line of letterspaced caps */
+.marquee__item,
+.marquee__item--accent {
+  font-style: normal;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.marquee__item--accent {
+  color: var(--aq-600);
+}
+
+/* ampersands stay upright - no synthesised italics anywhere */
+.amp,
+.invite__names .amp,
+.event-title .amp,
+.event-card__names .amp {
+  font-style: normal;
+  font-weight: 300;
+}
+
+/* generic cards inherit the glass treatment */
+.diff,
+.stat,
+.step,
+.about-card,
+.about-contact__card,
+.booking-help,
+.plan,
+.style-card,
+.faq,
+.accordion__item {
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: 0 22px 50px -44px rgba(13, 60, 84, 0.45);
+}
+
+/* reassurance cards hold more fill so small body copy never sits on a photo */
+.assurance {
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.82);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: 0 22px 50px -44px rgba(13, 60, 84, 0.45);
+}
+
+.diff__num,
+.step__num {
+  color: var(--aq-600);
+  font-weight: 500;
+}
+
+.stat__value {
+  font-weight: 200;
+  letter-spacing: -0.05em;
+  color: var(--aq-ink);
+}
+
+.diff__title,
+.assurance__title,
+.step__title {
+  font-weight: 400;
+  letter-spacing: -0.022em;
+  color: var(--aq-ink);
+}
+
+.diff__body,
+.assurance__body,
+.step__body {
+  color: var(--text-dim);
+}
+
+/* ------------------------------------------------------------
+   6. Generic buttons across the site
+   ------------------------------------------------------------ */
+
+.btn {
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  font-weight: 500;
+  letter-spacing: -0.004em;
+  text-transform: none;
+  padding: 0.85rem 1.6rem;
+}
+
+.btn--gold {
+  background: linear-gradient(135deg, #2fa4ff 0%, #0a63c9 52%, #004aad 100%);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 18px 34px -20px rgba(0, 74, 173, 0.7);
+}
+
+.btn--gold:hover {
+  background: linear-gradient(135deg, #44b2ff 0%, #0a63c9 52%, #00408f 100%);
+  color: #ffffff;
+}
+
+.btn--ghost {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(11, 49, 69, 0.09);
+  color: var(--aq-ink);
+}
+
+.btn--ghost:hover {
+  background: #ffffff;
+  color: var(--aq-700);
+  border-color: rgba(16, 119, 187, 0.35);
+}
+
+.btn--dark {
+  background: linear-gradient(135deg, #0a63c9, #004aad);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 18px 34px -22px rgba(0, 74, 173, 0.6);
+}
+
+.btn--dark:hover {
+  background: linear-gradient(135deg, #0a63c9, #003c8c);
+}
+
+/* on deep aqua panels the buttons stay legible */
+.cta-band .btn--gold,
+.panel--ink .btn--gold,
+.plan--featured .btn--gold {
+  background: #ffffff;
+  color: var(--aq-800);
+}
+
+.cta-band .btn--ghost,
+.panel--ink .btn--ghost,
+.plan--featured .btn--ghost {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.45);
+  color: #ffffff;
+}
+
+.cta-band .btn--ghost:hover,
+.panel--ink .btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.24);
+  color: #ffffff;
+}
+
+/* ------------------------------------------------------------
+   7. Deep surfaces - aqua, not navy
+   ------------------------------------------------------------ */
+
+.site-footer,
+.cta-band,
+.plan--featured,
+.panel--ink,
+.summary,
+.about-contact,
+.manifesto {
+  background:
+    radial-gradient(90% 90% at 14% 0%, rgba(56, 182, 255, 0.42) 0%, rgba(56, 182, 255, 0) 62%),
+    radial-gradient(70% 60% at 100% 100%, rgba(10, 99, 201, 0.55) 0%, rgba(10, 99, 201, 0) 70%),
+    linear-gradient(135deg, #0b57b8 0%, #004aad 48%, #002f6c 100%);
+  color: #ffffff;
+}
+
+.plan--featured {
+  border-color: rgba(56, 182, 255, 0.55);
+  background:
+    radial-gradient(120% 80% at 78% 0%, rgba(56, 182, 255, 0.55) 0%, rgba(56, 182, 255, 0) 58%),
+    linear-gradient(168deg, #1a6fd0 0%, #004aad 42%, #00306e 100%);
+  box-shadow: 0 44px 80px -46px rgba(0, 47, 108, 0.7);
+}
+
+.manifesto {
+  border-radius: var(--radius-xl);
+  margin-inline: auto;
+  max-width: min(100% - 2 * var(--gutter), var(--maxw));
+}
+
+.manifesto p {
+  color: #ffffff;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.manifesto cite {
+  color: rgba(255, 255, 255, 0.7);
+  font-style: normal;
+}
+
+.plan--featured .plan__name,
+.plan--featured .plan__price,
+.cta-band h2 {
+  color: #ffffff;
+}
+
+/* readable copy on the deep cards */
+.plan--featured .plan__for,
+.plan--featured .plan__summary,
+.plan--featured .plan__list li,
+.plan--featured .plan__foot,
+.plan--featured .plan__turnaround span,
+.cta-band .lede,
+.panel--ink .lede {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.plan--featured .plan__price small,
+.plan--featured .plan__turnaround strong {
+  color: #ffffff;
+}
+
+.plan--featured .plan__list li.is-muted {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.plan--featured .plan__list li::before,
+.plan--featured .plan__tick {
+  color: var(--brand-sky);
+}
+
+.plan--featured .plan__list,
+.plan--featured .plan__foot {
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.plan--featured .btn--gold {
+  background: #ffffff;
+  color: var(--brand-blue);
+  font-weight: 600;
+}
+
+/* the contact panel on /about is a deep surface: pad it and light the type */
+.about-contact {
+  padding: clamp(1.6rem, 3.4vw, 3rem);
+  border-radius: var(--radius-xl);
+  align-items: center;
+  box-shadow: 0 50px 90px -60px rgba(0, 47, 108, 0.7);
+}
+
+.about-contact h2 {
+  color: #ffffff;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+}
+
+.about-contact .lede,
+.about-contact p {
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.about-contact .eyebrow {
+  color: #ffffff;
+}
+
+.about-contact .eyebrow::before {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.85));
+}
+
+.about-contact__card {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 30px 60px -40px rgba(0, 20, 50, 0.65);
+}
+
+.about-contact__row span {
+  color: var(--aq-mute);
+}
+
+.about-contact__row strong,
+.about-contact__row a {
+  color: var(--aq-ink);
+}
+
+.about-contact__row a {
+  border-bottom-color: rgba(0, 74, 173, 0.3);
+}
+
+.about-contact__row svg {
+  color: var(--aq-700);
+}
+
+/* everything that sits on a deep panel reads in white */
+.cta-band h2,
+.cta-band h3,
+.panel--ink h2,
+.panel--ink h3,
+.manifesto h2,
+.manifesto p,
+.summary h2,
+.summary h3,
+.about-contact h2 {
+  color: #ffffff;
+}
+
+.cta-band .eyebrow,
+.panel--ink .eyebrow,
+.manifesto .eyebrow,
+.summary .eyebrow,
+.about-contact .eyebrow,
+.plan--featured .eyebrow {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.cta-band .eyebrow::before,
+.panel--ink .eyebrow::before,
+.summary .eyebrow::before,
+.about-contact .eyebrow::before {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8));
+}
+
+.cta-band em,
+.summary em,
+.manifesto em,
+.manifesto p em,
+.panel--ink em,
+.about-contact em {
+  color: #c9e7ff;
+  font-style: normal;
+}
+
+.cta-band p,
+.cta-band .lede,
+.panel--ink p,
+.panel--ink .lede,
+.summary p,
+.summary .lede,
+.summary dt,
+.summary dd,
+.plan--featured p {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.summary .small,
+.summary .meta,
+.panel--ink .small,
+.panel--ink .meta {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.event-note a,
+.event-privacy a,
+.event-wrap--narrow .notice a {
+  color: var(--aq-700);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* the small caps name under the couple's note sits dead centre */
+.event-section--flush .meta,
+.event-section--flush p.meta {
+  max-width: none;
+  margin-inline: auto;
+  text-align: center;
+}
+
+/* ------------------------------------------------------------
+   8. Photographic cards
+   ------------------------------------------------------------ */
+
+.style-card {
+  background: #00408f;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.style-card__media::after {
+  background: linear-gradient(
+    180deg,
+    rgba(6, 38, 55, 0.2) 0%,
+    rgba(6, 38, 55, 0.22) 34%,
+    rgba(6, 38, 55, 0.72) 72%,
+    rgba(6, 38, 55, 0.94) 100%
+  );
+}
+
+.style-card__title {
+  font-weight: 300;
+  letter-spacing: -0.03em;
+}
+
+.style-card__meta {
+  color: var(--aq-300);
+}
+
+.style-card__cta {
+  text-transform: none;
+  letter-spacing: 0.01em;
+  font-weight: 500;
+}
+
+/* ------------------------------------------------------------
+   9. Forms, chips, dialogs
+   ------------------------------------------------------------ */
+
+input,
+select,
+textarea,
+.field input,
+.field select,
+.field textarea {
+  font-family: var(--font-sans);
+  border-radius: 14px;
+  border: 1px solid rgba(11, 49, 69, 0.12);
+  background-color: rgba(255, 255, 255, 0.9);
+  color: var(--aq-ink);
+}
+
+/* one chevron, once, on the right - never tiled across the field */
+select,
+.select,
+.field select {
+  -webkit-appearance: none;
+  appearance: none;
+  padding-right: 2.5rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1.2 7 7.2 13 1.2' fill='none' stroke='%23004aad' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 12px 8px;
+}
+
+select:disabled,
+.select:disabled {
+  background-image: none;
+  color: var(--aq-mute);
+  opacity: 0.75;
+}
+
+select option {
+  color: var(--aq-ink);
+  background: #ffffff;
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid rgba(31, 139, 208, 0.45);
+  outline-offset: 2px;
+}
+
+.chip,
+.pill,
+.tag,
+.badge {
+  border-radius: 999px;
+  font-family: var(--font-sans);
+}
+
+.chip {
+  color: #0d3a52;
+}
+
+.theme-light .chip {
+  background: rgba(255, 255, 255, 0.88);
+  color: #0d3a52;
+}
+
+.modal__card,
+.consent,
+.dialog {
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  backdrop-filter: blur(28px) saturate(160%);
+  box-shadow: 0 40px 90px -50px rgba(13, 60, 84, 0.6);
+}
+
+/* ------------------------------------------------------------
+   10. Footer
+   ------------------------------------------------------------ */
+
+.site-footer {
+  margin-top: clamp(1rem, 2vw, 1.6rem);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+.footer-title {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--aq-300);
+}
+
+.footer-list a,
+.footer-contact a,
+.footer-legal a,
+.footer-legal button {
+  font-family: var(--font-sans);
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.footer-list a:hover,
+.footer-contact a:hover {
+  color: #ffffff;
+}
+
+/* ------------------------------------------------------------
+   12. Sample invitation - Ben & Za
+   ------------------------------------------------------------ */
+
+.event-card__window::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(0, 47, 108, 0.24) 0%, rgba(0, 47, 108, 0.04) 36%, rgba(0, 47, 108, 0.5) 100%),
+    radial-gradient(120% 90% at 20% 0%, rgba(56, 182, 255, 0.28) 0%, rgba(0, 74, 173, 0) 60%);
+}
+
+.event-card__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 52% 42%;
+}
+
+/* the monogram becomes a small badge in the corner, so it never covers the couple */
+.event-card__monogram {
+  position: absolute;
+  inset: auto auto 0.85rem 0.85rem;
+  display: block;
+  z-index: 3;
+}
+
+.event-card__monogram span {
+  width: 66px;
+  height: 66px;
+  font-size: 1.18rem;
+  background: rgba(0, 47, 108, 0.42);
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+}
+
+.event-card__monogram span::after {
+  inset: -8px;
+  width: auto;
+  height: auto;
+  border-color: rgba(255, 255, 255, 0.42);
+}
+
+.event-photo {
+  position: relative;
+  margin: 0 0 1.5rem;
+  border-radius: 26px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 44px 90px -64px rgba(0, 42, 96, 0.55);
+}
+
+.event-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 56% 46%;
+}
+
+.event-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(0, 47, 108, 0) 46%, rgba(0, 40, 84, 0.7) 100%);
+}
+
+.event-photo figcaption {
+  position: absolute;
+  left: 1rem;
+  bottom: 0.9rem;
+  z-index: 2;
+  padding: 0.4rem 0.72rem;
+  border-radius: 999px;
+  background: rgba(0, 28, 62, 0.74);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+/* ------------------------------------------------------------
+   11. Responsive
+   ------------------------------------------------------------ */
+
+@media (max-width: 1080px) and (min-width: 721px) {
+  .split > .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1100px) {
+  .aq-hero__backdrop {
+    width: 100%;
+    inset: 0;
+  }
+
+  .aq-hero__backdrop img {
+    object-position: 66% 34%;
+  }
+
+  .aq-hero__wash {
+    background:
+      linear-gradient(180deg, rgba(238, 249, 254, 0.72) 0%, rgba(238, 249, 254, 0.5) 34%, rgba(238, 249, 254, 0.94) 92%),
+      linear-gradient(90deg, rgba(238, 249, 254, 0.9) 0%, rgba(238, 249, 254, 0.35) 46%, rgba(238, 249, 254, 0) 70%);
+  }
+
+  .aq-hero__inner {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 1.6rem;
+  }
+
+  .aq-hero__copy {
+    max-width: 34rem;
+  }
+
+  .aq-hero__stack {
+    justify-self: stretch;
+    max-width: none;
+  }
+}
+
+@media (max-width: 820px) {
+  .aq-hero {
+    min-height: 0;
+    padding: 5.2rem 0 1.4rem;
+  }
+
+  .aq-hero__title {
+    font-size: clamp(2.1rem, 7.4vw, 2.9rem);
+  }
+
+  .aq-hero__lede {
+    margin-bottom: 1.3rem;
+  }
+
+  .aq-hero__stack {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .aq-card--feature {
+    grid-column: 1 / -1;
+    order: -1;
+    margin: 0;
+  }
+
+  .aq-card {
+    padding: 0.8rem 0.85rem 0.9rem;
+    border-radius: 18px;
+  }
+
+  .aq-card:first-child,
+  .aq-card:last-child {
+    border-radius: 18px;
+  }
+}
+
+/* phones: one card per line, the sample first, nothing squeezed */
+@media (max-width: 560px) {
+  .aq-hero__stack {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.55rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .aq-btn {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .aq-btn--ghost {
+    justify-content: center;
+  }
+
+  .section > .wrap,
+  .page-hero > .wrap {
+    border-radius: var(--radius-lg);
+    padding: 1.1rem;
+  }
+
+  .site-footer {
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .split > .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aq-card,
+  .aq-btn,
+  .aq-card__go {
+    transition: none;
+  }
+}
+
+/* ------------------------------------------------------------
+   Round four: padding floors
+   Every card gives its copy room to breathe. These rules sit
+   last so they win over the older, tighter component styles.
+   ------------------------------------------------------------ */
+
+.aq-card {
+  padding: 1rem 1.05rem 1.1rem;
+}
+
+.aq-card--feature {
+  padding: 1.15rem 1.2rem 1.3rem;
+}
+
+.step {
+  padding: 1.35rem 1.45rem 1.55rem;
+}
+
+.step__num {
+  position: static;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 0.95rem;
+  font-size: 0.72rem;
+}
+
+.diff {
+  padding: 1.45rem 1.6rem;
+}
+
+.assurance {
+  padding: 1.5rem 1.55rem 1.6rem;
+}
+
+.plan {
+  padding: clamp(1.5rem, 2.2vw, 1.9rem);
+}
+
+.booking-help {
+  padding: 1.45rem 1.5rem;
+}
+
+.terms-strip__item {
+  padding: 1.25rem 1.35rem;
+}
+
+.notice,
+.notice--light {
+  padding: 1.05rem 1.2rem;
+}
+
+.event-save {
+  padding: 0.9rem 1.1rem;
+}
+
+/* site plan and legal documents share the same roomy cards */
+.plan-block,
+.type-specimen,
+.sp-branch,
+.status-legend,
+.plan-meta,
+.plan-meta__item {
+  padding: 1.5rem 1.6rem;
+}
+
+.swatch__meta {
+  padding: 0.75rem 0.85rem;
+  gap: 0.15rem;
+}
+
+.plan-meta__item {
+  padding: 1.1rem 1.25rem;
+}
+
+.save-contact {
+  padding: 0.85rem 1rem;
+}
+
+/* ------------------------------------------------------------
+   Round four: hero panels
+   The right-hand side of a page hero holds a compact summary
+   panel instead of floating chips in a field of white.
+   ------------------------------------------------------------ */
+
+.page-hero__aside {
+  align-content: center;
+}
+
+.hero-panel {
+  display: grid;
+  gap: 1rem;
+  padding: 1.4rem 1.5rem 1.5rem;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.78);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: 0 28px 60px -50px rgba(13, 60, 84, 0.55);
+}
+
+.hero-panel__label {
+  margin: 0;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--aq-mute);
+}
+
+.hero-panel__rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.hero-panel__rows li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(11, 49, 69, 0.08);
+}
+
+.hero-panel__rows li:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.hero-panel__rows span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.86rem;
+  color: var(--aq-ink);
+}
+
+.hero-panel__rows em {
+  font-style: normal;
+  font-size: 0.54rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--aq-700);
+  background: rgba(0, 74, 173, 0.09);
+  border-radius: 999px;
+  padding: 0.22rem 0.5rem;
+}
+
+.hero-panel__rows strong {
+  font-size: 0.98rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--aq-ink);
+  white-space: nowrap;
+}
+
+.hero-panel .pill-row {
+  margin: 0;
+}
+
+.hero-panel .small a {
+  color: var(--aq-700);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.hero-panel .small {
+  margin: 0;
+  font-size: 0.76rem;
+  line-height: 1.62;
+  color: var(--aq-mute);
+}
+
+.hero-panel__links {
+  display: grid;
+  gap: 0.45rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(11, 49, 69, 0.08);
+}
+
+.hero-panel__links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--aq-700);
+  text-decoration: none;
+  padding: 0.45rem 0.65rem;
+  margin-inline: -0.65rem;
+  border-radius: 10px;
+  transition: background 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+.hero-panel__links a:hover {
+  background: rgba(0, 74, 173, 0.07);
+}
+
+.hero-panel__links svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* legal hero: two balanced columns instead of one narrow column in a wide card */
+.legal-hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.32fr) minmax(0, 0.68fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
+}
+
+@media (min-width: 901px) {
+  .legal-hero__inner {
+    max-width: none;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .legal-hero__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ------------------------------------------------------------
+   Round four: on-screen confirmations
+   ------------------------------------------------------------ */
+
+.toast-stack {
+  position: fixed;
+  left: 50%;
+  bottom: clamp(1.1rem, 3vw, 2rem);
+  transform: translateX(-50%);
+  z-index: 120;
+  display: grid;
+  gap: 0.55rem;
+  width: min(100% - 2rem, 30rem);
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.85rem 0.9rem 0.85rem 1rem;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.96);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  backdrop-filter: blur(24px) saturate(160%);
+  box-shadow:
+    0 30px 60px -34px rgba(0, 32, 70, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  animation: toast-in 0.28s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+
+.toast__icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: linear-gradient(140deg, #38b6ff, #004aad);
+  color: #ffffff;
+  flex: none;
+}
+
+.toast__icon svg {
+  width: 15px;
+  height: 15px;
+}
+
+.toast__text {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.toast__text strong {
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--aq-ink);
+}
+
+.toast__text span {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--aq-mute);
+}
+
+.toast__close {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(11, 49, 69, 0.06);
+  color: var(--aq-ink-soft);
+  cursor: pointer;
+  flex: none;
+}
+
+.toast__close:hover {
+  background: rgba(11, 49, 69, 0.12);
+  color: var(--aq-ink);
+}
+
+.toast__close svg {
+  width: 12px;
+  height: 12px;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .toast-stack {
+    bottom: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    animation: none;
+  }
+}
+
+/* the team card carries a face, not initials */
+.booking-help__avatar {
+  display: block;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 22px -14px rgba(0, 32, 70, 0.6);
+}
+
+.booking-help__avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 28%;
+}
+
+/* the type specimen: tight rows, no stray paragraph margins */
+.type-specimen {
+  gap: 0.7rem;
+}
+
+.type-specimen p {
+  margin: 0;
+}
+
+.type-specimen__labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1.6rem;
+  margin-top: 0.35rem;
+  padding-top: 0.95rem;
+  border-top: 1px solid rgba(11, 49, 69, 0.08);
+}
+
+.type-specimen__labels span {
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--aq-mute);
+}
+
+/* package and reply choices get room too */
+.choice__box {
+  padding: 1rem 1.1rem;
+}
+
+/* the save-contact row: full-width details, button on its own line */
+.save-contact {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.7rem 0.75rem;
+}
+
+.save-contact .btn {
+  grid-column: 1 / -1;
+  justify-self: start;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.68rem;
+}
+
+.save-contact__text span {
+  font-size: 0.72rem;
+  overflow-wrap: anywhere;
+}
+
+/* ------------------------------------------------------------
+   19. Project coordination team
+   ------------------------------------------------------------ */
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: clamp(1.6rem, 3vw, 2.4rem);
+}
+
+.team-card {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.7rem 0.7rem 1.15rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  background: linear-gradient(172deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.8));
+  box-shadow:
+    0 22px 44px -30px rgba(0, 47, 108, 0.5),
+    0 2px 6px -4px rgba(0, 47, 108, 0.18);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 28px 52px -30px rgba(0, 47, 108, 0.55),
+    0 4px 10px -6px rgba(0, 47, 108, 0.22);
+}
+
+.team-card__frame {
+  position: relative;
+  display: block;
+  border-radius: 15px;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: #dcebf7;
+  box-shadow: inset 0 0 0 1px rgba(11, 49, 69, 0.06);
+}
+
+.team-card__frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 16%;
+  filter: saturate(0.97) contrast(1.02);
+}
+
+/* a whisper of sky over each portrait so five different studios read as one set */
+.team-card__frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(56, 182, 255, 0.08) 0%, rgba(56, 182, 255, 0) 42%),
+    linear-gradient(0deg, rgba(0, 47, 108, 0.1) 0%, rgba(0, 47, 108, 0) 38%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.team-card figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0 0.35rem;
+}
+
+.team-card__role {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--aq-700);
+}
+
+.team-card__focus {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.24;
+  letter-spacing: -0.005em;
+  color: var(--aq-ink, #072f52);
+}
+
+.team-card__body {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--aq-mute);
+}
+
+/* three across on tablets, with the last two centred under the first three */
+@media (max-width: 1180px) {
+  .team-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .team-card {
+    grid-column: span 2;
+  }
+
+  .team-card:nth-child(4) {
+    grid-column: 2 / span 2;
+  }
+
+  .team-card:nth-child(5) {
+    grid-column: 4 / span 2;
+  }
+}
+
+@media (max-width: 780px) {
+  .team-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+  }
+
+  .team-card,
+  .team-card:nth-child(4),
+  .team-card:nth-child(5) {
+    grid-column: auto;
+  }
+
+  .team-card:nth-child(5) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc(50% - 0.4rem);
+  }
+}
+
+@media (max-width: 460px) {
+  .team-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .team-card:nth-child(5) {
+    width: 100%;
+  }
+
+  .team-card {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.7rem 0.9rem 0.7rem 0.7rem;
+  }
+
+  .team-card figcaption {
+    padding: 0;
+  }
+}
+
+/* ------------------------------------------------------------
+   20. Footer: the logo's own blue, glossed, with crisp type
+   ------------------------------------------------------------ */
+
+.site-footer {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 2px rgba(0, 28, 66, 0.28);
+  background:
+    radial-gradient(120% 92% at 6% -12%, rgba(122, 207, 255, 0.5) 0%, rgba(56, 182, 255, 0) 58%),
+    radial-gradient(85% 72% at 100% 110%, rgba(0, 31, 78, 0.52) 0%, rgba(0, 31, 78, 0) 70%),
+    linear-gradient(158deg, #1b74cd 0%, #0d5dbd 38%, #004aad 76%, #003f92 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.26),
+    inset 0 90px 90px -90px rgba(140, 214, 255, 0.55);
+}
+
+/* the plate gloss from the logo artwork, kept faint so the links stay sharp */
+.site-footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0) 40%),
+    radial-gradient(52% 40% at 20% -2%, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 72%);
+  mix-blend-mode: screen;
+}
+
+.site-footer > .wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.site-footer p,
+.site-footer li,
+.site-footer span,
+.site-footer .footer-list,
+.site-footer .footer-list a,
+.site-footer .footer-contact,
+.site-footer .footer-contact a,
+.site-footer .footer-col--brand p {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.site-footer .footer-title,
+.site-footer .footer-contact strong {
+  color: #c8e8ff;
+}
+
+.site-footer a {
+  text-decoration-color: rgba(255, 255, 255, 0.38);
+}
+
+.site-footer a:hover,
+.site-footer .footer-list a:hover,
+.site-footer .footer-contact a:hover {
+  color: #ffffff;
+  text-decoration-color: #ffffff;
+}
+
+.site-footer .footer-legal {
+  color: rgba(255, 255, 255, 0.78);
+  border-top-color: rgba(255, 255, 255, 0.22);
+}
+
+.site-footer .footer-legal a,
+.site-footer .footer-legal .link-button {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* the lockup keeps the artwork's white word over sky, with a soft lift */
+.site-footer .logo__name {
+  color: #ffffff;
+}
+
+.site-footer .logo__sub {
+  color: #a6dfff;
+}
+
+.site-footer .logo__mark,
+.site-footer .footer-stamp .logo__mark {
+  color: #ffffff;
+  filter: drop-shadow(0 3px 9px rgba(0, 28, 64, 0.38));
+}
+
+.site-footer .footer-stamp {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+/* the B&Z badge needs an opaque enough plate to hold white type on a bright photo */
+.event-card__monogram span {
+  background: rgba(0, 38, 86, 0.78);
+  border-color: rgba(255, 255, 255, 0.78);
+  box-shadow:
+    0 0 0 6px rgba(255, 255, 255, 0.14),
+    0 10px 24px -14px rgba(0, 24, 58, 0.6);
+}
+
+/* ------------------------------------------------------------
+   21. Breathing room: pills, chips and small cards
+   ------------------------------------------------------------ */
+
+.chip {
+  padding: 0.46rem 0.92rem;
+}
+
+.sp-page {
+  padding: 0.42rem 0.78rem;
+  gap: 0.5rem;
+}
+
+.sp-page > span,
+.sp-page small {
+  margin-left: 0.1rem;
+}
+
+/* an odd last card fills the row instead of leaving a hole */
+.plan-grid-2 > .plan-block:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.plan-grid-2 > .plan-block:last-child:nth-child(odd) > p {
+  max-width: 78ch;
+}
+
+/* card interiors keep a floor even when a page sets its own padding */
+.plan-block {
+  padding: clamp(1.4rem, 1.9vw, 1.85rem);
+}
+
+.plan-block > :first-child {
+  margin-top: 0;
+}
+
+.plan-block > :last-child {
+  margin-bottom: 0;
+}
+
+/* the small type inside the type specimen never touches the edge */
+.type-specimen {
+  padding: clamp(1.1rem, 1.6vw, 1.45rem);
+}
