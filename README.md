@@ -3,6 +3,10 @@
 A bespoke marketing site, booking flow and sample digital invitation for **Aetheria Events**
 (Bonifacio Global City, Taguig). Built with React 19 + Vite as a static single-page app.
 
+> **Taking this project over, or handing it to another agent?** Read [`HANDOVER.md`](./HANDOVER.md)
+> first. It holds the house rules, the loop used to ship a change, how to verify work without a
+> browser, and how the Drive backup is made and refreshed.
+
 ```bash
 npm install
 npm run dev      # http://localhost:5173
@@ -154,6 +158,13 @@ runs from a plain file. Use it when you need to hand the site to someone who wil
 npm run build:single
 node scripts/inline-single.mjs   # folds assets + PDF into Aetheria-Events-website.html
 ```
+
+### One-file source document (the readable backup)
+
+`npm run build:md` writes `aetheria-complete-source.md`, every tracked file in one document with a
+contents list and syntax-highlighted fences. It reads `git ls-files`, so build output and
+`node_modules` can never slip in, and it is the third file in the Drive backup beside the zip and
+the single-file HTML.
 
 `source/index.html` is the Vite template, not a page: opening it with a static file server
 (including VS Code Live Server) shows a blank screen, because the browser receives raw JSX.
