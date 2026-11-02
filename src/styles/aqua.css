@@ -2353,3 +2353,49 @@ textarea:focus-visible {
     padding: 0.6rem 0.7rem;
   }
 }
+
+/* ------------------------------------------------------------
+   24. Site Map panels, and the date field
+   Round nine gave every body wrap the same inset as a panel, but
+   the Site Map body is a stack of .plan-section panels that had
+   no horizontal padding of their own, so their own copy still sat
+   flush against their own edge. The wrap hands its inset to the
+   sections instead: the panel starts at the page gutter, the copy
+   starts one inset further in, exactly like .section > .wrap
+   does everywhere else.
+   ------------------------------------------------------------ */
+
+.theme-light.leads-light > .wrap.plan-body {
+  padding-inline: 0;
+}
+
+.plan-section {
+  padding-inline: clamp(1.6rem, 3.4vw, 3.2rem);
+}
+
+@media (max-width: 720px) {
+  .plan-section {
+    padding-inline: 1.1rem;
+  }
+}
+
+/* the browser gives input[type=date] a wide intrinsic width for its segments
+   and picker button. Inside a grid that width becomes the row's minimum, so
+   the field grew past the card. A zero floor on the track and on the control
+   lets both shrink to the column instead. */
+.form-row {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+@media (max-width: 620px) {
+  .form-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.field,
+.input,
+.select,
+.textarea {
+  min-width: 0;
+}

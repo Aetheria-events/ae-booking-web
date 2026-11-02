@@ -216,7 +216,7 @@ export default function SitePlan() {
       </section>
 
       <div className="theme-light leads-light">
-        <div className="wrap">
+        <div className="wrap plan-body">
           <section className="plan-section">
             <div className="plan-section__head">
               <div>
