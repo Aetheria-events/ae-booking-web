@@ -139,7 +139,7 @@ Minification is not neutral. Lightning CSS drops `-webkit-appearance` whenever t
 A jsdom pass catches the failure that matters most here: a change that works on the page you were editing and breaks a route you never opened.
 
 ```bash
-npm i -D vite@8 @vitejs/plugin-react@6   # already present, listed for clarity
+# vite and @vitejs/plugin-react are already devDependencies, nothing to install
 cat > vite.test-iife.config.js <<'EOF'
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -224,7 +224,7 @@ md5sum Aetheria-Events-website.html     # must equal the md5 in Drive's file met
 unzip -l aetheria-events.zip | tail -2  # file count and size must match Drive
 ```
 
-Round eleven's reference numbers: zip 1,607,985 bytes over 87 entries, HTML 3,928,113 bytes, markdown about 506,000 bytes. A zip that comes back a different size means the tree changed, not that the zip is broken.
+Expect rough numbers rather than exact ones. As a sanity point, the zip has held around 1.6 MB with one entry per tracked file plus one per directory, the HTML is 3,928,113 bytes, and the markdown runs to roughly half a megabyte. The HTML is the only one that must match exactly, because the build is deterministic. A zip that comes back a different size usually means files were added or removed, not that the zip is broken.
 
 **Restoring** from the backup needs nothing but the zip: `unzip`, `npm ci`, `npm run build`. The HTML file restores nothing but proves what the site looked like. Neither carries git history, which is what GitHub is for.
 
@@ -249,7 +249,7 @@ Each of these cost real time. None is hypothetical.
 
 ## 8. State at handover
 
-- `main` at `6c72aa5`, deployed by run `41474917206`, serving `assets/index-DVV9S9xh.css`.
+- `main` at the commit that merged this handover, served by GitHub Pages and requesting `assets/index-DVV9S9xh.css`. Check `gh run list --branch main --limit 1` for the current run rather than trusting a number written here.
 - Eleven rounds shipped. The last one centred the closing call-to-action pair under 760 px and normalised the event date control so it matches the other fields exactly: 262 px wide and 53 px tall at 390 px, 232 at 360, 302 at 430.
 - Mobile breathing room was applied site wide in round ten and eleven: panel inset plus inner padding, no content touching an edge at any of the three widths.
 - The Drive folder holds the three round-eleven files and nothing else.
