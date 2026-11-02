@@ -945,7 +945,7 @@ h6 {
   background: rgba(214, 138, 62, 0.1);
 }
 
-/* ---------------- prose pages (privacy, terms, site plan) ---------------- */
+/* ---------------- prose pages (privacy, terms, Site Map) ---------------- */
 
 .prose {
   color: var(--text-dim);
@@ -1033,7 +1033,7 @@ h6 {
   color: var(--navy-900);
 }
 
-/* ---------------- site plan ---------------- */
+/* ---------------- Site Map ---------------- */
 
 .sp-page,
 .plan-page {

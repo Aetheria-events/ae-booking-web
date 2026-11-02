@@ -1,4 +1,4 @@
-import { Outlet, Route, Routes } from 'react-router-dom';
+import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import PrivacyDialog from './components/PrivacyDialog';
@@ -45,7 +45,9 @@ export default function App() {
           <Route path="booking" element={<Booking />} />
           <Route path="privacy" element={<Privacy />} />
           <Route path="terms" element={<Terms />} />
-          <Route path="site-plan" element={<SitePlan />} />
+          <Route path="site-map" element={<SitePlan />} />
+          {/* the page was called Site plan until round eight; old links keep working */}
+          <Route path="site-plan" element={<Navigate to="/site-map" replace />} />
           <Route path="about" element={<About />} />
           <Route path="*" element={<NotFound />} />
         </Route>

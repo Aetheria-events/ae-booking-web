@@ -17,7 +17,7 @@ const sitemap = [
     label: 'Proof',
     pages: [
       { name: 'Sample invitation', path: '/invitation', status: 'live' },
-      { name: 'Site plan', path: '/site-plan', status: 'live' },
+      { name: 'Site Map', path: '/site-map', status: 'live' },
     ],
   },
   {
@@ -106,7 +106,7 @@ const assetChecklist = [
 const buildSteps = [
   {
     title: 'Front-end',
-    body: 'React + Vite single-page app. Static build, no server required to browse. Routes: home, packages, booking, invitation, privacy, terms, site plan, 404.',
+    body: 'React + Vite single-page app. Static build, no server required to browse. Routes: home, packages, booking, invitation, privacy, terms, Site Map, 404.',
   },
   {
     title: 'Booking endpoint',
@@ -151,8 +151,8 @@ const warnings = [
 
 export default function SitePlan() {
   usePageMeta(
-    'Site plan, Aetheria Events',
-    'The plan behind the Aetheria Events website: sitemap, page intent, design system, privacy and compliance plan, integrations, content checklist and launch checklist.',
+    'Site Map, Aetheria Events',
+    'The Site Map for the Aetheria Events website: every route, page intent, design system, privacy and compliance plan, integrations, content checklist and launch checklist.',
   );
 
   return (
@@ -162,15 +162,15 @@ export default function SitePlan() {
           <nav className="breadcrumb" aria-label="Breadcrumb">
             <Link to="/">Home</Link>
             <span aria-hidden="true">/</span>
-            <span>Site plan</span>
+            <span>Site Map</span>
           </nav>
-          <p className="eyebrow">Project plan</p>
+          <p className="eyebrow">Site Map</p>
           <h1>
-            The plan behind
-            <span className="italic gold"> the page.</span>
+            Every page, and the plan
+            <span className="italic gold"> behind it.</span>
           </h1>
           <p className="page-hero__lede">
-            A working sitemap, design system, content checklist and compliance plan for the Aetheria
+            A working Site Map, design system, content checklist and compliance plan for the Aetheria
             Events website, including what is finished, what needs a decision, and what must happen
             before launch.
           </p>
@@ -206,7 +206,7 @@ export default function SitePlan() {
             <a
               className="btn btn--ghost btn--sm"
               href={`${import.meta.env.BASE_URL}aetheria-events-site-plan.pdf`}
-              download="Aetheria-Events-Site-Plan.pdf"
+              download="Aetheria-Events-Site-Map.pdf"
             >
               <FileText style={{ width: 14, height: 14 }} aria-hidden="true" />
               Download PDF
@@ -266,12 +266,12 @@ export default function SitePlan() {
           <section className="plan-section">
             <div className="plan-section__head">
               <div>
-                <p className="eyebrow">02 · Sitemap</p>
+                <p className="eyebrow">02 · Site Map</p>
                 <h2>Every route, one journey.</h2>
               </div>
               <p>
                 The header stays short: Home, Packages, Invitation, About our Team and one booking
-                button. Booking, the site plan and the legal pages live in the footer, where they
+                button. Booking, the Site Map and the legal pages live in the footer, where they
                 belong, but every form links to them inline.
               </p>
             </div>

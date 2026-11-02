@@ -20,8 +20,8 @@ npm run preview  # serve the production build on http://localhost:4173
 | `/invitation` | Labelled sample event page: countdown, details, schedule, save-the-date/contact, RSVP |
 | `/privacy` | Privacy notice (PIC/PIP roles, retention, rights, guest notice, DPO) |
 | `/terms` | Service terms summarised from the SLA (delivery, revisions, refunds, liability) |
-| `/site-plan` | Sitemap, page intent, design system, compliance plan, checklist, open questions |
-| `/aetheria-events-site-plan.pdf` | Downloadable PDF of the site plan for sending to the client |
+| `/site-map` | Site Map: routes, page intent, design system, compliance plan, checklist, open questions |
+| `/aetheria-events-site-plan.pdf` | Downloadable PDF of the Site Map for sending to the client |
 | any other | 404 page |
 
 The header shows Home, Packages, Invitation, About our Team and a “Book your date” button; legal pages
@@ -45,7 +45,7 @@ live in the footer and are linked inline from every form.
   *Decline non-essential*, records the choice in `localStorage` (`aetheria.consent.v1`), exposes it
   as `document.documentElement.dataset.consent`, traps focus, closes on `Esc`, and can be reopened
   from every footer under “Privacy settings”.
-- **Site plan**, printable, and downloadable as a PDF from `/aetheria-events-site-plan.pdf`.
+- **Site Map**, printable, and downloadable as a PDF from `/aetheria-events-site-plan.pdf`.
 
 The sample RSVP stays in the visitor’s browser so the invitation demo needs no backend. Booking
 requests go to the Google Sheet through the Apps Script receiver in `docs/`.
@@ -129,13 +129,14 @@ subject rights, NPC complaint route.
 3. **Wire analytics to consent.** Only load analytics when
    `document.documentElement.dataset.consent === 'all'`.
 4. **Add real assets.** Event photography, confirmed business mobile number, social handles and
-   final legal copy (see the Site plan page for the full checklist).
+   final legal copy (see the Site Map page for the full checklist).
 5. **Deploy** the `dist/` folder to Cloudflare Pages behind the WAF, with HSTS and a CSP.
    Because this is a single-page app, add an SPA fallback so deep links resolve:
    `public/_redirects` (`/*  /index.html  200`) already covers Netlify and Cloudflare Pages, and
    `netlify.toml` mirrors it. On other hosts, point 404s at `/index.html`.
 
-`/site-plan` contains the complete launch checklist, measurement plan and open decisions.
+`/site-map` contains the complete launch checklist, measurement plan and open decisions. The old
+`/site-plan` address redirects to it, so links already shared keep working.
 
 ## Fonts
 
@@ -180,3 +181,20 @@ and adds `.nojekyll`. Deep links then boot the router and render the site's own 
 
 Booking is unaffected by the host: the form posts to the Apps Script receiver in
 `brand.bookingEndpoint`, not to the site's own domain.
+
+### Sitemap and robots
+
+`npm run build` runs `scripts/make-sitemap.mjs` afterwards, which writes `dist/sitemap.xml` for the
+eight real routes and a `dist/robots.txt` pointing at it. `/site-plan` is deliberately left out: it
+is a redirect, and a sitemap should only list final addresses.
+
+The origin comes from `SITE_URL`, defaulting to `https://book.aetheriaevents.com`, the domain the
+site is headed for. The Pages workflow sets `SITE_URL=https://tapasul.github.io/Aetheria` so the
+mirror's own sitemap stays truthful, path prefix included. Override it in any other build:
+
+```bash
+SITE_URL=https://example.com npm run build
+```
+
+Note that `robots.txt` is only read from a domain root. On the Pages mirror it lands at
+`/Aetheria/robots.txt` and is ignored, which is expected; on the custom domain it is honoured.

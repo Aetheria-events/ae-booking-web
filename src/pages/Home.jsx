@@ -208,8 +208,8 @@ export default function Home() {
               We are not a template shop. Every page is composed for one event, tested on every
               screen, and handed over with the guest data already accounted for.
             </p>
-            <Link to="/site-plan" className="text-link" style={{ marginTop: '1.6rem' }}>
-              Read the full site plan
+            <Link to="/site-map" className="text-link" style={{ marginTop: '1.6rem' }}>
+              Read the full Site Map
               <ArrowRight />
             </Link>
           </div>
