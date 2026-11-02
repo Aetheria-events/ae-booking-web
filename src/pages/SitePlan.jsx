@@ -672,7 +672,7 @@ export default function SitePlan() {
                   would. Both flows are fully interactive.
                 </p>
               </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem', alignSelf: 'center', justifyContent: 'flex-end' }}>
+              <div className="plan-cta">
                 <Link to="/booking" className="btn btn--gold">
                   Test the booking form
                   <ArrowRight />
