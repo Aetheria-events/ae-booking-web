@@ -2399,3 +2399,56 @@ textarea:focus-visible {
 .textarea {
   min-width: 0;
 }
+
+/* ------------------------------------------------------------
+   25. The closing call to action, and the date control
+   ------------------------------------------------------------ */
+
+/* the two closing buttons stack on a phone; right-aligning a wrapped
+   pair leaves the second one floating, so they centre under the copy */
+.plan-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-self: center;
+  justify-content: flex-end;
+}
+
+@media (max-width: 760px) {
+  .plan-cta {
+    justify-content: center;
+  }
+}
+
+/* Safari gives input[type=date] an intrinsic width wider than a phone card
+   and a box a few pixels taller than a text field. A zero floor alone does
+   not shrink it; removing the native appearance makes it size and pad like
+   every other control. The wheel picker still opens on tap, and the calendar
+   glyph stays available on desktop. */
+.input[type='date'],
+.input[type='time'] {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* the date text sits at the same inset as the placeholder in the field above */
+.input[type='date']::-webkit-date-and-time-value {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  min-height: 1.5em;
+}
+
+.input[type='date']::-webkit-datetime-edit {
+  padding: 0;
+}
+
+.input[type='date']::-webkit-calendar-picker-indicator {
+  margin-inline-start: 0;
+  opacity: 0.55;
+  cursor: pointer;
+}
