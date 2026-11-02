@@ -32,7 +32,11 @@ jobs:
 
       # vite.config.js reads GITHUB_REPOSITORY, so the build is emitted with
       # the /Aetheria/ prefix that a project page needs.
+      # SITE_URL keeps the sitemap pointing at this exact copy, path prefix and
+      # all, instead of at the custom domain the site is headed for.
       - name: Build site
+        env:
+          SITE_URL: https://tapasul.github.io/Aetheria
         run: npm run build
 
       # GitHub Pages has no SPA fallback. Serving index.html for unknown paths

@@ -30,14 +30,14 @@ export const nav = [
   { label: 'Booking', to: '/booking', cta: true },
 ];
 
-// Kept out of the header on purpose, the site plan lives in the footer.
+// Kept out of the header on purpose, the Site Map lives in the footer.
 export const footerNav = [
   { label: 'Home', to: '/' },
   { label: 'Packages & pricing', to: '/packages' },
   { label: 'Sample invitation', to: '/invitation' },
   { label: 'About our Team', to: '/about' },
   { label: 'Booking', to: '/booking' },
-  { label: 'Site plan', to: '/site-plan' },
+  { label: 'Site Map', to: '/site-map' },
 ];
 
 export const currency = new Intl.NumberFormat('en-PH', {
