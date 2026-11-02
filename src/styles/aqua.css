@@ -2281,3 +2281,75 @@ textarea:focus-visible {
     display: none;
   }
 }
+
+/* ------------------------------------------------------------
+   23. Mobile breathing room
+   Site Map, Privacy, Terms and Booking put their body straight
+   into a .wrap instead of a .section, so on a phone their text
+   sat on the bare gutter while every other page sat inside a
+   panel. They now take the same inset as the panel pages, which
+   also removes the sideways jump when the reader scrolls from
+   the hero into the body.
+   ------------------------------------------------------------ */
+
+/* one rule at every width, mirroring what .section > .wrap already does,
+   so body text and panel text share the same left edge */
+.theme-light.leads-light > .wrap {
+  padding-inline: clamp(1.6rem, 3.4vw, 3.2rem);
+}
+
+@media (max-width: 720px) {
+  .theme-light.leads-light > .wrap {
+    padding-inline: 1.1rem;
+  }
+}
+
+/* Card interiors on a phone: no card holds text closer than 17px to its
+   own edge, so a long line never looks like it is bleeding out. */
+@media (max-width: 620px) {
+  .aq-card,
+  .type-specimen,
+  .event-card,
+  .event-save,
+  .save-contact,
+  .swatch__meta,
+  .notice,
+  .team-card {
+    padding-inline: 1.1rem;
+  }
+}
+
+/* the team card's photo column needs its own left inset to stay balanced */
+@media (max-width: 460px) {
+  .team-card {
+    padding: 0.85rem 1.1rem 0.85rem 0.85rem;
+  }
+}
+
+/* three package cards across a 390px screen leave 8px of padding and a
+   10px price. They stack instead, and the price gets room to be read. */
+@media (max-width: 430px) {
+  .choice-grid--package {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* the rush options keep two columns a little further up, so the wider
+     padding never squeezes a name into a single letter per line */
+  .choice-grid--tight {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .choice-grid--package .choice__box,
+  .choice-grid--tight .choice__box {
+    padding: 0.85rem 1.1rem;
+  }
+}
+
+/* legal tables: every cell keeps its copy off the rule, th and td together
+   so a row does not go ragged */
+@media (max-width: 680px) {
+  .prose th,
+  .prose td {
+    padding: 0.6rem 0.7rem;
+  }
+}
