@@ -2452,3 +2452,110 @@ textarea:focus-visible {
   opacity: 0.55;
   cursor: pointer;
 }
+
+/* ============================================================
+   26. Guest capacity
+
+   Capacity is stated as a limit, never a price: 100 on Basic, 300 on
+   Standard, no ceiling on Premium. It appears on the plan cards, in the
+   pricing at-a-glance panel, in the comparison table, on the booking
+   package choices and under the guest estimate. One shared source in
+   src/data/site.js feeds all of them.
+   ============================================================ */
+
+.plan__capacity {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  align-self: flex-start;
+  margin-top: -0.55rem;
+  padding: 0.3rem 0.6rem 0.3rem 0.5rem;
+  border: 1px solid rgba(11, 49, 69, 0.14);
+  border-radius: 999px;
+  background: rgba(56, 182, 255, 0.12);
+  font-size: 0.76rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--aq-ink);
+}
+
+.plan__capacity-icon {
+  flex: none;
+  width: 13px;
+  height: 13px;
+  color: var(--brand-blue);
+}
+
+/* premium: the same pill, without a number to imply a ceiling */
+.plan__capacity--open {
+  background: rgba(0, 74, 173, 0.1);
+}
+
+/* the featured card sits on deep blue, so the pill inverts */
+.plan--featured .plan__capacity {
+  border-color: rgba(255, 255, 255, 0.32);
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.plan--featured .plan__capacity-icon {
+  color: var(--brand-sky);
+}
+
+/* ---- at-a-glance panel on /packages ---- */
+
+.hero-panel__rows li > .glance {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.12rem;
+  min-width: 0;
+}
+
+/* only the rows that carry a capacity line may wrap, so the booking and
+   terms panels keep their single-line rows exactly as they were */
+.hero-panel__rows li:has(> .glance) {
+  flex-wrap: wrap;
+  row-gap: 0.2rem;
+}
+
+.hero-panel__rows .glance__name {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.86rem;
+  color: var(--aq-ink);
+}
+
+.hero-panel__rows .glance__capacity {
+  font-size: 0.72rem;
+  line-height: 1.3;
+  color: var(--on-light-mute);
+}
+
+/* ---- booking form ---- */
+
+.choice__capacity {
+  font-size: 0.7rem;
+  line-height: 1.3;
+  color: var(--on-light-mute);
+}
+
+.choice input:checked + .choice__box .choice__capacity {
+  color: var(--brand-blue);
+}
+
+/* a soft warning, not an error: the estimate is only a planning figure */
+.field__hint--warn {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  color: #8a4a00;
+}
+
+.field__hint--warn svg {
+  flex: none;
+  width: 12px;
+  height: 12px;
+  margin-top: 0.22em;
+}

@@ -48,6 +48,7 @@ These are not style preferences. Each one was stated directly by the owner, seve
 15. **Merge through pull requests only.** Never commit to `main`, never force push, never rewrite history. The owner said plainly: "I don't want you to ruin my portfolio repository."
 16. **Cloudflare is "later".** Do not start that deployment until asked.
 17. **Keep the Drive backup current.** Three files, refreshed after every shipped round. Section 6.
+18. **Guest capacity is a ceiling, never a price.** Basic covers up to 100 guests, Standard up to 300, Premium has no ceiling. There is no per-guest charge and no overage metering; the owner closes the list himself when a tier fills. The limit lives once in `src/data/site.js` (`guestLimit`, `guestCapacity()`, `guestCapacityShort()`) and is read by the plan cards, the pricing at-a-glance panel, the comparison table, the booking package choices, the guest-estimate warning and the Terms. Never hard-code the numbers in a component. The estimate on the booking form warns and recommends a tier, it does not block, because the figure is only a planning guess.
 
 Two habits go with these. When the owner reports something, they report what they can see, often with a screenshot and often describing alignment rather than naming CSS. Restate the problem as a measurement before you fix it (section 4). And when the scope is "fix this one thing", fix that thing. Round ten exists because a previous round reworked more of the booking form than was asked.
 

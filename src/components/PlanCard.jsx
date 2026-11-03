@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { formatPeso } from '../data/site';
-import { Check, Minus } from './Icons';
+import { formatPeso, guestCapacity } from '../data/site';
+import { Check, Minus, Users } from './Icons';
 
 export default function PlanCard({ plan, compact = false, ctaLabel = 'Choose this plan' }) {
   const features = compact ? plan.features.slice(0, 4) : plan.features;
@@ -21,6 +21,11 @@ export default function PlanCard({ plan, compact = false, ctaLabel = 'Choose thi
       </p>
 
       <p className="plan__summary">{plan.summary}</p>
+
+      <p className={`plan__capacity${plan.guestLimit ? '' : ' plan__capacity--open'}`}>
+        <Users className="plan__capacity-icon" aria-hidden="true" />
+        <span>{guestCapacity(plan)}</span>
+      </p>
 
       <ul className="plan__list">
         {features.map((feature) => (

@@ -4,7 +4,15 @@ import { ArrowRight, Check, Clock, FileText, Shield, Sparkle, Users } from '../c
 import PlanCard from '../components/PlanCard';
 import Reveal from '../components/Reveal';
 import SectionHead from '../components/SectionHead';
-import { addOns, brand, comparisonRows, formatPeso, homeFaqs, packages } from '../data/site';
+import {
+  addOns,
+  brand,
+  comparisonRows,
+  formatPeso,
+  guestCapacity,
+  homeFaqs,
+  packages,
+} from '../data/site';
 import { usePageMeta } from '../lib/hooks';
 
 export default function Packages() {
@@ -31,8 +39,9 @@ export default function Packages() {
                 <span className="italic gold"> as the room.</span>
               </h1>
               <p className="page-hero__lede">
-                Three packages, one standard of care. Choose the inclusions you need; we will tell
-                you honestly if a different tier suits your event better.
+                Three packages, one standard of care. Basic covers up to 100 guests, Standard up to
+                300, and Premium has no ceiling. Choose the inclusions you need; we will tell you
+                honestly if a different tier suits your event better.
               </p>
             </div>
 
@@ -42,9 +51,12 @@ export default function Packages() {
                 <ul className="hero-panel__rows">
                   {packages.map((plan) => (
                     <li key={plan.id}>
-                      <span>
-                        {plan.name}
-                        {plan.featured && <em>Most booked</em>}
+                      <span className="glance">
+                        <span className="glance__name">
+                          {plan.name}
+                          {plan.featured && <em>Most booked</em>}
+                        </span>
+                        <small className="glance__capacity">{guestCapacity(plan)}</small>
                       </span>
                       <strong>{formatPeso(plan.price)}</strong>
                     </li>
@@ -109,6 +121,13 @@ export default function Packages() {
             <div className="terms-strip__item">
               <strong>7 / 14 days</strong>
               <span>Recommended booking lead time before the event for Basic/Standard and Premium respectively.</span>
+            </div>
+            <div className="terms-strip__item">
+              <strong>100 / 300 / ∞</strong>
+              <span>
+                Guests included: up to 100 on Basic, up to 300 on Standard, unlimited on Premium.
+                The RSVP closes once those places are filled.
+              </span>
             </div>
           </div>
         </div>

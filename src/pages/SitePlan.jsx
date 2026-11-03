@@ -48,7 +48,7 @@ const pages = [
   {
     title: 'Packages & pricing',
     purpose:
-      'Turn the SLA into a decision. Three tiers, optional fees, a side-by-side comparison and honest policy notes.',
+      'Turn the SLA into a decision. Three tiers with guest capacity (100, 300, unlimited), optional fees, a side-by-side comparison and honest policy notes.',
     action: 'Primary CTA: Book this plan (carries the plan into the form).',
   },
   {
@@ -100,7 +100,7 @@ const assetChecklist = [
   'Final domain name and Cloudflare/DNS access',
   'Signed-off privacy notice and service terms, reviewed by counsel',
   'Booking inbox address, plus the person who owns replies',
-  'Real packages, fees and lead times, currently taken from the SLA',
+  'Real packages, fees, lead times and guest capacity, currently taken from the SLA',
 ];
 
 const buildSteps = [

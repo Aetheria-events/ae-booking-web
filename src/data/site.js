@@ -48,11 +48,22 @@ export const currency = new Intl.NumberFormat('en-PH', {
 
 export const formatPeso = (value) => `₱${new Intl.NumberFormat('en-PH').format(value)}`;
 
+// Guest capacity is a hard ceiling, not a price. `guestLimit: null` means the
+// package has no ceiling; everything that prints the limit goes through
+// guestCapacity() so the three surfaces (cards, comparison, booking) can never
+// disagree with each other.
+export const guestCapacity = (plan) =>
+  plan.guestLimit ? `Up to ${new Intl.NumberFormat('en-PH').format(plan.guestLimit)} guests` : 'Unlimited guests';
+
+export const guestCapacityShort = (plan) =>
+  plan.guestLimit ? `up to ${new Intl.NumberFormat('en-PH').format(plan.guestLimit)} guests` : 'unlimited guests';
+
 export const packages = [
   {
     id: 'basic',
     name: 'Basic',
     price: 1499,
+    guestLimit: 100,
     turnaround: '2–4 working days',
     leadTime: 7,
     summary: 'A beautiful one-page invitation with a working RSVP, everything essential, nothing extra.',
@@ -75,6 +86,7 @@ export const packages = [
     id: 'standard',
     name: 'Standard',
     price: 2499,
+    guestLimit: 300,
     turnaround: '2–4 working days',
     leadTime: 7,
     summary: 'The favourite. Everything in Basic, plus a private dashboard and automatic guest confirmations.',
@@ -95,6 +107,7 @@ export const packages = [
     id: 'premium',
     name: 'Premium',
     price: 3999,
+    guestLimit: null,
     turnaround: '4–6 working days',
     leadTime: 14,
     summary: 'For gated celebrations and ambitious ideas: custom design, QR invitations and a bespoke domain.',
@@ -144,6 +157,7 @@ export const addOns = [
 ];
 
 export const comparisonRows = [
+  { label: 'Guest capacity', values: ['Up to 100', 'Up to 300', 'Unlimited'] },
   { label: 'Responsive landing page on Google Sites', values: [true, true, true] },
   { label: 'Event details, countdown timer & location map', values: [true, true, true] },
   { label: 'Embedded RSVP form with guest list', values: [true, true, true] },
@@ -194,6 +208,10 @@ export const homeFaqs = [
   {
     q: 'Can I cancel or get a refund?',
     a: 'Yes, before the preview link is sent, the package fee is refunded. After the preview link is sent, fees are non-refundable except where Aetheria Events fails to deliver the service as described. Rush fees are refunded if we miss the approved rush deadline.',
+  },
+  {
+    q: 'How many guests can my page take?',
+    a: 'Basic covers up to 100 guests, Standard up to 300, and Premium has no ceiling. The RSVP closes when the places included in your package are filled, so the guest list can never run past what you booked. If your numbers grow before the Asset Freeze, tell us and we will move the booking to the right package before the page goes live.',
   },
   {
     q: 'Where does guest information go?',

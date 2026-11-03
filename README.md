@@ -19,7 +19,7 @@ npm run preview  # serve the production build on http://localhost:4173
 | Route | Purpose |
 | --- | --- |
 | `/` | Hero, positioning, three atmospheres, packages, process, FAQ, CTA |
-| `/packages` | Full pricing, inclusions, optional fees, side-by-side comparison, plain-language terms |
+| `/packages` | Full pricing, guest capacity, inclusions, optional fees, side-by-side comparison, plain-language terms |
 | `/booking` | Simple booking form, package, event, contact details, consent, live estimate |
 | `/invitation` | Labelled sample event page: countdown, details, schedule, save-the-date/contact, RSVP |
 | `/privacy` | Privacy notice (PIC/PIP roles, retention, rights, guest notice, DPO) |
