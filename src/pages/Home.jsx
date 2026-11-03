@@ -343,8 +343,9 @@ export default function Home() {
             </div>
             <div>
               <p className="lede" style={{ maxWidth: '46ch' }}>
-                One-time fees. No retainers, no surprise charges. Every package includes two rounds
-                of minor revisions and a page that stays live for six days after the event.
+                One-time fees. No retainers, no surprise charges. Basic covers up to 100 guests,
+                Standard up to 300, Premium has no ceiling. Every package includes two rounds of
+                minor revisions and a page that stays live for six days after the event.
               </p>
               <Link to="/packages" className="text-link" style={{ marginTop: '1.2rem' }}>
                 Compare every inclusion

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Mail, Shield } from '../components/Icons';
-import { brand, formatPeso, packages } from '../data/site';
+import { brand, formatPeso, guestCapacity, packages } from '../data/site';
 import { usePageMeta } from '../lib/hooks';
 
 const toc = [
@@ -122,10 +122,19 @@ export default function Terms() {
                   <li key={plan.id}>
                     <strong>{plan.name}</strong>, {formatPeso(plan.price)}. {plan.summary} Delivered
                     in {plan.turnaround}; recommended booking lead time of {plan.leadTime} calendar
-                    days.
+                    days. {guestCapacity(plan)}.
                   </li>
                 ))}
               </ul>
+              <p>
+                <strong>Guest capacity.</strong> The guest number given at booking is an estimate
+                used for planning. Capacity is confirmed at the Asset Freeze: {guestCapacity(packages[0])}{' '}
+                on Basic, {guestCapacity(packages[1])} on Standard, and no ceiling on Premium. The
+                RSVP closes once the places included in the package are filled, and further replies
+                are not accepted. If the final guest list is larger than the package allows, the
+                booking moves to the package that covers it before the page goes live, arranged
+                directly with Aetheria Events. No per-guest charge applies at any point.
+              </p>
               <p>
                 A discreet “Powered by Aetheria” footer appears on the landing page in all packages.
                 The client views RSVPs in a private dashboard in Standard and Premium; in Basic, the

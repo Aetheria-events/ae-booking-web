@@ -15,7 +15,15 @@ import {
   Users,
   Warning,
 } from '../components/Icons';
-import { addOns, brand, eventTypes, formatPeso, packages } from '../data/site';
+import {
+  addOns,
+  brand,
+  eventTypes,
+  formatPeso,
+  guestCapacity,
+  guestCapacityShort,
+  packages,
+} from '../data/site';
 import {
   bookingReference,
   bookingSummaryText,
@@ -227,6 +235,17 @@ export default function Booking() {
 
   const leadDays = form.eventDate ? daysUntil(form.eventDate) : null;
   const insideLeadTime = leadDays !== null && leadDays >= 0 && leadDays < selectedPackage.leadTime;
+
+  // Capacity is a ceiling, never a price (round twelve). The estimate is only a
+  // planning figure, so an oversized number warns and points at the right tier
+  // instead of blocking the request.
+  const guestEstimate = Number(form.guests);
+  const guestCeiling = selectedPackage.guestLimit;
+  const overCapacity =
+    Boolean(guestCeiling) && Number.isFinite(guestEstimate) && guestEstimate > guestCeiling;
+  const roomierPackage = overCapacity
+    ? packages.find((plan) => !plan.guestLimit || plan.guestLimit >= guestEstimate)
+    : null;
 
   const update = (key, value) => {
     setForm((previous) => ({ ...previous, [key]: value }));
@@ -654,6 +673,7 @@ export default function Booking() {
                               <span className="choice__box">
                                 <span className="choice__name">{plan.name}</span>
                                 <span className="choice__price">{formatPeso(plan.price)}</span>
+                                <span className="choice__capacity">{guestCapacityShort(plan)}</span>
                               </span>
                               {plan.featured && <span className="choice__flag">Most booked</span>}
                             </label>
@@ -661,7 +681,8 @@ export default function Booking() {
                         </div>
                         <p className="field__hint">
                           {selectedPackage.summary} Includes {selectedPackage.features.length}{' '}
-                          inclusions and a {selectedPackage.turnaround} turnaround.
+                          inclusions and a turnaround of {selectedPackage.turnaround}.{' '}
+                          {guestCapacity(selectedPackage)}.
                         </p>
                       </div>
 
@@ -788,17 +809,42 @@ export default function Booking() {
                             inputMode="numeric"
                             min="1"
                             max="5000"
-                            placeholder="120"
+                            placeholder={String(guestCeiling || 120)}
                             value={form.guests}
                             onChange={(event) => update('guests', event.target.value)}
                             onBlur={() => handleBlur('guests')}
                             aria-invalid={Boolean(errors.guests)}
-                            aria-describedby={errors.guests ? 'booking-guests-error' : undefined}
+                            aria-describedby={
+                              errors.guests
+                                ? 'booking-guests-error'
+                                : overCapacity
+                                  ? 'booking-guests-capacity'
+                                  : 'booking-guests-hint'
+                            }
                           />
                           {errors.guests && (
                             <span className="field__error" id="booking-guests-error">
                               <Warning aria-hidden="true" />
                               {errors.guests}
+                            </span>
+                          )}
+                          {!errors.guests && overCapacity && (
+                            <span
+                              className="field__hint field__hint--warn"
+                              id="booking-guests-capacity"
+                              role="status"
+                            >
+                              <Warning aria-hidden="true" />
+                              {roomierPackage
+                                ? `${selectedPackage.name} covers ${guestCapacityShort(selectedPackage)}. For an event of this size, choose ${roomierPackage.name}.`
+                                : `${selectedPackage.name} covers ${guestCapacityShort(selectedPackage)}. Tell us the real number and we will suggest the right package.`}
+                            </span>
+                          )}
+                          {!errors.guests && !overCapacity && (
+                            <span className="field__hint" id="booking-guests-hint">
+                              {guestCeiling
+                                ? `${guestCapacity(selectedPackage)} included. The RSVP closes once those places are filled.`
+                                : 'Unlimited guests included. Every reply is accepted while the page is live.'}
                             </span>
                           )}
                         </div>
