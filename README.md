@@ -179,13 +179,17 @@ serve the workflow artifact, so what is live is always `dist` from `main`, never
 
 The site is a static bundle, so any host works; it is deployed to GitHub Pages from `main`.
 
-GitHub Pages serves a project site from `https://<owner>.github.io/Aetheria/`, not from the domain
+GitHub Pages serves a project site from `https://<owner>.github.io/<repo>/`, not from the domain
 root, so two things follow the base path automatically:
 
-- `vite.config.js` takes the prefix from `GITHUB_REPOSITORY` during Actions builds (`/Aetheria/`)
-  and stays at `/` for local dev and Netlify.
+- `vite.config.js` takes the prefix from `GITHUB_REPOSITORY` during Actions builds (`/Aetheria/`,
+  or none at all when the repository is named `<owner>.github.io`) and stays at `/` for local dev
+  and Netlify.
 - `BrowserRouter` receives that same prefix as `basename`, so `/Aetheria/booking` resolves instead
   of falling through to the 404 page.
+
+Because both come from the repository running the build, the site can be moved to another account
+or organisation without editing anything. See [`docs/moving-hosts.md`](./docs/moving-hosts.md).
 
 Pages has no single-page-app fallback, so the workflow copies `dist/index.html` to `dist/404.html`
 and adds `.nojekyll`. Deep links then boot the router and render the site's own not-found page.
@@ -200,8 +204,9 @@ eight real routes and a `dist/robots.txt` pointing at it. `/site-plan` is delibe
 is a redirect, and a sitemap should only list final addresses.
 
 The origin comes from `SITE_URL`, defaulting to `https://book.aetheriaevents.com`, the domain the
-site is headed for. The Pages workflow sets `SITE_URL=https://tapasul.github.io/Aetheria` so the
-mirror's own sitemap stays truthful, path prefix included. Override it in any other build:
+site is headed for. The Pages workflow derives `SITE_URL` from the repository that runs the job, so
+the mirror's own sitemap stays truthful, path prefix included, wherever the site is hosted.
+Override it in any other build:
 
 ```bash
 SITE_URL=https://example.com npm run build
