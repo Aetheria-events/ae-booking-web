@@ -32,10 +32,10 @@ const styles = [
     image: sampleBirthday,
     alt: 'A birthday celebrant in a pink tulle dress holding a sparkler',
     objectPosition: 'center 30%',
-    href: 'https://sites.google.com/view/lily18thbirthday/home',
+    href: 'https://aetheria-events.github.io/Ae-rsvp/',
   },
   {
-    meta: 'Family · Standard',
+    meta: 'Family · Basic',
     title: 'The Garden Year',
     desc: 'Christenings, reunions and the small days worth framing.',
     image: samplePortrait,
