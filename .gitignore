@@ -11,3 +11,6 @@ aetheria-complete-source.md
 # download mirror: page is tracked, the two large binaries are rebuilt locally
 public/downloads/Aetheria-Events-Website.html
 public/downloads/aetheria-events.zip
+
+# One-off direct upload artifact for Cloudflare Pages, built from dist
+/aetheria-events-site.zip
