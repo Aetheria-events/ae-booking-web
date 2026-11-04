@@ -30,17 +30,32 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # vite.config.js reads GITHUB_REPOSITORY, so the build is emitted with
-      # the /Aetheria/ prefix that a project page needs.
-      # SITE_URL keeps the sitemap pointing at this exact copy, path prefix and
-      # all, instead of at the custom domain the site is headed for.
+      # vite.config.js reads GITHUB_REPOSITORY, so the build is emitted with the
+      # prefix a project page needs (and with no prefix at all when the repo is
+      # an org or user site named <owner>.github.io).
+      #
+      # SITE_URL keeps the sitemap and robots.txt pointing at this exact copy,
+      # path prefix and all, instead of at the custom domain the site is headed
+      # for. It is worked out from the repository that runs the job, so moving
+      # the site to another owner or account needs no edit here.
+      - name: Work out the addresses
+        run: |
+          repo="${GITHUB_REPOSITORY#*/}"
+          owner="${GITHUB_REPOSITORY%%/*}"
+          owner="${owner,,}"
+          if [[ "$repo" == *.github.io ]]; then
+            echo "SITE_URL=https://${owner}.github.io" >> "$GITHUB_ENV"
+          else
+            echo "SITE_URL=https://${owner}.github.io/${repo}" >> "$GITHUB_ENV"
+          fi
+
       - name: Build site
-        env:
-          SITE_URL: https://tapasul.github.io/Aetheria
-        run: npm run build
+        run: |
+          echo "building for $SITE_URL"
+          npm run build
 
       # GitHub Pages has no SPA fallback. Serving index.html for unknown paths
-      # (as 404.html) lets /Aetheria/booking and friends boot the router
+      # (as 404.html) lets /booking and friends boot the router
       # instead of showing Pages' own 404 page.
       - name: Add SPA fallback
         run: |

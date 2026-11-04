@@ -181,12 +181,14 @@ The workflow in `.github/workflows/deploy.yml` runs on every push to `main`, and
 
 It does four things worth knowing about:
 
-- Builds with `SITE_URL=https://tapasul.github.io/Aetheria`, so the mirror's sitemap lists mirror URLs rather than the domain that is not pointed yet.
-- Sets `GITHUB_ACTIONS` and `GITHUB_REPOSITORY`, which `vite.config.js` reads to emit the `/Aetheria/` asset prefix. Locally the base stays `/`, so previews are not broken by a prefix that only exists on Pages.
+- Works out `SITE_URL` from the repository running the job (`https://<owner>.github.io/<repo>`, or the bare root for a `<owner>.github.io` repository), so the sitemap lists the host it is actually served from rather than the domain that is not pointed yet. This is why moving the site needs no workflow edit.
+- Sets `GITHUB_ACTIONS` and `GITHUB_REPOSITORY`, which `vite.config.js` reads to emit the right asset prefix: `/Aetheria/` for a project page, nothing for an `<owner>.github.io` page. Locally the base stays `/`, so previews are not broken by a prefix that only exists on Pages.
 - Copies `dist/index.html` to `dist/404.html`, because Pages has no single-page-app fallback and deep links such as `/Aetheria/booking` would otherwise hit GitHub's own 404.
 - Writes `dist/.nojekyll` so Jekyll does not strip the underscore-prefixed folders.
 
 `npm run build` runs `postbuild` automatically, which writes `sitemap.xml` and `robots.txt` with today's date in `lastmod`. `/site-plan` is deliberately absent from the sitemap: it redirects, and a sitemap should only list final addresses.
+
+**Moving the site** to another account or organisation needs no code change: create the new repository, push `main`, set Pages to GitHub Actions, then check the four things listed in [`docs/moving-hosts.md`](./docs/moving-hosts.md). The workflow derives both the asset prefix and the sitemap origin from whichever repository runs it.
 
 **Rolling back** is a normal revert of the offending commit through a pull request, then let the deploy run again. Do not rewrite `main`, and do not delete workflow runs.
 
