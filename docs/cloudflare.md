@@ -6,6 +6,42 @@
 # for that mirror yet, and neither copy is the custom domain: that is still
 # book.aetheriaevents.com, still not pointed.
 
+## When the GitHub connection fails
+
+The dashboard route depends on installing the Cloudflare GitHub App, and that
+install can half-finish. The symptom is **Error connecting to git account** right
+after choosing a repository. The app is listed on GitHub as installed, but
+Cloudflare never received the callback, so it refuses to use the install.
+
+Two ways out, in order of preference for a deadline.
+
+**Skip GitHub entirely, for now.** A direct upload needs no Git connection and no
+build on Cloudflare's side, because the app is already built.
+
+```bash
+npm ci
+SITE_URL=https://aetheria-events.pages.dev npm run build
+cd dist && zip -qr -X ../aetheria-events-site.zip .
+```
+
+Then in the dashboard: Workers & Pages, Create, Pages, **Upload assets**, name the
+project, drop the zip in, deploy. Cloudflare unzips the archive and serves it
+exactly as built, so `_headers`, `_redirects`, `sitemap.xml` and `robots.txt` all
+ship unchanged.
+
+The trade is automation, not correctness. The site works, but Cloudflare will not
+rebuild when `main` changes. Connect Git before the next round of changes, so the
+upload is a one-time bridge rather than the permanent process. Set `SITE_URL`
+explicitly for that build: `CF_PAGES_URL` is only supplied to builds Cloudflare
+runs itself.
+
+**Or repair the installation.** In GitHub, Settings, then Applications, then
+Installed GitHub Apps, open "Cloudflare Workers and Pages", choose Uninstall, then
+confirm. Then in Cloudflare, Workers & Pages, Create, Pages, Connect to Git, and
+install the app again. The uninstall has to be the one from the GitHub side; using
+the Configure button on an installation that never completed is what loops back to
+the same error.
+
 ## The short version
 
 1. Cloudflare dashboard, Workers & Pages, Create, Pages, connect the GitHub repo

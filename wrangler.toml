@@ -9,4 +9,7 @@
 # CLOUDFLARE_ACCOUNT_ID or from `wrangler login`. Never commit credentials.
 name = "aetheria-events"
 compatibility_date = "2026-11-03"
-pages_build_output_dir = "dist"
+
+# Pages only. Deliberately not set: `pages_build_output_dir`. That key makes
+# Workers reject this file, and there is no reason to carry a Pages-only field
+# in a repo that may move to Workers static assets later.
