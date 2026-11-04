@@ -87,7 +87,7 @@ Generated ${today} from the working project. Every file below lives in the zip b
 Stack: Vite + React + React Router, plain CSS, Inter only. Build with \`npm ci && npm run build\`;
 \`npm run build:single\` plus \`node scripts/inline-single.mjs\` produces the one-file version.
 
-Live today: https://tapasul.github.io/Aetheria/
+Live today: https://aetheria-events.github.io/ae-booking-web/
 Headed for: https://book.aetheriaevents.com
 
 Regenerate this document with \`npm run build:md\`. Start with \`HANDOVER.md\` if you are picking the project up.

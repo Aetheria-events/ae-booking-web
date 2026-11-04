@@ -4,10 +4,10 @@
 // hosts without edits:
 //
 //   book.aetheriaevents.com      the domain this site is headed for (default)
-//   https://tapasul.github.io/Aetheria   the GitHub Pages mirror, set in deploy.yml
+//   https://aetheria-events.github.io/ae-booking-web   the Pages mirror, set in deploy.yml
 //
 // SITE_URL is the origin *plus* any path prefix, with no trailing slash, so the
-// GitHub Pages copy can point at /Aetheria/ without the script guessing.
+// GitHub Pages copy can point at /ae-booking-web/ without the script guessing.
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -54,7 +54,7 @@ const urls = routes
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
 
 // robots.txt is only honoured at a domain root. On GitHub Pages it lands under
-// /Aetheria/ and is ignored, which is why the Pages build sets SITE_URL to the
+// /ae-booking-web/ and is ignored, which is why the Pages build sets SITE_URL to the
 // full project path: the Sitemap line stays truthful wherever it is read.
 const robots = `User-agent: *\nAllow: /\n\nSitemap: ${origin}/sitemap.xml\n`;
 

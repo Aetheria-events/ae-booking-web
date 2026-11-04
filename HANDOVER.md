@@ -10,14 +10,15 @@ Read this before you change anything. It is the working manual for this website:
 
 | Thing | Value |
 | --- | --- |
-| Live site | https://tapasul.github.io/Aetheria/ |
-| Repository | https://github.com/TapAsul/Aetheria |
+| Live site | https://aetheria-events.github.io/ae-booking-web/ |
+| Repository | https://github.com/Aetheria-events/ae-booking-web |
 | Branch that deploys | `main` |
 | Host | GitHub Pages, serving the Actions artifact built by `.github/workflows/deploy.yml` |
 | Custom domain, not yet pointed | https://book.aetheriaevents.com |
 | Booking sheet | `1jUrvnfI1MtEY83iVdLOZKxxQUbCtou1F-yf1ABUqYqQ` |
 | Booking receiver | Apps Script `/exec` URL stored in `brand.bookingEndpoint`, `src/data/site.js` |
 | Backup folder in Drive | `1jbaxhXwco_V9lNSQX74izf8qlFOWBJWk` |
+| Sample pages | Ivory Suite and Garden Year on `sites.google.com`; Blush Hour on `Aetheria-events/Ae-rsvp` |
 | Stack | React 19, Vite 8, React Router 7, plain CSS, Inter only |
 | Node | 22 in CI |
 
@@ -92,7 +93,7 @@ gh run list --limit 1
 gh run watch <run-id> --exit-status
 
 # 9. Confirm what is actually being served, then refresh the Drive backup
-curl -s https://tapasul.github.io/Aetheria/ | grep -o 'assets/index-[^"]*\.css'
+curl -s https://aetheria-events.github.io/ae-booking-web/ | grep -o 'assets/index-[^"]*\.css'
 ```
 
 Step 9 matters more than it looks. A green deploy means the upload finished, not that the rule you wrote survived minification and cascade order. Fetch the deployed stylesheet and read the rule back.
@@ -127,7 +128,7 @@ The useful output is a pair of edges per element. Two elements that should match
 ### 4.2 Read the deployed CSS
 
 ```bash
-GITHUB_ACTIONS=true GITHUB_REPOSITORY=TapAsul/Aetheria npx vite build --outDir /tmp/livecss
+GITHUB_ACTIONS=true GITHUB_REPOSITORY=Aetheria-events/ae-booking-web npx vite build --outDir /tmp/livecss
 grep -o "plan-cta{[^}]*}" /tmp/livecss/assets/*.css
 ```
 
@@ -177,7 +178,7 @@ The text fields measured 306. The date box measured 315.4, which is wider than t
 
 ## 5. Publishing
 
-The workflow in `.github/workflows/deploy.yml` runs on every push to `main`, and nothing else. Pull requests produce no checks, which is expected and not a sign of a broken repository.
+The workflow in `.github/workflows/deploy.yml` runs on every push to `main`, and nothing else. Its build step echoes `building for <SITE_URL>`; on the organisation repository that line must read `building for https://aetheria-events.github.io/ae-booking-web`, which proves both the asset prefix and the sitemap origin resolved to the new home. Pull requests produce no checks, which is expected and not a sign of a broken repository.
 
 It does four things worth knowing about:
 
@@ -252,10 +253,11 @@ Each of these cost real time. None is hypothetical.
 
 ## 8. State at handover
 
-- `main` at the commit that merged this handover, served by GitHub Pages and requesting `assets/index-DVV9S9xh.css`. Check `gh run list --branch main --limit 1` for the current run rather than trusting a number written here.
+- `main` serves the site from `Aetheria-events/ae-booking-web`. Check `gh run list --branch main --limit 1` for the current run and read the asset filename off the live page rather than trusting a number written here.
+- Twelve rounds shipped. Round twelve was the move to the organisation repository: every address belonging to the retired duplicate repo was swept out of `package.json`, `README.md`, `HANDOVER.md`, `scripts/make-sitemap.mjs`, `scripts/make-source-md.mjs`, `vite.config.js` and `src/main.jsx`. Nothing in the tree names the old home now. Search the checkout for the retired account name in any letter case, excluding `node_modules` and `.git`; the search must come back empty, and this paragraph deliberately does not spell it out.
 - Eleven rounds shipped. The last one centred the closing call-to-action pair under 760 px and normalised the event date control so it matches the other fields exactly: 262 px wide and 53 px tall at 390 px, 232 at 360, 302 at 430.
 - Mobile breathing room was applied site wide in round ten and eleven: panel inset plus inner padding, no content touching an edge at any of the three widths.
-- The Drive folder holds the three round-eleven files and nothing else.
+- The Drive folder holds the three round-twelve files, refreshed from the organisation repository, and nothing else.
 - `npm run build:md` is new with this handover and regenerates the readable source document from `git ls-files`, so the file set can never drift from the repository again.
 
 ---
@@ -263,7 +265,7 @@ Each of these cost real time. None is hypothetical.
 ## 9. Open threads
 
 - **iOS date field fallback.** If the normalised date control ever renders blank on an iPhone rather than showing the chosen date, replace it with a text input carrying a numeric keypad and keep the calendar affordance. The owner has been told this in advance.
-- **Cloudflare.** Planned, not started. Pages project on `TapAsul/Aetheria`, build `npm run build`, output `dist`, `NODE_VERSION=22`, domain `book.aetheriaevents.com`. `public/_redirects` already carries the SPA fallback.
+- **Cloudflare.** Planned, not started. Pages project on `Aetheria-events/ae-booking-web`, build `npm run build`, output `dist`, `NODE_VERSION=22`, domain `book.aetheriaevents.com`. `public/_redirects` already carries the SPA fallback.
 - **Analytics.** Must load only when `document.documentElement.dataset.consent === 'all'`. Not wired yet, and wiring it without the consent gate would break a promise the privacy page makes.
 - **Legal copy.** The privacy notice and terms are good-faith drafts. They say so. Have counsel read them before the site starts taking real bookings at the custom domain.
 - **Git history in the backup.** Optional `git bundle` file, offered and not yet wanted. The Drive backup restores a snapshot, not the commit history.

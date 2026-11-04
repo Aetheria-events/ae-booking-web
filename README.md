@@ -172,7 +172,7 @@ Use `npm run dev`, or the one-file build above.
 
 ## Live site
 
-Built and published by GitHub Actions to <https://tapasul.github.io/Aetheria/>. Pages is set to
+Built and published by GitHub Actions to <https://aetheria-events.github.io/ae-booking-web/>. Pages is set to
 serve the workflow artifact, so what is live is always `dist` from `main`, never the source tree.
 
 ## Deploying
@@ -182,10 +182,10 @@ The site is a static bundle, so any host works; it is deployed to GitHub Pages f
 GitHub Pages serves a project site from `https://<owner>.github.io/<repo>/`, not from the domain
 root, so two things follow the base path automatically:
 
-- `vite.config.js` takes the prefix from `GITHUB_REPOSITORY` during Actions builds (`/Aetheria/`,
+- `vite.config.js` takes the prefix from `GITHUB_REPOSITORY` during Actions builds (`/ae-booking-web/`,
   or none at all when the repository is named `<owner>.github.io`) and stays at `/` for local dev
   and Netlify.
-- `BrowserRouter` receives that same prefix as `basename`, so `/Aetheria/booking` resolves instead
+- `BrowserRouter` receives that same prefix as `basename`, so `/ae-booking-web/booking` resolves instead
   of falling through to the 404 page.
 
 Because both come from the repository running the build, the site can be moved to another account
@@ -213,4 +213,4 @@ SITE_URL=https://example.com npm run build
 ```
 
 Note that `robots.txt` is only read from a domain root. On the Pages mirror it lands at
-`/Aetheria/robots.txt` and is ignored, which is expected; on the custom domain it is honoured.
+`/ae-booking-web/robots.txt` and is ignored, which is expected; on the custom domain it is honoured.

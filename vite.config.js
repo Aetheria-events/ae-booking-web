@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 /**
- * GitHub Pages serves this repo as a project site at /Aetheria/, not at the
+ * GitHub Pages serves this repo as a project site at /ae-booking-web/, not at the
  * domain root, so every asset URL needs that prefix. The prefix is derived
  * from the repository name GitHub hands to Actions, which keeps the config
  * correct without hard-coding the owner. Local dev and Netlify stay at '/'.

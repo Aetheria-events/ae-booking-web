@@ -16,7 +16,7 @@ import './styles/aqua.css';
 
 import App from './App.jsx';
 
-// GitHub Pages project sites mount the app under /Aetheria/, so the router has
+// GitHub Pages project sites mount the app under /ae-booking-web/, so the router has
 // to know that prefix. Vite's BASE_URL carries it ('./' for the one-file build,
 // '/' for local dev and Netlify).
 const routerBase = import.meta.env.BASE_URL.startsWith('/') ? import.meta.env.BASE_URL : '/';
