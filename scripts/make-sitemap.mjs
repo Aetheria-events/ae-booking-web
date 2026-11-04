@@ -11,7 +11,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const origin = (process.env.SITE_URL || 'https://book.aetheriaevents.com').replace(/\/+$/, '');
+// Cloudflare Pages reports the host the production build is served from, so a
+// first Cloudflare deploy lands on its own pages.dev address until a custom
+// domain is attached. SITE_URL still wins everywhere else, including Pages.
+const fromCfPages = process.env.CF_PAGES_URL;
+const origin = (process.env.SITE_URL || fromCfPages || 'https://book.aetheriaevents.com').replace(/\/+$/, '');
 
 if (!/^https?:\/\/[^/\s]+(\/[^/\s]+)*$/.test(origin)) {
   console.error(`make-sitemap: SITE_URL is not a plain origin plus path: ${origin}`);

@@ -138,6 +138,13 @@ subject rights, NPC complaint route.
    Because this is a single-page app, add an SPA fallback so deep links resolve:
    `public/_redirects` (`/*  /index.html  200`) already covers Netlify and Cloudflare Pages, and
    `netlify.toml` mirrors it. On other hosts, point 404s at `/index.html`.
+   The repository is already prepared for Cloudflare: `public/_headers` carries nosniff, frame
+   options, a referrer policy, HSTS and immutable caching for hashed assets, `wrangler.toml` names the
+   project, and `scripts/make-sitemap.mjs` falls back to Cloudflare's `CF_PAGES_URL` so a first
+   pages.dev deploy publishes a truthful sitemap. The step-by-step, for both the dashboard and
+   `npx wrangler pages deploy dist`, is in [`docs/cloudflare.md`](./docs/cloudflare.md). The CSP is
+   left out of `_headers` on purpose: it needs testing against a live deploy first, because a wrong
+   CSP breaks the booking form.
 
 `/site-map` contains the complete launch checklist, measurement plan and open decisions. The old
 `/site-plan` address redirects to it, so links already shared keep working.

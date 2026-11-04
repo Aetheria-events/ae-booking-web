@@ -1,0 +1,12 @@
+# Cloudflare Pages project for Aetheria Events.
+#
+# This file is optional for the dashboard route (Workers & Pages, then connect
+# the GitHub repo, build command `npm run build`, output `dist`). It exists so
+# `npx wrangler pages deploy` works from a laptop or an agent sandbox with no
+# dashboard clicking at all, and so the project name cannot drift.
+#
+# No account_id is stored here on purpose: wrangler picks it up from
+# CLOUDFLARE_ACCOUNT_ID or from `wrangler login`. Never commit credentials.
+name = "aetheria-events"
+compatibility_date = "2026-11-03"
+pages_build_output_dir = "dist"

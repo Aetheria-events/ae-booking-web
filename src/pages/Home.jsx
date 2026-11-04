@@ -21,8 +21,9 @@ const styles = [
     title: 'The Ivory Suite',
     desc: 'Candlelight, garden aisles and a page that reads like letterpress.',
     image: sampleWedding,
-    alt: 'A bride and groom beside a floral arch, mountains at sunset behind them',
-    objectPosition: 'center 42%',
+    alt: 'A bride and groom beneath a rose and pampas arch, soft mountains behind them',
+    objectPosition: 'center 28%',
+    size: { width: 1440, height: 1836 },
     href: 'https://sites.google.com/view/aetheriaevents/home?authuser=1',
   },
   {
@@ -298,8 +299,8 @@ export default function Home() {
                     className="style-card__photo"
                     src={style.image}
                     alt={style.alt}
-                    width="1100"
-                    height="614"
+                    width={style.size?.width ?? 1100}
+                    height={style.size?.height ?? 614}
                     loading="lazy"
                     decoding="async"
                     style={{ objectPosition: style.objectPosition }}
