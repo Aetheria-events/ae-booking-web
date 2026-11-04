@@ -59,18 +59,73 @@ the thing to open on a phone before telling anyone the site moved.
 
 ## What Cloudflare actually buys here
 
-Worth being precise, because "get rid of the GitHub domain" is two separate wants.
+Three separate wants, and it is worth keeping them apart because they arrive at
+different moments.
 
-- **Protection.** The Cloudflare proxy in front of a custom domain gives you the
-  WAF, bot fighting, TLS and a CDN. That starts working when the domain is on
-  Cloudflare, not when the pages.dev deployment exists. A pages.dev address is
-  useful but is not a WAF in front of your brand.
-- **A nicer address.** A pages.dev host still is not your domain. It is tidier
-  than `owner.github.io/repo`, and it makes the move to `book.aetheriaevents.com`
-  a DNS change rather than a rebuild.
+**1. A tidier public address.** A pages.dev host is nicer to share than
+`aetheria-events.github.io/ae-booking-web`, and it makes the eventual move to
+`book.aetheriaevents.com` a DNS change rather than a rebuild. This one you get
+today, for free, with no domain and no card.
 
-Neither of those happens until a domain exists. That is the real blocker, not the
-build.
+**2. Protection.** The WAF, bot fighting, TLS and the CDN start working when a
+real domain is proxied through Cloudflare. They do not start working because a
+pages.dev deployment exists. A pages.dev host is a hostname, not a shield.
+
+**3. Privacy about the plumbing.** A pages.dev address does not hide the source
+repository, and it cannot. See the section below before counting on it.
+
+## Hiding the GitHub copy: what is actually possible
+
+The owner's first goal was to stop people browsing the `github.io` address. Three
+different things get confused here, and only one of them is fixed by Cloudflare.
+
+| What someone can still find | Fixed by a pages.dev address? |
+| --- | --- |
+| The pages.dev address itself, if it is shared or indexed | No. It is a public address like any other. |
+| The GitHub repository, its commit history and its issues | No. It is a public repository and stays public. |
+| The `github.io` address, discoverable in one hop from the repository | Only by closing the Pages site. |
+
+`Aetheria-events` is a **user account**, not an organisation, so both sites are
+project pages at `aetheria-events.github.io/<repo>/`. GitHub lists a public
+repository's Pages address on the repository page, and anyone who reaches
+`aetheria-events.github.io` can walk the list of that account's sites. There is no
+setting that serves a project page and hides it from the account root.
+
+So the honest sequence, cheapest first:
+
+1. **Deploy to Cloudflare Pages and share only that address.** Costs nothing. The
+   `github.io` copy stays reachable to anyone who thinks to look, and to search
+   engines, but it stops being the link you hand out.
+2. **Turn GitHub Pages off once the Cloudflare copy has been checked on a phone.**
+   Settings, Pages, Source: None. That deletes the `github.io` address, and the
+   repository page stops advertising it. The repository itself stays public, which
+   matters for the booking history and the backups. This is the step that actually
+   answers "I do not want people on the GitHub site".
+3. **Add `noindex` to the GitHub copy if it must stay up.** Useful during the
+   overlap week, so search engines do not pick up the old address. Turning Pages
+   off does the same job more simply.
+4. **When the domain exists**, attach `book.aetheriaevents.com` to the Cloudflare
+   project. Then, and only then, the WAF and bot protection apply, and the address
+   finally carries the brand.
+
+What is not on the list: making the repository private. A private repository needs
+a paid plan for Pages, and it would break the free Actions minutes and the public
+backup trail. It is not needed to stop people using the `github.io` address; step 2
+does that.
+
+## Before turning GitHub Pages off
+
+- Confirm the Cloudflare deployment is the same commit and the booking form
+  submits. A form that looks fine and silently fails is the one failure worth
+  hunting.
+- Update `package.json` `homepage` if it is ever used for a link, and update the
+  README live-site line, or the next person will chase a dead address.
+- The sitemap default is still `book.aetheriaevents.com`. With no domain yet, set
+  `SITE_URL` on the Cloudflare project to the pages.dev address, or leave it unset
+  and the `CF_PAGES_URL` fallback supplies the right one.
+- `Aetheria-events/Ae-rsvp` is a separate site with its own Pages deployment, so
+  the Ivory Suite link on the home page keeps working either way. Turning Pages off
+  on this repository does not touch it.
 
 ## Before pointing a domain at it
 
